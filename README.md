@@ -158,7 +158,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Muhammad Faizan** - *Initial work* - [PurpleBooth](https://github.com/faizu-619)
+* **Muhammad Faizan** - *Initial work* - [faizu-619](https://github.com/faizu-619)
 
 See also the list of [contributors](https://github.com/faizu-619/Generic-CRUD/contributors) who participated in this project.
 
