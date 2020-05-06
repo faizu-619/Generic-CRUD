@@ -1,0 +1,150 @@
+{
+    "tableName": "Users",
+    "title": "User",
+    "listColumns": [
+        {
+            "columnName": "First Name",
+            "key": "firstName",
+            "sort": true
+        },
+        {
+            "columnName": "Last Name",
+            "key": "lastName",
+            "sort": true
+        },
+        {
+            "columnName": "Email",
+            "key": "email",
+            "sort": true
+        },
+        {
+            "columnName": "City",
+            "key": "city",
+            "sort": true
+        },
+        {
+            "columnName": "Active",
+            "key": "isActive",
+            "sort": true
+        },
+        {
+            "columnName": "Edit",
+            "key": "userid",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a  class='btn text-info pull-right'><span class='glyphicon glyphicon-edit'></span></a>"
+        },
+        {
+            "columnName": "Remove",
+            "key": "userid",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-danger pull-right'><span class='glyphicon glyphicon-remove'></span></a>"
+        }
+    ],
+    "controls": [
+        {
+            "key": "userid",
+            "label": "",
+            "value": "0",
+            "required": true,
+            "type": "hidden",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "firstName",
+            "label": "First Name",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "lastName",
+            "label": "Last Name",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 1,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "roleid",
+            "label": "Role",
+            "value": "0",
+            "required": true,
+            "options": [],
+            "order": 2,
+            "isDisabled": false,
+            "isRemote": true,
+            "remoteUrl": "api/Role/Get",
+            "remoteKey": "roleid",
+            "remoteValue": "roleName",
+            "controlType": 5
+        },
+        {
+            "key": "email",
+            "label": "Email",
+            "value": "",
+            "required": true,
+            "type": "email",
+            "order": 6,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "password",
+            "label": "Password",
+            "value": "",
+            "type": "password",
+            "required": true,
+            "order": 7,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "userName",
+            "label": "Username",
+            "value": "",
+            "type": "text",
+            "required": true,
+            "order": 8,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "ip",
+            "label": "Ip Address",
+            "value": "",
+            "required": false,
+            "type": "text",
+            "order": 11,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "city",
+            "label": "City",
+            "value": "",
+            "required": false,
+            "type": "text",
+            "order": 12,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "IsActive",
+            "label": "Is Active",
+            "value": "true",
+            "required": true,
+            "order": 13,
+            "isDisabled": false,
+            "controlType": 6
+        }
+    ]
+}

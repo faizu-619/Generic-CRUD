@@ -1,0 +1,72 @@
+{
+    "tableName": "Posts",
+    "title": "Posts",
+    "listColumns": [
+        {
+            "columnName": "Title",
+            "key": "title",
+            "sort": true
+        },
+        {
+            "columnName": "",
+            "key": "body",
+            "sort": true
+        },
+        {
+            "columnName": "Edit",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a  class='btn text-info pull-right'>Edit</a>"
+        },
+        {
+            "columnName": "Remove",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-danger pull-right'>Delete</a>"
+        }
+    ],
+    "controls": [
+        {
+            "key": "id",
+            "label": "",
+            "value": "",
+            "required": false,
+            "type": "hidden",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "userId",
+            "label": "",
+            "value": "1",
+            "required": true,
+            "type": "hidden",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "title",
+            "label": "Post Title",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "body",
+            "label": "Body",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 1,
+            "isDisabled": false,
+            "controlType": 7
+        }
+    ]
+}

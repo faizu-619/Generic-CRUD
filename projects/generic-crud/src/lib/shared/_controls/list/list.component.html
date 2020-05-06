@@ -1,0 +1,12 @@
+<h1 *ngIf="modelType.title">{{modelType.title}}</h1>
+
+<p>
+  <a (click)="addNewHandler()" class="btn pull-right">
+    <span class=''>Add New</span>
+  </a>
+</p>
+
+<p *ngIf="!listData"><em>Loading...</em></p>
+
+<lib-datatable *ngIf="listData" [data]="listData" (columnClick)="columnClickHandler($event)" [columns]="modelType.listColumns">
+</lib-datatable>

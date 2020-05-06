@@ -1,0 +1,9 @@
+<!-- <mat-form-field [formGroup]="form">
+    <input matInput [formControlName]="control.key" [id]="control.key" [type]="control.type" [placeholder]="control.label">
+</mat-form-field> -->
+
+<div [formGroup]="form">
+    <input [formControlName]="control.key" [placeholder]="control.label" class="form-control readonly form-control-sm" 
+        [readonly]="control.isDisabled"
+        [id]="control.key" [type]="control.type">
+</div>

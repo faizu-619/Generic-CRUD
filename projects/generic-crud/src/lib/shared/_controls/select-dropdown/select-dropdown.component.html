@@ -1,0 +1,14 @@
+<!-- <mat-form-field [formGroup]="form">
+    <mat-select [id]="control.key" [formControlName]="control.key" [placeholder]="control.label" (selectionChange)="onChange($event)">
+        <mat-option *ngFor="let opt of control.options" [value]="opt.key" [disabled]="opt.disabled || false">{{opt.value}}</mat-option>
+    </mat-select>
+</mat-form-field> -->
+
+<div [formGroup]="form">    
+    <select *ngIf="!control.multiSelect" [id]="control.key" [formControlName]="control.key" class="form-control">
+        <option *ngFor="let opt of control.options" [ngValue]="opt.key">{{opt.value}}</option>
+    </select>
+    <select *ngIf="control.multiSelect" [id]="control.key" [formControlName]="control.key" multiple="" class="form-control">
+        <option *ngFor="let opt of control.options" [ngValue]="opt">{{opt.value}}</option>
+    </select>
+</div>

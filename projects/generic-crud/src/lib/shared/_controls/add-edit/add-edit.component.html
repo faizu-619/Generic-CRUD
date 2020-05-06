@@ -1,0 +1,10 @@
+<h1 *ngIf="modelType.title">{{modelType.title}}</h1>
+
+<p *ngIf="isLoading"><em>Loading...</em></p>
+
+<p>
+    <!-- {{ model.form.value | json }} -->
+</p>
+<a (click)="goBack()">Back</a>
+
+<lib-dynamic-form *ngIf="!isLoading" [controls]="modelType.controls" (OnSubmit)="save($event)"></lib-dynamic-form>
