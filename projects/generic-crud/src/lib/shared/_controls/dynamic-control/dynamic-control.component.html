@@ -16,5 +16,5 @@
 
   </div>
   
-  <span class="invalid-feedback" *ngIf="!parentFormSubmitted && !isValid">{{ validationMessage }}</span>
+  <span class="help-text" *ngIf="control.required && !parentFormSubmitted && !isValid">{{ validationMessage }}</span>
 </div>

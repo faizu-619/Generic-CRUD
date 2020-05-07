@@ -96,7 +96,7 @@ Setup CRUD Config on `src\assets\setup\Posts.json`, Example file below:
             "key": "userId",
             "label": "",
             "value": "1",
-            "required": true,
+            "required": false,
             "type": "hidden",
             "order": 0,
             "isDisabled": false,
