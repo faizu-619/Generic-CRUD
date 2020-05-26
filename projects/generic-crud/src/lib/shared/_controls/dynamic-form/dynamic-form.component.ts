@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 import { FilterBase } from '../_models/index';
 import { DynamicControlService } from '../_services/filter-control.service';
+import { ButtonModel } from '../_models/button.model';
 
 @Component({
   selector: 'lib-dynamic-form',
@@ -11,6 +12,7 @@ import { DynamicControlService } from '../_services/filter-control.service';
 })
 export class DynamicFormComponent implements OnInit {
   @Input() controls: FilterBase<any>[];
+  @Input() actionButtons: ButtonModel<any>[];
   @Output() OnSubmit = new EventEmitter();
   @Output() OnValuesChange = new EventEmitter();
 

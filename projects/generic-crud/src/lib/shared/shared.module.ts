@@ -22,6 +22,7 @@ import {
 } from './_controls/index';
 import { GenericService } from './_service/index';
 import { GenericResolver } from './_resolvers/generic.resolver';
+import { DynamicButtonsComponent } from './_controls/dynamic-buttons/dynamic-buttons.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { GenericResolver } from './_resolvers/generic.resolver';
     DynamicFormComponent,
     AddEditComponent,
     ListComponent,
+    DynamicButtonsComponent,
 
     SafePipe, KeysPipe
   ],
@@ -66,6 +68,7 @@ import { GenericResolver } from './_resolvers/generic.resolver';
     DynamicFormComponent,
     AddEditComponent,
     ListComponent,
+    DynamicButtonsComponent,
 
     SafePipe, KeysPipe
   ],

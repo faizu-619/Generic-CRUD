@@ -10,3 +10,4 @@ export * from './dynamic-form/dynamic-form.component';
 export * from './dynamic-control/dynamic-control.component';
 export * from './add-edit/add-edit.component';
 export * from './list/list.component';
+export * from './dynamic-buttons/dynamic-buttons.component';

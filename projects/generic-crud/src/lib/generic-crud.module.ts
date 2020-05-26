@@ -19,6 +19,7 @@ import { SafePipe } from './shared/_pipes/safe.pipe';
 import { KeysPipe } from './shared/_pipes/keys.pipe';
 import { TextAreaComponent } from './shared/_controls/text-area/text-area.component';
 import { NestedValuePipe } from './shared/_pipes/nested-value.pipe';
+import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dynamic-buttons.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { NestedValuePipe } from './shared/_pipes/nested-value.pipe';
     DynamicFormComponent,
     AddEditComponent,
     ListComponent,
+    DynamicButtonsComponent,
 
     SafePipe, KeysPipe, NestedValuePipe
   ],
@@ -61,6 +63,7 @@ import { NestedValuePipe } from './shared/_pipes/nested-value.pipe';
     DynamicFormComponent,
     AddEditComponent,
     ListComponent,
+    DynamicButtonsComponent,
 
     SafePipe, KeysPipe, NestedValuePipe
   ],

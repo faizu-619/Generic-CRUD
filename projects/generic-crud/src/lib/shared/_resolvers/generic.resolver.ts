@@ -23,13 +23,14 @@ export class GenericResolver implements Resolve<GenericModel> {
     return this.service.getSchema(route.paramMap.get('modelName')).pipe(catchError(error => {
       return error;
     }), map((result) => {
-      console.log(result);
+      // console.log(result);
       if (result && result.controls) {
         const model = new GenericModel();
         model.tableName = result.tableName || '';
         model.title = result.tableName || '';
         model.listColumns = result.listColumns || '';
         model.controls = [];
+        model.actionButtons = result.actionButtons;
         for (const key in result.controls) {
           if (result.controls.hasOwnProperty(key)) {
             const element = result.controls[key];

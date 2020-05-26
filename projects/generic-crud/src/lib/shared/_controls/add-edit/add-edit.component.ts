@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GenericService } from '../../_service/generic.service';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { GenericModel } from '../_models/generic.model';
+import { ButtonModel, ButtonType } from '../_models/button.model';
 
 
 @Component({
@@ -16,6 +17,26 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
   formSubmit = false;
   modelType: any;
   // modelType: { new(...args: any[]): Type; };
+  defaultActions: ButtonModel<string>[] = [
+    {
+      hrefLink: '',
+      key: 'btnSubmit',
+      label: 'Save',
+      order: 0,
+      buttonType: ButtonType.Submit,
+      isDisabled: false,
+      customClass: ''
+    },
+    {
+      hrefLink: '',
+      key: 'btnReset',
+      label: 'Reset',
+      order: 0,
+      buttonType: ButtonType.Reset,
+      isDisabled: false,
+      customClass: ''
+    }
+  ];
 
   @ViewChild(DynamicFormComponent) formComponent: DynamicFormComponent;
 

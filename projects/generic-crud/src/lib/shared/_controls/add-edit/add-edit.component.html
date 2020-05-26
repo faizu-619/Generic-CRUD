@@ -7,4 +7,4 @@
 </p>
 <a (click)="goBack()">Back</a>
 
-<lib-dynamic-form *ngIf="!isLoading" [controls]="modelType.controls" (OnSubmit)="save($event)"></lib-dynamic-form>
+<lib-dynamic-form *ngIf="!isLoading" [controls]="modelType.controls" [actionButtons]="modelType.actionButtons || defaultActions" (OnSubmit)="save($event)"></lib-dynamic-form>
