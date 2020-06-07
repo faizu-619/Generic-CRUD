@@ -9,6 +9,7 @@ import { RemoteDataService } from '../_services/remote-data.service';
 @Component({
     selector: 'lib-dynamic-control',
     templateUrl: './dynamic-control.component.html',
+    styles: ['.invalid-feedback { display: block !important }'],
     providers: [RemoteDataService]
 })
 export class DynamicControlComponent implements OnInit {
@@ -76,12 +77,12 @@ export class DynamicControlComponent implements OnInit {
         if (control && !control.valid) {
             for (const key in control.errors) {
                 if (control.errors.hasOwnProperty(key)) {
-                    messages += this.validationMessageConstants[key] + '';
+                    messages += `<div>${this.validationMessageConstants[key]}</div>`;
                 }
             }
         }
         return messages;
     }
 
-    get isValid() { return this.form.controls[this.control.key].valid; }
+    get isValid() { return (this.control.required && !this.parentFormSubmitted && this.form.controls[this.control.key].valid); }
 }

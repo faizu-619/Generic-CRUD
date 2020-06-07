@@ -13,7 +13,8 @@ export class TextAreaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-      // console.log(this.control);
+    // console.log(this.control);
   }
 
+  get isValid() { return (this.control.required && this.form.controls[this.control.key].valid); }
 }

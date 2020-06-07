@@ -40,15 +40,18 @@ export class DynamicFormComponent implements OnInit {
 
   onChanges(): void {
     this.form.valueChanges.subscribe(val => {
+      this.submited = false;
       this.OnValuesChange.emit(val);
     });
   }
 
   SubmitForm(): boolean {
     if (this.form.valid) {
+      this.submited = true;
       this.OnSubmit.emit(this.form.value);
       return true;
     }
+    this.submited = false;
     return false;
   }
 

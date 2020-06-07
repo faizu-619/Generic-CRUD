@@ -28,4 +28,6 @@ export class SingleDateComponent implements OnInit {
         // console.log(this.model);
         // this.form.controls[this.control.key].setValue(this.model);
     }
+
+    get isValid() { return (this.control.required && this.form.controls[this.control.key].valid); }
 }

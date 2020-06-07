@@ -4,11 +4,13 @@
     </mat-select>
 </mat-form-field> -->
 
-<div [formGroup]="form">    
-    <select *ngIf="!control.multiSelect" [id]="control.key" [formControlName]="control.key" class="form-control">
+<ng-container [formGroup]="form">
+    <select *ngIf="!control.multiSelect" [id]="control.key" [formControlName]="control.key"
+        [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }">
         <option *ngFor="let opt of control.options" [ngValue]="opt.key">{{opt.value}}</option>
     </select>
-    <select *ngIf="control.multiSelect" [id]="control.key" [formControlName]="control.key" multiple="" class="form-control">
+    <select *ngIf="control.multiSelect" [id]="control.key" [formControlName]="control.key" multiple=""
+        [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }">
         <option *ngFor="let opt of control.options" [ngValue]="opt">{{opt.value}}</option>
     </select>
-</div>
+</ng-container>

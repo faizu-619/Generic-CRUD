@@ -1,10 +1,15 @@
-<h1 *ngIf="modelType.title">{{modelType.title}}</h1>
 
+
+<div>
+    <h1 *ngIf="modelType.title">{{modelType.title}}</h1>
+
+    <a href="javascript:void(0);" class="btn btn-info float-right" (click)="goBack()">Back</a>
+</div>
 <p *ngIf="isLoading"><em>Loading...</em></p>
 
 <p>
     <!-- {{ model.form.value | json }} -->
 </p>
-<a (click)="goBack()">Back</a>
 
-<lib-dynamic-form *ngIf="!isLoading" [controls]="modelType.controls" [actionButtons]="modelType.actionButtons || defaultActions" (OnSubmit)="save($event)"></lib-dynamic-form>
+<lib-dynamic-form *ngIf="!isLoading" [controls]="modelType.controls"
+    [actionButtons]="modelType.actionButtons || defaultActions" (OnSubmit)="save($event)"></lib-dynamic-form>

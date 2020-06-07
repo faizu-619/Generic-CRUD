@@ -24,4 +24,6 @@ export class CheckBoxComponent implements OnInit {
     SelectionChange(event: boolean) {
         this.onCheckChange.emit(event);
     }
+
+    get isValid() { return (this.control.required && this.form.controls[this.control.key].valid); }
 }

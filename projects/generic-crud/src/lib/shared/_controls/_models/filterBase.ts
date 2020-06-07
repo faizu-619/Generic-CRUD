@@ -1,3 +1,5 @@
+import { Subject, BehaviorSubject } from 'rxjs';
+
 export class FilterBase<T> {
     value: T;
     key: string;
@@ -11,6 +13,7 @@ export class FilterBase<T> {
     remoteUrl: string;
     remoteKey: string;
     remoteValue: string;
+    customClass: Subject<string>;
 
     constructor(options: {
         value?: T,
@@ -24,7 +27,8 @@ export class FilterBase<T> {
         isRemote?: boolean,
         remoteUrl?: string,
         remoteKey?: string,
-        remoteValue?: string
+        remoteValue?: string,
+        customClass?: Subject<string>
 
     } = {}) {
         this.value = options.value;
@@ -39,6 +43,7 @@ export class FilterBase<T> {
         this.remoteUrl = options.remoteUrl || '';
         this.remoteKey = options.remoteKey || '';
         this.remoteValue = options.remoteValue || '';
+        this.customClass = options.customClass || new BehaviorSubject('');
     }
 }
 

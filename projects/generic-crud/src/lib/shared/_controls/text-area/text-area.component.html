@@ -1,6 +1,6 @@
-
-<div [formGroup]="form">
-  <textarea [formControlName]="control.key" [placeholder]="control.label" class="form-control readonly form-control-sm" 
-      [readonly]="control.isDisabled"
-      [id]="control.key" [rows]="control.rowLength"></textarea>
-</div>
+<ng-container [formGroup]="form">
+  <textarea [formControlName]="control.key" [placeholder]="control.label"
+    [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }" 
+    [readonly]="control.isDisabled"
+    [id]="control.key" [rows]="control.rowLength"></textarea>
+</ng-container>

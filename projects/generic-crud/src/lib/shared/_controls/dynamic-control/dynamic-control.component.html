@@ -1,6 +1,11 @@
-<div class="form-group" [formGroup]="form" [ngClass]="{'has-success': isValid, 'has-error': !isValid}">
-  <label *ngIf="control.controlType != 6" [attr.for]="control.key" class="">{{control.label}}</label>
-  <div [ngSwitch]="control.controlType">
+<div class="form-group" 
+  [formGroup]="form" 
+  [ngClass]="{'has-success': isValid, 'has-error': !isValid}">
+  <label *ngIf="control.controlType != 6" [attr.for]="control.key" class="">
+    {{control.label}}
+    <i *ngIf="control.required" class="text-danger">*</i>
+  </label>
+  <ng-container [ngSwitch]="control.controlType">
 
     <lib-text-box *ngSwitchCase="1" [control]="control" [form]="form"></lib-text-box>
 
@@ -14,7 +19,7 @@
 
     <lib-text-area *ngSwitchCase="7" [control]="control" [form]="form"></lib-text-area>
 
-  </div>
-  
-  <span class="help-text" *ngIf="control.required && !parentFormSubmitted && !isValid">{{ validationMessage }}</span>
+  </ng-container>
+
+  <div class="invalid-feedback" *ngIf="!isValid" [innerHtml]="validationMessage"></div>
 </div>

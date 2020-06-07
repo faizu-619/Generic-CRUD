@@ -14,9 +14,7 @@ import { ButtonModel, ButtonType } from '../_models/button.model';
 })
 export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
   isLoading = true;
-  formSubmit = false;
   modelType: any;
-  // modelType: { new(...args: any[]): Type; };
   defaultActions: ButtonModel<string>[] = [
     {
       hrefLink: '',
@@ -25,7 +23,7 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
       order: 0,
       buttonType: ButtonType.Submit,
       isDisabled: false,
-      customClass: ''
+      customClass: 'btn btn-primary'
     },
     {
       hrefLink: '',
@@ -34,7 +32,7 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
       order: 0,
       buttonType: ButtonType.Reset,
       isDisabled: false,
-      customClass: ''
+      customClass: 'btn btn-default'
     }
   ];
 
@@ -68,7 +66,6 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   save(data: any) {
-    this.formSubmit = true;
     this.defaultService.save(this.modelType.tableName, data)
       .subscribe(result => {
         if (result) {
@@ -79,8 +76,6 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
       },
         error => {
           // this.alertService.saveError(error);
-          this.formSubmit = false;
-          console.log(error);
           this.router.navigate(['/error']);
         });
   }
