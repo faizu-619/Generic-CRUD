@@ -4,5 +4,7 @@
 <ng-container [formGroup]="form">
     <input [formControlName]="control.key" [placeholder]="control.label"
         [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
-        [readonly]="control.isDisabled" [id]="control.key" [type]="control.type">
+        [readonly]="control.isDisabled" [id]="control.key" [type]="control.type"
+        autocomplete="off"
+        autofocus="on">
 </ng-container>

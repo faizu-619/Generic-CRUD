@@ -16,5 +16,5 @@ export class TextAreaComponent implements OnInit {
     // console.log(this.control);
   }
 
-  get isValid() { return (this.control.required && this.form.controls[this.control.key].valid); }
+  get isValid() { return (this.form.controls[this.control.key].valid); }
 }

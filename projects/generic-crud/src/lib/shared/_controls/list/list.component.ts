@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { GenericModel } from '../_models/generic.model';
 import { GenericService } from '../../_service/generic.service';
 import { IColumnClickParams } from '../_models/datatable.model';
+import { GENERIC_CONFIG } from '../../interfaces/generic-config.interface';
 
 @Component({
   selector: 'lib-list',
@@ -18,7 +19,8 @@ export class ListComponent implements OnInit {
   constructor(
     private defaultService: GenericService<GenericModel>,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    @Inject(GENERIC_CONFIG) private globalConfig
   ) {
     this.route.data.subscribe((data: any) => {
       if (data && data[0]) {

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes, ROUTES } from '@angular/router';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,10 +17,12 @@ import { DatatableComponent } from './shared/_controls/datatable/datatable.compo
 import { DynamicFormComponent } from './shared/_controls/dynamic-form/dynamic-form.component';
 import { SafePipe } from './shared/_pipes/safe.pipe';
 import { KeysPipe } from './shared/_pipes/keys.pipe';
+import { DynamicPipe } from './shared/_pipes';
 import { TextAreaComponent } from './shared/_controls/text-area/text-area.component';
 import { NestedValuePipe } from './shared/_pipes/nested-value.pipe';
 import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dynamic-buttons.component';
-
+import { GENERIC_CONFIG, GenericConfig } from './shared/interfaces/generic-config.interface';
+import { DefaultDateInputDirective } from './shared/_directives/default-date-input.directive';
 
 @NgModule({
   imports: [
@@ -33,7 +35,7 @@ import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dyna
       { path: 'list/:modelName', component: ListComponent, resolve: [GenericResolver] },
       { path: 'add/:modelName', component: AddEditComponent, resolve: [GenericResolver] },
       { path: 'edit/:modelName/:id', component: AddEditComponent, resolve: [GenericResolver] },
-    ])
+    ]),
   ],
   declarations: [
     CheckBoxComponent,
@@ -49,7 +51,9 @@ import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dyna
     ListComponent,
     DynamicButtonsComponent,
 
-    SafePipe, KeysPipe, NestedValuePipe
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe,
+
+    DefaultDateInputDirective
   ],
   exports: [
     CheckBoxComponent,
@@ -65,10 +69,31 @@ import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dyna
     ListComponent,
     DynamicButtonsComponent,
 
-    SafePipe, KeysPipe, NestedValuePipe
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe
   ],
   providers: [
 
+    // Note: Add in provider for dynamic resolve in Dynamic Pipe
+    CurrencyPipe, DatePipe, SafePipe, KeysPipe, NestedValuePipe
   ]
 })
-export class GenericCRUDModule { }
+export class GenericCRUDModule {
+
+  static forRoot(config: GenericConfig): ModuleWithProviders {
+    return {
+      ngModule: GenericCRUDModule,
+      providers: [
+        { provide: GENERIC_CONFIG, useValue: config }
+      ]
+    };
+  }
+
+  static forChild(config: GenericConfig, routes: Routes): ModuleWithProviders {
+    return {
+      ngModule: GenericCRUDModule,
+      providers: [
+        { provide: GENERIC_CONFIG, useValue: config }
+      ]
+    };
+  }
+}

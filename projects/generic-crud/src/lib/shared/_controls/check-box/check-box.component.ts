@@ -25,5 +25,5 @@ export class CheckBoxComponent implements OnInit {
         this.onCheckChange.emit(event);
     }
 
-    get isValid() { return (this.control.required && this.form.controls[this.control.key].valid); }
+    get isValid() { return (this.form.controls[this.control.key].valid); }
 }

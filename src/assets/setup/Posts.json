@@ -59,6 +59,16 @@
             "controlType": 1
         },
         {
+            "key": "createdOn",
+            "label": "Created On",
+            "value": "",
+            "required": true,
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 3,
+            "format": "M/d/yy"
+        },
+        {
             "key": "body",
             "label": "Body",
             "value": "",
@@ -69,42 +79,5 @@
             "controlType": 7
         }
     ],
-    "actionButtons": [
-        {
-            "hrefLink": "/list/Posts",
-            "key": "btnBack",
-            "label": "Back to list",
-            "order": 0,
-            "buttonType": 1,
-            "isDisabled": false,
-            "customClass": "btn btn-primary"
-        },
-        {
-            "hrefLink": "",
-            "key": "btnSimple",
-            "label": "Simple",
-            "order": 0,
-            "buttonType": 3,
-            "isDisabled": false,
-            "customClass": "btn btn-secondary"
-        },
-        {
-            "hrefLink": "",
-            "key": "btnSubmit",
-            "label": "Save Test",
-            "order": 0,
-            "buttonType": 3,
-            "isDisabled": false,
-            "customClass": "btn btn-success"
-        },
-        {
-            "hrefLink": "",
-            "key": "btnReset",
-            "label": "Reset Test",
-            "order": 0,
-            "buttonType": 4,
-            "isDisabled": false,
-            "customClass": "btn btn-default"
-        }
-    ]
+    "actionButtons": null
 }

@@ -45,7 +45,7 @@ export class SelectDropdownComponent implements OnInit, OnDestroy {
         });
     }
 
-    get isValid() { return (this.control.required && this.form.controls[this.control.key].valid); }
+    get isValid() { return (this.form.controls[this.control.key].valid); }
 
     private onChange(event: any) {
         this.change.emit(event);

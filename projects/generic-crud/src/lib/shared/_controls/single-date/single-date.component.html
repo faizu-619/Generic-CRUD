@@ -2,13 +2,16 @@
   <input type="hidden" [id]="control.key" [formControlName]="control.key">
 </div> -->
 
-<div [formGroup]="form">
-  <input [formControlName]="control.key" 
+<!-- libDefaultDateInput
+    [dateFormat]="control.format" -->
+
+<ng-container [formGroup]="form">
+  <input [formControlName]="control.key"
     [placeholder]="control.label"
     [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
     [readonly]="control.isDisabled"
-    [id]="control.key" type="date">
-</div>
+    [id]="control.key" type="date" autocomplete="off">
+</ng-container>
 
 <!-- 
 <mat-form-field [formGroup]="form">

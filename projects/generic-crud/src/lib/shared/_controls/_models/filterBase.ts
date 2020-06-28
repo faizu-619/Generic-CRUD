@@ -14,6 +14,12 @@ export class FilterBase<T> {
     remoteKey: string;
     remoteValue: string;
     customClass: Subject<string>;
+    minLength: number;
+    maxLength: number;
+    validationRegex: string;
+    validationRegexMessage: string;
+    compareWith: string;
+    remoteValidation: { remoteUrl: string, paramKeys: string[], mode: string }; // mode = [post, get]
 
     constructor(options: {
         value?: T,
@@ -28,8 +34,13 @@ export class FilterBase<T> {
         remoteUrl?: string,
         remoteKey?: string,
         remoteValue?: string,
-        customClass?: Subject<string>
-
+        customClass?: Subject<string>,
+        minLength?: number,
+        maxLength?: number,
+        validationRegex?: string,
+        validationRegexMessage?: string,
+        compareWith?: string,
+        remoteValidation?: { remoteUrl: string, paramKeys: string[], mode: string }
     } = {}) {
         this.value = options.value;
         this.key = options.key || '';
@@ -44,6 +55,12 @@ export class FilterBase<T> {
         this.remoteKey = options.remoteKey || '';
         this.remoteValue = options.remoteValue || '';
         this.customClass = options.customClass || new BehaviorSubject('');
+        this.minLength = options.minLength || 0;
+        this.maxLength = options.maxLength || 0;
+        this.validationRegex = options.validationRegex || '';
+        this.validationRegexMessage = options.validationRegexMessage || '';
+        this.compareWith = options.compareWith || '';
+        this.remoteValidation = options.remoteValidation || null;
     }
 }
 

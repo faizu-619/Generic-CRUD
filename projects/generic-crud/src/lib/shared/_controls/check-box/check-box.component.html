@@ -11,7 +11,7 @@
     <label>
         <input [formControlName]="control.key" 
             [id]="control.key"
-            [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }" 
+            [ngClass]="{ 'is-invalid': !isValid, 'is-valid': isValid }" 
             type="checkbox">
         {{control.label}}
     </label>

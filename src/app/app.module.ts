@@ -5,6 +5,7 @@ import { GenericCRUDModule } from 'Generic-CRUD';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { LayoutStyle } from 'projects/generic-crud/src/lib/shared/interfaces/generic-config.interface';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     RouterModule.forRoot([]),
-    GenericCRUDModule
+    GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap })
   ],
   providers: [],
   bootstrap: [AppComponent]

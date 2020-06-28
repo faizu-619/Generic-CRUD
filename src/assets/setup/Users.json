@@ -3,13 +3,13 @@
     "title": "User",
     "listColumns": [
         {
-            "columnName": "First Name",
-            "key": "firstName",
+            "columnName": "Name",
+            "key": "name",
             "sort": true
         },
         {
-            "columnName": "Last Name",
-            "key": "lastName",
+            "columnName": "Username",
+            "key": "username",
             "sort": true
         },
         {
@@ -19,43 +19,43 @@
         },
         {
             "columnName": "City",
-            "key": "city",
+            "key": "address.city",
             "sort": true
         },
         {
-            "columnName": "Active",
-            "key": "isActive",
+            "columnName": "Phone",
+            "key": "phone",
             "sort": true
         },
         {
             "columnName": "Edit",
-            "key": "userid",
+            "key": "id",
             "sort": false,
             "onClick": true,
-            "cellTemplate": "<a  class='btn text-info pull-right'><span class='glyphicon glyphicon-edit'></span></a>"
+            "cellTemplate": "<a class='btn text-info pull-right'>Edit</a>"
         },
         {
             "columnName": "Remove",
-            "key": "userid",
+            "key": "id",
             "sort": false,
             "onClick": true,
-            "cellTemplate": "<a class='btn text-danger pull-right'><span class='glyphicon glyphicon-remove'></span></a>"
+            "cellTemplate": "<a class='btn text-danger pull-right'>Delete</a>"
         }
     ],
     "controls": [
         {
-            "key": "userid",
+            "key": "id",
             "label": "",
             "value": "0",
-            "required": true,
+            "required": false,
             "type": "hidden",
             "order": 0,
             "isDisabled": false,
             "controlType": 1
         },
         {
-            "key": "firstName",
-            "label": "First Name",
+            "key": "name",
+            "label": "Name",
             "value": "",
             "required": true,
             "type": "text",
@@ -64,8 +64,8 @@
             "controlType": 1
         },
         {
-            "key": "lastName",
-            "label": "Last Name",
+            "key": "username",
+            "label": "Username",
             "value": "",
             "required": true,
             "type": "text",
@@ -76,12 +76,21 @@
         {
             "key": "roleid",
             "label": "Role",
-            "value": "0",
+            "value": "",
             "required": true,
-            "options": [],
+            "options": [
+                {
+                    "key": "Admin",
+                    "value": "Admin"
+                },
+                {
+                    "key": "User",
+                    "value": "User"
+                }
+            ],
             "order": 2,
             "isDisabled": false,
-            "isRemote": true,
+            "isRemote": false,
             "remoteUrl": "api/Role/Get",
             "remoteKey": "roleid",
             "remoteValue": "roleName",
@@ -105,21 +114,30 @@
             "required": true,
             "order": 7,
             "isDisabled": false,
-            "controlType": 1
+            "controlType": 1,
+            "minLength": 6,
+            "maxLength": 100,
+            "validationRegex": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$",
+            "validationRegexMessage": "Password has at least one number and at least one special character."
         },
         {
-            "key": "userName",
-            "label": "Username",
+            "key": "confirmPassword",
+            "label": "Confirm Password",
             "value": "",
-            "type": "text",
+            "type": "password",
             "required": true,
-            "order": 8,
+            "order": 7,
             "isDisabled": false,
-            "controlType": 1
+            "controlType": 1,
+            "minLength": 6,
+            "maxLength": 100,
+            "validationRegex": "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$",
+            "validationRegexMessage": "Password has at least one number and at least one special character.",
+            "compareWith": "password"
         },
         {
-            "key": "ip",
-            "label": "Ip Address",
+            "key": "street",
+            "label": "Street Address",
             "value": "",
             "required": false,
             "type": "text",
@@ -140,7 +158,7 @@
         {
             "key": "IsActive",
             "label": "Is Active",
-            "value": "true",
+            "value": "0",
             "required": true,
             "order": 13,
             "isDisabled": false,
