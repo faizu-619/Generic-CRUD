@@ -8,3 +8,4 @@ export * from './lib/shared/_controls/dynamic-form/dynamic-form.component';
 export * from './lib/shared/_controls/dynamic-control/dynamic-control.component';
 export * from './lib/shared/_controls/datatable/datatable.component';
 export * from './lib/shared/_controls/list/list.component';
+export * from './lib/shared/interfaces/generic-config.interface';

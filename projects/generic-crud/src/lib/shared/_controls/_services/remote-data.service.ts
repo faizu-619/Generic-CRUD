@@ -1,6 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, wtfStartTimeRange } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
+import { AbstractControl } from '@angular/forms';
 
 
 @Injectable({ providedIn: 'root' })
@@ -15,17 +16,43 @@ export class RemoteDataService {
     ) { }
 
     getRemoteData(url: string, param?: any, queryParams?: any): Observable<any[]> {
-        const apiURL = param ? `${this.baseUrl}${url}/${param}${queryParams}` : `${this.baseUrl}${url}${queryParams}`;
+        const apiURL = this.parseURL(url, param, queryParams);
         return this.http.get<any[]>(apiURL);
     }
 
-    postRemoteData(url: string, bodyParam?: any, param?: any): Observable<any[]> {
-        const apiURL = param ? `${this.baseUrl}${url}/${param}` : `${this.baseUrl}${url}`;
+    postRemoteData(url: string, bodyParam?: any, queryParams?: any): Observable<any[]> {
+        const apiURL = this.parseURL(url, null, queryParams);
         return this.http.post<any[]>(apiURL, bodyParam);
     }
 
     updateDataToControl(data: any[]): void {
         this.remoteData.next(data);
+    }
+
+    parseQueryParams(paramKeys: any[], control: AbstractControl): string {
+        if (paramKeys && paramKeys.length) {
+            let params = '?';
+            for (const paramKey of paramKeys) {
+                const frmCtrl = control.root.get(paramKey);
+                params += `${paramKey}=${(frmCtrl && frmCtrl.value ? frmCtrl.value : null)}`;
+            }
+            return params;
+        }
+        return '';
+    }
+
+    private parseURL(url: string, param: any, queryParams: any): string {
+        if (url) {
+            url = `${this.baseUrl}${url}`;
+            if (param) {
+                url = `${url}/${param}`;
+            }
+
+            if (queryParams) {
+                url = `${url}${queryParams}`;
+            }
+        }
+        return url;
     }
 
 }

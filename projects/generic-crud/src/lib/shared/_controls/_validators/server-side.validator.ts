@@ -4,7 +4,6 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 import { RemoteDataService } from '../_services/remote-data.service';
-import { FilterBase } from 'Generic-CRUD/lib/shared/_controls/_models';
 import { isBoolean, isNullOrUndefined, isObject, isArray } from 'util';
 import { Injectable, Injector } from '@angular/core';
 
@@ -12,7 +11,7 @@ import { Injectable, Injector } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class ServerSideValidator implements AsyncValidator {
   // constructor(private remoteDataService: RemoteDataService) {}
-  constructor(private injectorService: Injector) {}
+  constructor(private injectorService: Injector) { }
 
   validate(
     ctrl: AbstractControl
