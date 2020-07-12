@@ -1,5 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { RouterModule, Routes, ROUTES } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,7 +17,7 @@ import { DatatableComponent } from './shared/_controls/datatable/datatable.compo
 import { DynamicFormComponent } from './shared/_controls/dynamic-form/dynamic-form.component';
 import { SafePipe } from './shared/_pipes/safe.pipe';
 import { KeysPipe } from './shared/_pipes/keys.pipe';
-import { DynamicPipe } from './shared/_pipes';
+import { DynamicPipe } from './shared/_pipes/dynamic.pipe';
 import { TextAreaComponent } from './shared/_controls/text-area/text-area.component';
 import { NestedValuePipe } from './shared/_pipes/nested-value.pipe';
 import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dynamic-buttons.component';

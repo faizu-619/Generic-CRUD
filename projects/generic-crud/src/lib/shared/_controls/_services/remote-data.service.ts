@@ -37,8 +37,9 @@ export class RemoteDataService {
                 params += `${paramKey}=${(frmCtrl && frmCtrl.value ? frmCtrl.value : null)}`;
             }
             return params;
+        } else {
+            return '';
         }
-        return '';
     }
 
     private parseURL(url: string, param: any, queryParams: any): string {
