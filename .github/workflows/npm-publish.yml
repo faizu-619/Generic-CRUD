@@ -22,6 +22,9 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Generic-CRUD/Generic-CRUD/dist/generic-crud
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -29,7 +32,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: cd /home/runner/work/Generic-CRUD/Generic-CRUD/dist/generic-crud/
+      #- run: cd /home/runner/work/Generic-CRUD/Generic-CRUD/dist/generic-crud/
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
