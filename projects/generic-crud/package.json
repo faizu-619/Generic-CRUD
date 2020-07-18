@@ -1,5 +1,5 @@
 {
-  "name": "@faizu-619/generic-crud",
+  "name": "generic-crud",
   "version": "0.0.7",
   "description": "A simple Angular based package to create run-time CRUD for any object or table.",
   "author": "Muhammad Faizan",
