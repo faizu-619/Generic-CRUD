@@ -17,6 +17,7 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm run build:Generic-CRUD
+      - run: ls
       # - run: npm test
 
   publish-npm:
@@ -32,7 +33,7 @@ jobs:
       - run: ls
       #- run: cd /home/runner/work/Generic-CRUD/Generic-CRUD/dist/generic-crud/
       - run: npm publish
-        working-directory: Generic-CRUD/Generic-CRUD/dist/generic-crud
+        working-directory: /home/runner/work/Generic-CRUD/Generic-CRUD/dist/generic-crud
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
