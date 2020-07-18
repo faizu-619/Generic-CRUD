@@ -18,8 +18,8 @@ jobs:
       - run: npm ci
       # - run: npm test
       - run: npm run build:Generic-CRUD
-      - run: cd dist/generic-crud
       - run: npm publish
+        working-directory: dist/generic-crud
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
