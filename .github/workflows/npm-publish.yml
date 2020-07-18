@@ -29,9 +29,10 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: npm ci
+      - run: ls
       #- run: cd /home/runner/work/Generic-CRUD/Generic-CRUD/dist/generic-crud/
       - run: npm publish
-        working-directory: dist/generic-crud
+        working-directory: Generic-CRUD/Generic-CRUD/dist/generic-crud
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
