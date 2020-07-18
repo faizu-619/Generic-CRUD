@@ -15,13 +15,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+          registry-url: https://registry.npmjs.org/
       - run: npm ci
       # - run: npm test
       - run: npm run build:Generic-CRUD
       - run: npm publish
-        working-directory: dist/generic-crud
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          working-directory: dist/generic-crud
 
 
   #publish-npm:
