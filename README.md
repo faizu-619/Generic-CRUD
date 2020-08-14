@@ -24,7 +24,7 @@ Add a dependency to your app, for instance:
     import { BrowserModule } from '@angular/platform-browser';
     import { NgModule } from '@angular/core';
 
-    import { GenericCRUDModule } from 'Generic-CRUD';
+    import { GenericCRUDModule, LayoutStyle } from 'Generic-CRUD';
 
     import { AppComponent } from './app.component';
     import { RouterModule } from '@angular/router';
@@ -36,7 +36,7 @@ Add a dependency to your app, for instance:
     imports: [
         BrowserModule,
         RouterModule.forRoot([]),
-        GenericCRUDModule
+        GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap }),
     ],
     providers: [],
     bootstrap: [AppComponent]
@@ -113,6 +113,16 @@ Setup CRUD Config on `src\assets\setup\Posts.json`, Example file below:
             "controlType": 1
         },
         {
+            "key": "createdOn",
+            "label": "Created On",
+            "value": "",
+            "required": true,
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 3,
+            "format": "M/d/yy"
+        },
+        {
             "key": "body",
             "label": "Body",
             "value": "",
@@ -121,6 +131,26 @@ Setup CRUD Config on `src\assets\setup\Posts.json`, Example file below:
             "order": 1,
             "isDisabled": false,
             "controlType": 7
+        }
+    ],
+    "actionButtons": [
+        {
+            "hrefLink": "",
+            "key": "btnSubmit",
+            "label": "Save",
+            "order": 0,
+            "buttonType": "Submit",
+            "isDisabled": false,
+            "customClass": "btn btn-primary"
+        },
+        {
+            "hrefLink": "",
+            "key": "btnReset",
+            "label": "Reset",
+            "order": 0,
+            "buttonType": "Reset",
+            "isDisabled": false,
+            "customClass": "btn btn-default"
         }
     ]
 }
@@ -146,6 +176,7 @@ Set your route to access your CRUD
 
 * [Angular](https://angular.io/) - Angular is an application design framework and development platform for creating efficient and sophisticated single-page apps.
 * [Lodash](https://lodash.com/) - A modern JavaScript utility library delivering modularity, performance & extras.
+* [Bootstrap](https://getbootstrap.com/) - Build fast, responsive sites with Bootstrap.
 
 ## Contributing
 Feel free to suggest idea or report an issue, at any point that you understand. 
