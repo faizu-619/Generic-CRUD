@@ -25,6 +25,7 @@ export class ListComponent implements OnInit {
     this.route.data.subscribe((data: any) => {
       if (data && data[0]) {
         this.modelType = Object.assign({}, data[0]);
+        this.loadData();
       }
     });
   }

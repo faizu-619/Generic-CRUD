@@ -1,6 +1,6 @@
 {
   "name": "generic-crud",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A simple Angular based package to create run-time CRUD for any object or table.",
   "author": "Muhammad Faizan",
   "repository": {
@@ -8,8 +8,8 @@
     "url": "https://github.com/faizu-619/Generic-CRUD"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/common": "^11.0.3",
+    "@angular/core": "^11.0.3"
   },
   "dependencies": {
     "lodash": "^4.17.15"

@@ -79,7 +79,7 @@ import { DefaultDateInputDirective } from './shared/_directives/default-date-inp
 })
 export class GenericCRUDModule {
 
-  static forRoot(config: GenericConfig): ModuleWithProviders {
+  static forRoot(config: GenericConfig): ModuleWithProviders<GenericCRUDModule> {
     return {
       ngModule: GenericCRUDModule,
       providers: [
@@ -88,7 +88,7 @@ export class GenericCRUDModule {
     };
   }
 
-  static forChild(config: GenericConfig, routes: Routes): ModuleWithProviders {
+  static forChild(config: GenericConfig, routes: Routes): ModuleWithProviders<GenericCRUDModule> {
     return {
       ngModule: GenericCRUDModule,
       providers: [

@@ -2,10 +2,11 @@
  * Public API Surface of generic-crud
  */
 
+import { from } from 'rxjs';
+
 export * from './lib/generic-crud.service';
 export * from './lib/generic-crud.module';
-export * from './lib/shared/_controls/dynamic-form/dynamic-form.component';
-export * from './lib/shared/_controls/dynamic-control/dynamic-control.component';
-export * from './lib/shared/_controls/datatable/datatable.component';
-export * from './lib/shared/_controls/list/list.component';
 export * from './lib/shared/interfaces/generic-config.interface';
+export * from './lib/shared/_pipes/index';
+export * from './lib/shared/_controls/index';
+export * from './lib/shared/_service/index';

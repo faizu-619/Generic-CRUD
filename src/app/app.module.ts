@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
     GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap })
   ],
   providers: [],

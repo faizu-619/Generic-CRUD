@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RangeDateComponent } from './range-date.component';
 
@@ -6,7 +6,7 @@ describe('RangeDateComponent', () => {
   let component: RangeDateComponent;
   let fixture: ComponentFixture<RangeDateComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RangeDateComponent ]
     })
