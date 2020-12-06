@@ -71,7 +71,10 @@
             "type": "text",
             "order": 1,
             "isDisabled": false,
-            "controlType": 1
+            "controlType": 1,
+            "format": {
+                "mask": "AAA 000-S0S"
+            }
         },
         {
             "key": "roleid",
@@ -95,6 +98,34 @@
             "remoteKey": "roleid",
             "remoteValue": "roleName",
             "controlType": 5
+        },
+        {
+            "key": "salary",
+            "label": "Salary",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 1,
+            "isDisabled": false,
+            "controlType": 1,
+            "format": {
+                "mask": "0000",
+                "suffix": " $"
+            }
+        },
+        {
+            "key": "phone",
+            "label": "Phone #",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 1,
+            "isDisabled": false,
+            "controlType": 1,
+            "format": {
+                "mask": "(000) 0000000",
+                "prefix": "+92"
+            }
         },
         {
             "key": "email",

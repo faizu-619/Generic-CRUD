@@ -2,7 +2,6 @@
  * Public API Surface of generic-crud
  */
 
-import { from } from 'rxjs';
 
 export * from './lib/generic-crud.service';
 export * from './lib/generic-crud.module';

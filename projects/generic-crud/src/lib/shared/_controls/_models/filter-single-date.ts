@@ -6,6 +6,6 @@ export class FilterSingleDate extends FilterBase<string> {
 
   constructor(options: {} = {}) {
     super(options);
-    this.format = options['format'] || '';
+    this.format = options['format'] || 'yyyy-MM-dd';
   }
 }

@@ -32,7 +32,8 @@ export class DynamicControlComponent implements OnInit {
         min: 'Number must be greater than {{min}}.',
         max: 'Number must not exceed {{max}}.',
         compare: 'This field is not valid or matched with {{compareWith}}.',
-        exists: 'Already in use, please try with other.'
+        exists: 'Already in use, please try with other.',
+        mask: '"{{actualValue}}" is not valid, require e.g "{{requiredMask}}".'
     };
 
     constructor(

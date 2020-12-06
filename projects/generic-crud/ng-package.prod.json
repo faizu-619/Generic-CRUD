@@ -5,10 +5,12 @@
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
       "lodash": "lodash",
+      "ngx-mask": "ngx-mask",
       "util": "util"
     }
   },
   "whitelistedNonPeerDependencies": [
-    "lodash"
+    "lodash",
+    "ngx-mask"
   ]
 }
