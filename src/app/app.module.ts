@@ -5,14 +5,18 @@ import { RouterModule } from '@angular/router';
 import { GenericCRUDModule, LayoutStyle } from 'Generic-CRUD';
 
 import { AppComponent } from './app.component';
+import { AddEditCustomComponent } from './add-edit-custom/add-edit-custom.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddEditCustomComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([], { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot([
+      { path: 'add-custom', component: AddEditCustomComponent },
+    ], { relativeLinkResolution: 'legacy' }),
     GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap })
   ],
   providers: [],

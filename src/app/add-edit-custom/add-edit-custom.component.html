@@ -1,0 +1,48 @@
+<h2>Custom Form</h2>
+
+<form [formGroup]="form" (ngSubmit)="form.valid && SubmitForm()">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <lib-dynamic-control [controlObject]="formSetting['email']" [form]="form" [parentFormSubmitted]="submited">
+      </lib-dynamic-control>
+    </div>
+    <div class="form-group col-md-6">
+      <lib-dynamic-control [controlObject]="formSetting['password']" [form]="form" [parentFormSubmitted]="submited">
+      </lib-dynamic-control>
+    </div>
+  </div>
+  <div class="form-group">
+    <lib-dynamic-control [controlObject]="formSetting['address']" [form]="form" [parentFormSubmitted]="submited">
+    </lib-dynamic-control>
+  </div>
+  <div class="form-group">
+    <lib-dynamic-control [controlObject]="formSetting['address1']" [form]="form" [parentFormSubmitted]="submited">
+    </lib-dynamic-control>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <lib-dynamic-control [controlObject]="formSetting['city']" [form]="form" [parentFormSubmitted]="submited">
+      </lib-dynamic-control>
+    </div>
+    <div class="form-group col-md-4">
+      <lib-dynamic-control [controlObject]="formSetting['state']" [form]="form" [parentFormSubmitted]="submited">
+      </lib-dynamic-control>
+    </div>
+    <div class="form-group col-md-2">
+      <lib-dynamic-control [controlObject]="formSetting['zip']" [form]="form" [parentFormSubmitted]="submited">
+      </lib-dynamic-control>
+    </div>
+  </div>
+  <div class="form-group">
+    <lib-dynamic-control [controlObject]="formSetting['agree']" [form]="form" [parentFormSubmitted]="submited">
+    </lib-dynamic-control>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+
+<hr>
+
+<h2>Dynamic Form</h2>
+
+<lib-dynamic-form [controls]="formBasic"
+    [actionButtons]="actions" (OnSubmit)="SubmitForm()"></lib-dynamic-form>
