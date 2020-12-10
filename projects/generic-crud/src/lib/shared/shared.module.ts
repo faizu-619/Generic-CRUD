@@ -23,6 +23,7 @@ import {
 import { GenericService } from './_service/index';
 import { GenericResolver } from './_resolvers/generic.resolver';
 import { DynamicButtonsComponent } from './_controls/dynamic-buttons/dynamic-buttons.component';
+import { ValidationMessageComponent } from './_controls/validation-message/validation-message.component';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { DynamicButtonsComponent } from './_controls/dynamic-buttons/dynamic-but
     ListComponent,
     DynamicButtonsComponent,
 
-    SafePipe, KeysPipe
+    SafePipe, KeysPipe, ValidationMessageComponent
   ],
   exports: [
     ReactiveFormsModule,

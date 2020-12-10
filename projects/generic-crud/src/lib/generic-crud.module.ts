@@ -25,6 +25,7 @@ import { NestedValuePipe } from './shared/_pipes/nested-value.pipe';
 import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dynamic-buttons.component';
 import { GENERIC_CONFIG, GenericConfig } from './shared/interfaces/generic-config.interface';
 import { DefaultDateInputDirective } from './shared/_directives/default-date-input.directive';
+import { ValidationMessageComponent } from './shared/_controls/validation-message/validation-message.component';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { DefaultDateInputDirective } from './shared/_directives/default-date-inp
     AddEditComponent,
     ListComponent,
     DynamicButtonsComponent,
+    ValidationMessageComponent,
 
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe,
 
@@ -71,6 +73,7 @@ import { DefaultDateInputDirective } from './shared/_directives/default-date-inp
     AddEditComponent,
     ListComponent,
     DynamicButtonsComponent,
+    ValidationMessageComponent,
 
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe
   ],

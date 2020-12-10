@@ -11,3 +11,4 @@ export * from './dynamic-control/dynamic-control.component';
 export * from './add-edit/add-edit.component';
 export * from './list/list.component';
 export * from './dynamic-buttons/dynamic-buttons.component';
+export * from './validation-message/validation-message.component';

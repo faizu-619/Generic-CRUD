@@ -1,9 +1,7 @@
-<div class="form-group" 
-  [formGroup]="form" 
-  [ngClass]="{'has-success': isValid, 'has-error': !isValid}">
+<div class="form-group" [formGroup]="form" [ngClass]="{'has-success': isValid, 'has-error': !isValid}">
   <label *ngIf="control.controlType != 6" [attr.for]="control.key" class="">
     {{control.label}}
-    <i *ngIf="control.required" class="text-danger">*</i>
+    <i *ngIf="control.label && control.required" class="text-danger">*</i>
   </label>
   <ng-container [ngSwitch]="control.controlType">
 
@@ -21,5 +19,5 @@
 
   </ng-container>
 
-  <div class="invalid-feedback" *ngIf="!isValid" [innerHtml]="validationMessage"></div>
+  <div class="invalid-feedback" lib-validation-message [control]="control" [form]="form" [parentFormSubmitted]="parentFormSubmitted"></div>
 </div>
