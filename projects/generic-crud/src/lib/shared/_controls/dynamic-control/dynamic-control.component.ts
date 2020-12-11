@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 import { FilterBase } from '../_models/filterBase';
 import { DynamicControlService } from '../_services/filter-control.service';
@@ -43,14 +45,24 @@ export class DynamicControlComponent implements OnInit {
         if (ctrl.isRemote) {
             // console.log('Control Change', ctrl);
             // console.log('Control Change value', param);
-            this.remote.getRemoteData(ctrl.remoteUrl, param)
-                .subscribe(result => {
-                    if (Array.isArray(result)) {
-                        this.remote.updateDataToControl(result);
-                    } else if (typeof result === 'string') {
-                        this.remote.updateDataToControl(result);
-                    }
-                }, error => console.log(error));
+
+            const handleResult = (result) => {
+                if (Array.isArray(result)) {
+                    this.remote.updateDataToControl(result);
+                } else if (typeof result === 'string') {
+                    this.remote.updateDataToControl(result);
+                }
+            };
+
+            if (typeof ctrl.remoteUrl === 'string') {
+                this.remote.getRemoteData(ctrl.remoteUrl, param)
+                    .subscribe(handleResult, error => console.log(error));
+
+            } else if (typeof ctrl.remoteUrl === 'object') {
+                (ctrl.remoteUrl as Observable<any>)
+                    .pipe(delay(1000))
+                    .subscribe(handleResult, error => console.log(error));
+            }
         }
     }
 

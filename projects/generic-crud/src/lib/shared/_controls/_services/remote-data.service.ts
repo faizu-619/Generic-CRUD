@@ -7,7 +7,7 @@ import { AbstractControl } from '@angular/forms';
 @Injectable({ providedIn: 'root' })
 export class RemoteDataService {
 
-    private remoteData: Subject<any[]> = new Subject<any[]>();
+    private remoteData: Subject<any[] | any> = new Subject<any[]>();
     public remoteData$ = this.remoteData.asObservable();
 
     constructor(
@@ -25,7 +25,7 @@ export class RemoteDataService {
         return this.http.post<any[]>(apiURL, bodyParam);
     }
 
-    updateDataToControl(data: any[]): void {
+    updateDataToControl(data: any[] | any): void {
         this.remoteData.next(data);
     }
 
@@ -44,7 +44,14 @@ export class RemoteDataService {
 
     private parseURL(url: string, param: any, queryParams: any): string {
         if (url) {
-            url = `${this.baseUrl}${url}`;
+            if (url.indexOf('https://') > -1 || url.indexOf('http://') > -1) {
+                url = url;
+            } else if (this.baseUrl) {
+                url = `${this.baseUrl}${url}`;
+            } else {
+                url = `${location.origin}${url}`;
+            }
+
             if (param) {
                 url = `${url}/${param}`;
             }

@@ -22,10 +22,11 @@ export class SelectDropdownComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         if (this.control.isRemote) {
-            this.modelSubscription = this.remote.remoteData$.subscribe((value) => {
-                // console.log('Subscribe on control.', value);
-                this.loadOptions(value);
-            });
+            this.modelSubscription = this.remote.remoteData$
+                .subscribe((value) => {
+                    // console.log('Subscribe on control.', value);
+                    this.loadOptions(value);
+                });
         }
     }
 
@@ -36,6 +37,7 @@ export class SelectDropdownComponent implements OnInit, OnDestroy {
     }
 
     loadOptions(result: any[]) {
+        // console.log(result);
         this.control.options = [];
         result.forEach(element => {
             this.control.options.push({

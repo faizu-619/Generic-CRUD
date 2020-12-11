@@ -1,4 +1,4 @@
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 
 export class FilterBase<T> {
     value: T;
@@ -10,7 +10,7 @@ export class FilterBase<T> {
     isDisabled: boolean;
     onChangeKey: string;
     isRemote: boolean;
-    remoteUrl: string;
+    remoteUrl: string | Observable<any> | any;
     remoteKey: string;
     remoteValue: string;
     customClass: Subject<string>;
@@ -19,7 +19,7 @@ export class FilterBase<T> {
     validationRegex: string;
     validationRegexMessage: string;
     compareWith: string;
-    remoteValidation: { remoteUrl: string, paramKeys: string[], mode: string }; // mode = [post, get]
+    remoteValidation: { remoteUrl: string | Observable<any> | any, paramKeys: string[], mode: string }; // mode = [post, get]
 
     constructor(options: {
         value?: T,
@@ -31,7 +31,7 @@ export class FilterBase<T> {
         isDisabled?: boolean,
         onChangeKey?: string,
         isRemote?: boolean,
-        remoteUrl?: string,
+        remoteUrl?: string | Observable<any>,
         remoteKey?: string,
         remoteValue?: string,
         customClass?: Subject<string>,

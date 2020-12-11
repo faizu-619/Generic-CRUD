@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonModel, ButtonType, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, } from 'Generic-CRUD';
+import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, } from 'Generic-CRUD';
+import { Observable, of } from 'rxjs';
+import { delay, first } from 'rxjs/operators';
 // import { FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox } from 'projects/generic-crud/src/lib/shared/_controls/_models';
 // import {
 //   FilterSingleDate,
@@ -16,6 +18,13 @@ import { ButtonModel, ButtonType, FilterCheckbox, FilterDropdown, FilterTextArea
 export class AddEditCustomComponent implements OnInit {
   form: FormGroup;
   submited = false;
+
+  countries = new Observable<any[]>((observer) => {
+    // observable execution
+    observer.next([{ name: 'USA' }, { name: 'Pakistan' }]);
+    observer.complete();
+  });
+
   formSetting = {
     'email': new FilterTextbox({
       type: 'email',
@@ -49,6 +58,16 @@ export class AddEditCustomComponent implements OnInit {
       required: false,
       rowLength: 3
     }),
+    'country': new FilterDropdown({
+      'key': 'country',
+      'label': 'Select country',
+      'value': '',
+      'required': true,
+      'isRemote': true,
+      'remoteUrl': this.countries,
+      'remoteKey': 'name',
+      'remoteValue': 'name',
+    }),
     'city': new FilterTextbox({
       value: '',
       key: 'city',
@@ -61,21 +80,10 @@ export class AddEditCustomComponent implements OnInit {
       'label': 'Select State',
       'value': '',
       'required': true,
-      'options': [
-        {
-          'key': 'Atlanta',
-          'value': 'Atlanta'
-        },
-        {
-          'key': 'Arizaona',
-          'value': 'Arizaona'
-        },
-        {
-          'key': 'Texas',
-          'value': 'Texas'
-        }
-      ],
-      'isRemote': false
+      'isRemote': true,
+      'remoteUrl': 'https://gist.githubusercontent.com/mshafrir/2646763/raw/8b0dbb93521f5d6889502305335104218454c2bf/states_titlecase.json',
+      'remoteKey': 'abbreviation',
+      'remoteValue': 'name',
     }),
     'zip': new FilterTextbox({
       type: 'text',
@@ -111,21 +119,13 @@ export class AddEditCustomComponent implements OnInit {
   ];
 
   constructor(
+    private dynCtrlService: DynamicControlService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, Validators.maxLength(250)),
-      'address': new FormControl(null, Validators.required),
-      'address1': new FormControl(null, Validators.required),
-      'city': new FormControl(null, Validators.required),
-      'state': new FormControl(null, Validators.required),
-      'zip': new FormControl(null, Validators.required),
-      'agree': new FormControl(null)
-    });
+    this.form = this.dynCtrlService.toFormGroup(this.formBasic);
   }
 
   SubmitForm() {
