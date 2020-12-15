@@ -58,5 +58,5 @@ export class ValidationMessageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get isValid() { return (!this.parentFormSubmitted && this.form.controls[this.control.key].valid); }
+  get isValid() { return (!this.parentFormSubmitted || this.form.controls[this.control.key].valid); }
 }
