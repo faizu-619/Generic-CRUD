@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth } from 'Generic-CRUD';
+import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterAutocompleteTextbox } from 'Generic-CRUD';
 import { Observable, of } from 'rxjs';
 import { delay, first } from 'rxjs/operators';
 // import { FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox } from 'projects/generic-crud/src/lib/shared/_controls/_models';
@@ -64,13 +64,13 @@ export class AddEditCustomComponent implements OnInit {
       required: false,
       rowLength: 3
     }),
-    'country': new FilterDropdown({
+    'country': new FilterAutocompleteTextbox({
       'key': 'country',
       'label': 'Select country',
       'value': '',
       'required': true,
       'isRemote': true,
-      'remoteUrl': this.countries,
+      'remoteUrl': 'https://restcountries.com/v2/name/',
       'remoteKey': 'name',
       'remoteValue': 'name',
     }),

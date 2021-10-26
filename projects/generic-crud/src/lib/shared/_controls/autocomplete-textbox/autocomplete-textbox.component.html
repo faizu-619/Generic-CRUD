@@ -1,0 +1,23 @@
+<ng-container [formGroup]="form">
+    <input [formControlName]="control.key" [id]="control.key" type="hidden">
+</ng-container>
+
+<div class="control">
+    <input [formControlName]="control.key" [placeholder]="control.label"
+    [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
+    [readonly]="control.isDisabled" autocomplete="off" [formControl]="innerControl" [appAtxtAutocomplete]="autocomplete">
+</div>
+
+<!-- <p style="color: black; font-size: 18px; margin-bottom: 10px;">{{innerControl.value}}</p>
+<p style="color: black; font-size: 18px; margin-bottom: 10px;">{{frmControl.value}}</p> -->
+
+<app-atxt-autocomplete #autocomplete="atxtAutocomplete" [displayValue]="control.remoteValue" (OnSelected)="SelectValue($event)">
+    <ng-template appAutocompleteContent>
+        <ng-container *ngIf="(options | async) as result">
+            <app-atxt-option *ngFor="let option of result" [value]="option">
+                {{ option[control.remoteValue] }}
+            </app-atxt-option>
+            <app-atxt-option class="no-result" *ngIf="!result.length">No result...</app-atxt-option>
+        </ng-container>
+    </ng-template>
+</app-atxt-autocomplete>

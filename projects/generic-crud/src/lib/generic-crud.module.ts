@@ -27,6 +27,7 @@ import { GENERIC_CONFIG, GenericConfig } from './shared/interfaces/generic-confi
 import { DefaultDateInputDirective } from './shared/_directives/default-date-input.directive';
 import { ValidationMessageComponent } from './shared/_controls/validation-message/validation-message.component';
 import { DateOfBirthComponent } from './shared/_controls/date-of-birth/date-of-birth.component';
+import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textbox/autocomplete-textbox.module';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { DateOfBirthComponent } from './shared/_controls/date-of-birth/date-of-b
       { path: 'edit/:modelName/:id', component: AddEditComponent, resolve: [GenericResolver] },
     ]),
     NgxMaskModule.forRoot(),
+    AutocompleteTextboxModule
   ],
   declarations: [
     CheckBoxComponent,

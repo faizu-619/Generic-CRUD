@@ -9,3 +9,4 @@ export * from './generic.model';
 export * from './button.model';
 export * from './mask-value.model';
 export * from './filter-date-of-birth';
+export * from './filter-autocomplete-textbox';

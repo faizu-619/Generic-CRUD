@@ -19,6 +19,9 @@
 
     <lib-date-of-birth *ngSwitchCase="8" [control]="control" [form]="form"></lib-date-of-birth>
 
+    <lib-autocomplete-textbox *ngSwitchCase="9" (valueUpdate)="searchOptions($event)" [form]="form"
+            [options]="options$" [control]="control"></lib-autocomplete-textbox>
+
   </ng-container>
 
   <div class="invalid-feedback" lib-validation-message [control]="control" [form]="form" [parentFormSubmitted]="parentFormSubmitted"></div>

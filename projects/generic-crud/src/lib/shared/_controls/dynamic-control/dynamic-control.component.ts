@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
-import { FilterBase } from '../_models/filterBase';
+import { ControlType, FilterBase } from '../_models/filterBase';
 import { DynamicControlService } from '../_services/filter-control.service';
 import { RemoteDataService } from '../_services/remote-data.service';
 
@@ -23,6 +23,7 @@ export class DynamicControlComponent implements OnInit {
     @Input() controlObject: FilterBase<any>;
 
     control: FilterBase<any>;
+    options$: Observable<any[]>;
 
     constructor(
         private fcs: DynamicControlService,
@@ -40,9 +41,17 @@ export class DynamicControlComponent implements OnInit {
         }
     }
 
+    searchOptions(value: string): void {
+        if (typeof this.control.remoteUrl === 'string') {
+            this.options$ = this.remote.getRemoteData(this.control.remoteUrl, value);
+        } else if (typeof this.control.remoteUrl === 'object') {
+            this.options$ = (this.control.remoteUrl as Observable<any>);
+        }
+    }
+
     private setControl(ctrl: FilterBase<any>, param?: any): void {
         this.control = ctrl;
-        if (ctrl.isRemote) {
+        if (ctrl.isRemote && ctrl.controlType != ControlType.AutocompleteTextbox) {
             // console.log('Control Change', ctrl);
             // console.log('Control Change value', param);
 
