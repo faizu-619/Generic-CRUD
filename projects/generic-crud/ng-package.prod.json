@@ -11,6 +11,7 @@
   },
   "whitelistedNonPeerDependencies": [
     "lodash",
-    "ngx-mask"
+    "ngx-mask",
+    "moment"
   ]
 }

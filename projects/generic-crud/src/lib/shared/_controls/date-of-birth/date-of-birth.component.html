@@ -1,0 +1,42 @@
+<ng-container [formGroup]="form">
+    <input [formControlName]="control.key" [id]="control.key" type="hidden">
+</ng-container>
+<div class="row row-sm">
+    <div class="col-4">
+        <div class="form-group has-float-label" [ngClass]="{'active': selectedMonth > 0 }">
+            <select class="form-control" [(ngModel)]="selectedMonth" (change)="changeDate()">
+                <!-- <option *ngFor="let item of months" [value]="item">{{item}}</option> -->
+                <option value=1>January</option>
+                <option value=2>February</option>
+                <option value=3>March</option>
+                <option value=4>April</option>
+                <option value=5>May</option>
+                <option value=6>June</option>
+                <option value=7>July</option>
+                <option value=8>August</option>
+                <option value=9>September</option>
+                <option value=10>October</option>
+                <option value=11>November</option>
+                <option value=12>December</option>
+            </select>
+            <label for="month">Month</label>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group has-float-label" [ngClass]="{'active': selectedDay > 0 }">
+            <select class="form-control" [(ngModel)]="selectedDay" (change)="changeDate()" >
+                <option *ngFor="let item of days" [value]="item">{{item}}</option>
+            </select>
+            <label for="day">Day</label>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group has-float-label" [ngClass]="{'active': selectedYear > 0 }">
+            <select class="form-control" [(ngModel)]="selectedYear" (change)="changeDate()" >
+                <option *ngFor="let item of years" [value]="item">{{item}}</option>
+            </select>
+            <label for="year">Year</label>
+        </div>
+      </div>
+      <span class="dob-error" *ngIf="error">Must be 18 years or older</span>
+</div>

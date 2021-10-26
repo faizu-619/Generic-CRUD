@@ -71,5 +71,6 @@ export enum ControlType {
     RangeDate = 4,
     Dropdown = 5,
     CheckBox = 6,
-    TextArea = 7
+    TextArea = 7,
+    DateOfBirth = 8
 }
