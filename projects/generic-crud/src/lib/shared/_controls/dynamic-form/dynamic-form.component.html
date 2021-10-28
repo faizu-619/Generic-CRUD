@@ -1,11 +1,12 @@
 
 <form [formGroup]="form" (ngSubmit)="form.valid && SubmitForm()">
-  
-  <lib-dynamic-control 
+
+  <lib-dynamic-control
   *ngFor="let control of controls"
   [form]="form"
   [parentFormSubmitted]="submited"
   [controlObject]="control"
+  [ControlState]='form'
   ></lib-dynamic-control>
 
   <lib-dynamic-buttons [btnList]="actionButtons"></lib-dynamic-buttons>

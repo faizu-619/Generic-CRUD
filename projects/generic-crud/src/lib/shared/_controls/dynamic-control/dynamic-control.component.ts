@@ -11,7 +11,7 @@ import { RemoteDataService } from '../_services/remote-data.service';
 @Component({
     selector: 'lib-dynamic-control',
     templateUrl: './dynamic-control.component.html',
-    styles: ['.invalid-feedback { display: block !important }'],
+    styleUrls:['./dynamic-control.component.css'],
     providers: [RemoteDataService]
 })
 export class DynamicControlComponent implements OnInit {

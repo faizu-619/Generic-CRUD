@@ -26,6 +26,7 @@ import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dyna
 import { GENERIC_CONFIG, GenericConfig } from './shared/interfaces/generic-config.interface';
 import { DefaultDateInputDirective } from './shared/_directives/default-date-input.directive';
 import { ValidationMessageComponent } from './shared/_controls/validation-message/validation-message.component';
+import { ControlStateDirective } from './shared/_directives/controlState.directive';
 
 @NgModule({
   imports: [
@@ -56,7 +57,7 @@ import { ValidationMessageComponent } from './shared/_controls/validation-messag
     DynamicButtonsComponent,
     ValidationMessageComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe,
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, ControlStateDirective,
 
     DefaultDateInputDirective
   ],
@@ -75,7 +76,7 @@ import { ValidationMessageComponent } from './shared/_controls/validation-messag
     DynamicButtonsComponent,
     ValidationMessageComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , ControlStateDirective
   ],
   providers: [
 

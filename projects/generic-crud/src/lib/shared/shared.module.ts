@@ -45,7 +45,7 @@ import { ValidationMessageComponent } from './_controls/validation-message/valid
     SelectDropdownComponent,
     SingleDateComponent,
     TextBoxComponent,
-    DynamicControlComponent,
+
     DatatableComponent,
     DynamicFormComponent,
     AddEditComponent,
@@ -64,7 +64,7 @@ import { ValidationMessageComponent } from './_controls/validation-message/valid
     SelectDropdownComponent,
     SingleDateComponent,
     TextBoxComponent,
-    DynamicControlComponent,
+
     DatatableComponent,
     DynamicFormComponent,
     AddEditComponent,
