@@ -2,10 +2,10 @@
     <input matInput [formControlName]="control.key" [id]="control.key" [type]="control.type" [placeholder]="control.label">
 </mat-form-field> -->
 <ng-container [formGroup]="form">
-    <input *ngIf="!control.format" [formControlName]="control.key" [placeholder]="control.label"
+    <input *ngIf="!control.format" [formControlName]="control.key"
         [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
         [readonly]="control.isDisabled" [id]="control.key" [type]="control.type" autocomplete="off" autofocus="on">
-    <input *ngIf="control.format" [formControlName]="control.key" [placeholder]="control.label"
+    <input *ngIf="control.format" [formControlName]="control.key"
         [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
         [readonly]="control.isDisabled" [id]="control.key" [type]="control.type" 
         [mask]="control.format.mask"

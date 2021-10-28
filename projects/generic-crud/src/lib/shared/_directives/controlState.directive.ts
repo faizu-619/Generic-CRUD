@@ -2,12 +2,12 @@ import { FormGroup } from '@angular/forms';
 import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[ControlState]'
+  selector: '[libControlState]'
 })
 export class ControlStateDirective {
 
   private el: any;
-  @Input('controlState') form: FormGroup;
+  @Input('libControlState') form: FormGroup;
   number: any = '';
   constructor(
     private elementRef: ElementRef<any>,
