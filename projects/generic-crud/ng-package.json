@@ -10,6 +10,7 @@
     "ngx-mask",
     "moment",
     "@angular/cdk",
-    "ngx-take-until-destroy"
+    "ngx-take-until-destroy",
+    "ngx-daterangepicker-material"
   ]
 }

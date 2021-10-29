@@ -1,6 +1,6 @@
 <h2>Custom Form</h2>
 
-<form [formGroup]="form" (ngSubmit)="form.valid && SubmitForm()">
+<form (ngSubmit)="form.valid && SubmitForm()">
   <div class="form-row">
     <div class="form-group col-md-6">
       <lib-dynamic-control [controlObject]="formSetting['email']" [form]="form" [parentFormSubmitted]="submited">
@@ -13,6 +13,10 @@
   </div>
   <div class="form-group">
     <lib-dynamic-control [controlObject]="formSetting['birthDate']" [form]="form" [parentFormSubmitted]="submited">
+    </lib-dynamic-control>
+  </div>
+  <div class="form-group">
+    <lib-dynamic-control [controlObject]="formSetting['rangeDate']" [form]="form" [parentFormSubmitted]="submited">
     </lib-dynamic-control>
   </div>
   <div class="form-group">

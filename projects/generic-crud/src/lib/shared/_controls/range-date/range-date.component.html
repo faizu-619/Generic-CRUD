@@ -1,44 +1,7 @@
-<!-- <div [formGroup]="form">
-  <input type="hidden" [id]="control.key" [formControlName]="control.key">
-  <div class="input-group">
-    <div class="input-group-append">
-      <span class="input-group-text btn">From</span>
-    </div>
-    <input type="text" class="form-control" [(ngModel)]="dateFrom" [ngModelOptions]="{standalone: true}" (dateSelect)="onDateSelection($event)" #f>
-    <div class="input-group-append">
-      <span class="input-group-text btn btn-primary" (click)="f.toggle()">
-        <i class="fa fa-calendar"></i>
-      </span>
-    </div>
-    <div class="input-group-append">
-      <span class="input-group-text btn">To</span>
-    </div>
-    <input type="text" class="form-control" [(ngModel)]="dateTo" [ngModelOptions]="{standalone: true}" (dateSelect)="onDateSelection($event)" #t>
-    <div class="input-group-append">
-      <span class="input-group-text btn btn-primary" (click)="t.toggle()">
-        <i class="fa fa-calendar"></i>
-      </span>
-    </div>
-    <select class="form-control">
-      <option *ngFor="let key of subTypeKeys" [value]="key" [label]="subTypes[key]" (change)="onChangeSubType($event)"></option>
-    </select>
-  </div>
-</div> -->
-
-<p>
-  Bingooo No control set.
-</p>
-
-<!-- <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t">
-  </ngb-datepicker>
-  
-  <ng-template #t let-date="date" let-focused="focused">
-    <span class="custom-day"
-          [class.focused]="focused"
-          [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
-          [class.faded]="isHovered(date) || isInside(date)"
-          (mouseenter)="hoveredDate = date"
-          (mouseleave)="hoveredDate = null">
-      {{ date.day }}
-    </span>
-  </ng-template> -->
+<div *ngIf="isReady" [formGroup]="form">
+  <input type="text" ngxDaterangepickerMd [formControlName]="control.key"
+    [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }" [readonly]="control.isDisabled"
+    [showCustomRangeLabel]="true" [alwaysShowCalendars]="true" [ranges]="ranges"
+    [linkedCalendars]="true" [isInvalidDate]="isInvalidDate" [showClearButton]="false"
+    [showDropdowns]="true" showCancel="true" />
+</div>

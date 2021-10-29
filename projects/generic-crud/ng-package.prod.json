@@ -6,7 +6,10 @@
     "umdModuleIds": {
       "lodash": "lodash",
       "ngx-mask": "ngx-mask",
-      "util": "util"
+      "moment": "moment",
+      "util": "util",
+      "ngx-take-until-destroy": "ngx-take-until-destroy",
+      "ngx-daterangepicker-material": "ngx-daterangepicker-material"
     }
   },
   "whitelistedNonPeerDependencies": [
@@ -14,6 +17,7 @@
     "ngx-mask",
     "moment",
     "@angular/cdk",
-    "ngx-take-until-destroy"
+    "ngx-take-until-destroy",
+    "ngx-daterangepicker-material"
   ]
 }

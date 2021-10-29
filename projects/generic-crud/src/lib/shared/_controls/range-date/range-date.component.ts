@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
 
 import { FilterRangeDate, subType } from '../_models/filter-range-date';
 
@@ -7,43 +8,53 @@ import { FilterRangeDate, subType } from '../_models/filter-range-date';
     selector: 'lib-range-date',
     templateUrl: './range-date.component.html',
     styleUrls: ['./range-date.component.css'],
-    // providers: [{ provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
-    // { provide: NgbDateAdapter, useClass: NgbDateStringAdapter }
-    // ]
+    // https://fetrarij.github.io/ngx-daterangepicker-material/custom-ranges
 })
 export class RangeDateComponent implements OnInit {
     @Input() control: FilterRangeDate;
     @Input() form: FormGroup;
-    dateFrom: Date;
-    dateTo: Date;
 
-    subTypes = subType;
-    subTypeKeys = [];
+    innerForm: FormGroup;
+    isReady: boolean = false;
+    alwaysShowCalendars: boolean;
+    ranges: any = {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    }
 
-    constructor() { }
+    invalidDates: moment.Moment[] = [];
+
+    isInvalidDate = (m: moment.Moment) => {
+        return this.invalidDates.some(d => d.isSame(m, 'day'))
+    }
+
+
+    get isValid() { return this.isReady && (this.form.controls[this.control.key].valid); }
+
+    constructor(private fb: FormBuilder) {
+        // this.innerForm = this.fb.group({
+        //     selected: [{
+        //       startDate: '',
+        //       endDate: ''
+        //     }, Validators.required],
+        //   });
+        this.innerForm = this.fb.group({
+            startDate: '',
+            endDate: ''
+        }, { validators: [Validators.required] });
+    }
 
     ngOnInit() {
-        const value = this.form.controls[this.control.key].value || null;
-        const dateParts = value ? value.trim().split(',') : null;
 
-        if (value && dateParts && dateParts.length === 2) {
-            this.dateFrom = new Date(dateParts[0]);
-            this.dateTo = new Date(dateParts[1]);
-        }
-
-        this.subTypeKeys = Object.keys(this.subTypes).filter(Number);
+        // this.form.controls[this.control.key] = this.innerForm;
+        // this.form.controls[this.control.key] = this.fb.group({
+        //     startDate: this.control.dateFrom,
+        //     endDate: this.control.dateTo
+        // }, { validators: [Validators.required] });
+        this.isReady = true;
     }
-
-    onDateSelection(event: any) {
-        // console.log(this.dateFrom);
-        // console.log(this.dateTo);
-        if (this.dateFrom && this.dateTo) {
-            this.form.controls[this.control.key].setValue(`${this.dateFrom},${this.dateTo}`);
-        }
-    }
-
-    onChangeSubType(event: any) {
-        // console.log(event);
-    }
-
 }

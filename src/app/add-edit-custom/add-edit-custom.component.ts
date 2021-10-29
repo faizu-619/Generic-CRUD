@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterAutocompleteTextbox } from 'Generic-CRUD';
+import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterAutocompleteTextbox, FilterRangeDate } from 'Generic-CRUD';
 import { Observable, of } from 'rxjs';
 import { delay, first } from 'rxjs/operators';
 // import { FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox } from 'projects/generic-crud/src/lib/shared/_controls/_models';
@@ -48,6 +48,12 @@ export class AddEditCustomComponent implements OnInit {
       value: '',
       key: 'birthDate',
       label: 'Enter DOB',
+      required: true
+    }),
+    'rangeDate': new FilterRangeDate({
+      value: '',
+      key: 'rangeDate',
+      label: 'Enter range',
       required: true
     }),
     'address': new FilterTextArea({
