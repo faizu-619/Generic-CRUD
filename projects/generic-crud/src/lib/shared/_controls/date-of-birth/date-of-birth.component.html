@@ -1,6 +1,14 @@
 <ng-container [formGroup]="form">
-    <input [formControlName]="control.key" [id]="control.key" type="hidden">
+    <input [formControlName]="control.key" type="hidden">
 </ng-container>
+<div class="row row-sm" *ngIf="control.label">
+    <div class="col-12">
+        <label [attr.for]="control.key" class="">
+            {{control.label}}
+            <i *ngIf="control.label && control.required" class="text-danger">*</i>
+          </label>    
+    </div>
+</div>
 <div class="row row-sm">
     <div class="col-4">
         <div class="form-group has-float-label" [ngClass]="{'active': selectedMonth > 0 }">

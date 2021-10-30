@@ -10,7 +10,6 @@
 <ng-container [formGroup]="form">
     <label>
         <input [formControlName]="control.key" 
-            [id]="control.key"
             [ngClass]="{ 'is-invalid': !isValid, 'is-valid': isValid }" 
             type="checkbox">
         {{control.label}}

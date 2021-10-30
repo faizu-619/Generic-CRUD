@@ -1,5 +1,5 @@
 
-<form [formGroup]="form" (ngSubmit)="form.valid && SubmitForm()">
+<form [formGroup]="form" (ngSubmit)="form.valid && SubmitForm()" libFormState>
 
   <lib-dynamic-control
   *ngFor="let control of controls"

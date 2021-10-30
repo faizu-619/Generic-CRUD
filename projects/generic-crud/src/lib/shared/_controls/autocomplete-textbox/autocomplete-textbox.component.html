@@ -1,11 +1,11 @@
 <ng-container [formGroup]="form">
-    <input [formControlName]="control.key" [id]="control.key" type="hidden">
+    <input [formControlName]="control.key" type="hidden">
 </ng-container>
 
 <div class="control">
-    <input [placeholder]="control.label"
+    <input
         [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
-        [readonly]="control.isDisabled" autocomplete="off" [formControl]="innerControl"
+        [readonly]="control.isDisabled" [formControl]="innerControl"
         [appAtxtAutocomplete]="autocomplete">
 </div>
 

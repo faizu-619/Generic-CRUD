@@ -4,10 +4,10 @@
 <ng-container [formGroup]="form">
     <input *ngIf="!control.format" [formControlName]="control.key"
         [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
-        [readonly]="control.isDisabled" [id]="control.key" [type]="control.type" autocomplete="off" autofocus="on">
+        [readonly]="control.isDisabled" [type]="control.type" autocomplete="off" autofocus="on">
     <input *ngIf="control.format" [formControlName]="control.key"
         [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
-        [readonly]="control.isDisabled" [id]="control.key" [type]="control.type" 
+        [readonly]="control.isDisabled" [type]="control.type" 
         [mask]="control.format.mask"
         [prefix]="control.format.prefix"
         [suffix]="control.format.suffix"

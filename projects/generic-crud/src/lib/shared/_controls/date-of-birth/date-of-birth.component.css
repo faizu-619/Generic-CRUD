@@ -8,3 +8,42 @@
   font-size: 80%;
   color: #dc3545;
 }
+.has-float-label {
+  position: relative;
+  display: block;
+}
+.has-float-label label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+
+  pointer-events: none;
+  padding: 0 0.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+.has-float-label.active .form-control {
+  border-color: black;
+  box-shadow: 0 7px 12px rgba(140, 158, 196, 0.23);
+}
+
+.has-float-label input:-webkit-autofill ~ label {
+  top: -0.5rem;
+  font-size: 75%;
+  background-color: white !important;
+}
+.has-float-label .form-control:focus + label,
+.has-float-label.active label {
+  top: -0.5rem;
+  font-size: 75%;
+  background-color: white !important;
+}
+.has-float-label input:not(:placeholder-shown) ~ label,
+.has-float-label input:-webkit-autofill ~ label /* <<<< Add these */ {
+  top: -0.5rem;
+  font-size: 75%;
+}
+
+.has-float-label input.form-control::placeholder {
+  color: transparent;
+}
