@@ -1,0 +1,90 @@
+<!--<p *ngIf="loading"><em>Loading Table...</em></p>-->
+
+<div *ngIf="loading" class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div class="table-responsive">
+  <ngx-datatable *ngIf="!loading" #myTable class="bootstrap expandable" [rows]="rows" [groupRowsBy]="groupBy.GroupColumn"
+    [columnMode]="ColumnMode.force" [scrollbarH]="false" [headerHeight]="50" [footerHeight]="50"
+    [loadingIndicator]="loading" [summaryRow]="false" [summaryPosition]="'bottom'" rowHeight="auto"
+    [reorderable]="reorderable" [groupExpansionDefault]="true" [sortType]="SortType.multi">
+    <!-- Group Header Template -->
+    <ngx-datatable-group-header *ngIf="groupBy" [rowHeight]="50" #myGroupHeader (toggle)="onDetailToggle($event)">
+      <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
+        <div>
+          <a href="javascript:void(0);" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+            title="Expand/Collapse Group" (click)="toggleExpandGroup(group)">
+            <b>{{ (group.value[0] | nested: groupBy.key) | dynamic: groupBy.formatPipe : groupBy.formatPipeArgs }}</b>
+          </a>
+        </div>
+      </ng-template>
+    </ngx-datatable-group-header>
+    <!-- Row Column Template -->
+    <!-- <ngx-datatable-column name="Exp. Pay." prop="" editable="true" frozenLeft="True">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row"
+        let-group="group">
+        <label for="ep1{{ rowIndex }}" class="datatable-checkbox">
+          <input type="checkbox" id="ep1{{ rowIndex }}" name="{{ rowIndex }}" value="0" class="expectedpayment"
+            (change)="checkGroup($event, row, rowIndex, group)" [checked]="row.exppayyes === 1" />
+        </label>
+        <label for="ep2{{ rowIndex }}" class="datatable-checkbox">
+          <input type="checkbox" id="ep2{{ rowIndex }}" name="{{ rowIndex }}" value="1" class="expectedpayment2"
+            (change)="checkGroup($event, row, rowIndex, group)" [checked]="row.exppayno === 1" />
+        </label>
+        <label for="ep3{{ rowIndex }}" class="datatable-checkbox">
+          <input type="checkbox" id="ep3{{ rowIndex }}" name="{{ rowIndex }}" value="2" class="expectedpayment3"
+            (change)="checkGroup($event, row, rowIndex, group)" [checked]="row.exppaypending === 1" />
+        </label>
+      </ng-template>
+    </ngx-datatable-column> -->
+
+    <ng-container *ngFor="let column of columns">
+      <ngx-datatable-column *ngIf="!(column.hide || column.key === groupBy.key)" [name]="column.columnName" [prop]="column.key">
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row"
+          let-group="group" let-rowHeight="rowHeight">
+          <span *ngIf="column.cellTemplate" (click)="column!.onClick && onColumnClick($event, column, row[column.key])"
+            [innerHTML]="interpolate(column.cellTemplate, row[column.key]) | safe:'html'"></span>
+          <span *ngIf="!column.cellTemplate"
+            (click)="column!.onClick && onColumnClick($event, column, row[column.key])">
+            {{ (row | nested: column.key) | dynamic: column.formatPipe :column.formatPipeArgs }}
+          </span>
+          <!-- <input autofocus (blur)="updateValue($event, 'comment', rowIndex)" type="text" name="comment" [value]="value" /> -->
+        </ng-template>
+      </ngx-datatable-column>
+    </ng-container>
+  </ngx-datatable>
+</div>
+
+<!-- <div class="table-responsive">
+  <table class='table table-bordered table-hover' *ngIf="!loading">
+    <thead>
+      <tr>
+        <ng-container *ngFor="let item of columns">
+          <th *ngIf="!item.hide">
+            <div *ngIf="item.headTemplate"
+              [innerHTML]="interpolate(item.headTemplate, item.columnName, item.key) | safe:'html'"></div>
+            <div *ngIf="!item.headTemplate">{{item.columnName}}</div>
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <ng-container *ngFor="let column of columns">
+          <td *ngIf="!column.hide" (click)="column!.onClick && onColumnClick($event, column, item[column.key])">
+            <span *ngIf="column.cellTemplate"
+              [innerHTML]="interpolate(column.cellTemplate, item[column.key]) | safe:'html'"></span>
+            <span *ngIf="!column.cellTemplate">{{ item | nested: column.key }}</span>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!data || data.length < 1">
+      <tr>
+        <td [attr.colspan]="columns.length">No records found!</td>
+      </tr>
+    </tfoot>
+  </table>
+</div> -->
