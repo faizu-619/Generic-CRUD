@@ -4,7 +4,7 @@
 }
 .has-float-label label {
   position: absolute;
-  top: 0.85rem;
+  top: 0.5rem;
   left: 0.75rem;
 
   pointer-events: none;
@@ -34,6 +34,6 @@
   font-size: 75%;
 }
 
-input.form-control::placeholder {
+.has-float-label input.form-control::placeholder {
   color: transparent;
 }
