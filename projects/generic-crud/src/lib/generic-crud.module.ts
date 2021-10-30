@@ -27,6 +27,7 @@ import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dyna
 import { GENERIC_CONFIG, GenericConfig } from './shared/interfaces/generic-config.interface';
 import { DefaultDateInputDirective } from './shared/_directives/default-date-input.directive';
 import { ValidationMessageComponent } from './shared/_controls/validation-message/validation-message.component';
+import { ControlStateDirective } from './shared/_directives/controlState.directive';
 import { DateOfBirthComponent } from './shared/_controls/date-of-birth/date-of-birth.component';
 import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textbox/autocomplete-textbox.module';
 
@@ -62,7 +63,7 @@ import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textb
     ValidationMessageComponent,
     DateOfBirthComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe,
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, ControlStateDirective,
 
     DefaultDateInputDirective
   ],
@@ -82,7 +83,7 @@ import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textb
     ValidationMessageComponent,
     DateOfBirthComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , ControlStateDirective
   ],
   providers: [
 

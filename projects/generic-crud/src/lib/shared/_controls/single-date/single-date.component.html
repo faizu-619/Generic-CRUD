@@ -7,7 +7,6 @@
 
 <ng-container [formGroup]="form">
   <input [formControlName]="control.key"
-    [placeholder]="control.label"
     [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
     [readonly]="control.isDisabled"
     [id]="control.key" type="date" autocomplete="off">
