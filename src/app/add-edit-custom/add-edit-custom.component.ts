@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, } from 'Generic-CRUD';
+import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterAutocompleteTextbox } from 'Generic-CRUD';
 import { Observable, of } from 'rxjs';
 import { delay, first } from 'rxjs/operators';
 // import { FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox } from 'projects/generic-crud/src/lib/shared/_controls/_models';
@@ -44,6 +44,12 @@ export class AddEditCustomComponent implements OnInit {
       'validationRegex': '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$',
       'validationRegexMessage': 'Password has at least one number and at least one special character.'
     }),
+    'birthDate': new FilterDateOfBirth({
+      value: '',
+      key: 'birthDate',
+      label: 'Enter DOB',
+      required: true
+    }),
     'address': new FilterTextArea({
       value: '',
       key: 'address',
@@ -58,13 +64,13 @@ export class AddEditCustomComponent implements OnInit {
       required: false,
       rowLength: 3
     }),
-    'country': new FilterDropdown({
+    'country': new FilterAutocompleteTextbox({
       'key': 'country',
       'label': 'Select country',
       'value': '',
       'required': true,
       'isRemote': true,
-      'remoteUrl': this.countries,
+      'remoteUrl': 'https://restcountries.com/v2/name/',
       'remoteKey': 'name',
       'remoteValue': 'name',
     }),

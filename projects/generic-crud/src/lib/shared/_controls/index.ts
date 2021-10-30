@@ -12,3 +12,4 @@ export * from './add-edit/add-edit.component';
 export * from './list/list.component';
 export * from './dynamic-buttons/dynamic-buttons.component';
 export * from './validation-message/validation-message.component';
+export * from './date-of-birth/date-of-birth.component';

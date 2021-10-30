@@ -15,6 +15,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^11.2.14",
+    "@angular/cdk": "^11.0.2",
     "@angular/common": "^11.2.14",
     "@angular/compiler": "^11.2.14",
     "@angular/core": "^11.2.14",
@@ -26,7 +27,9 @@
     "bootstrap": "^4.6.0",
     "core-js": "^3.18.3",
     "jquery": "^3.6.0",
+    "moment": "^2.29.1",
     "ngx-mask": "^11.1.5",
+    "ngx-take-until-destroy": "^5.4.0",
     "rxjs": "6.6.3",
     "zone.js": "^0.11.4"
   },

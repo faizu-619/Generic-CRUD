@@ -27,6 +27,8 @@ import { GENERIC_CONFIG, GenericConfig } from './shared/interfaces/generic-confi
 import { DefaultDateInputDirective } from './shared/_directives/default-date-input.directive';
 import { ValidationMessageComponent } from './shared/_controls/validation-message/validation-message.component';
 import { ControlStateDirective } from './shared/_directives/controlState.directive';
+import { DateOfBirthComponent } from './shared/_controls/date-of-birth/date-of-birth.component';
+import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textbox/autocomplete-textbox.module';
 
 @NgModule({
   imports: [
@@ -41,6 +43,7 @@ import { ControlStateDirective } from './shared/_directives/controlState.directi
       { path: 'edit/:modelName/:id', component: AddEditComponent, resolve: [GenericResolver] },
     ]),
     NgxMaskModule.forRoot(),
+    AutocompleteTextboxModule
   ],
   declarations: [
     CheckBoxComponent,
@@ -56,6 +59,7 @@ import { ControlStateDirective } from './shared/_directives/controlState.directi
     ListComponent,
     DynamicButtonsComponent,
     ValidationMessageComponent,
+    DateOfBirthComponent,
 
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, ControlStateDirective,
 
@@ -75,6 +79,7 @@ import { ControlStateDirective } from './shared/_directives/controlState.directi
     ListComponent,
     DynamicButtonsComponent,
     ValidationMessageComponent,
+    DateOfBirthComponent,
 
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , ControlStateDirective
   ],

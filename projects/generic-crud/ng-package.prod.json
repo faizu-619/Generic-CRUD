@@ -11,6 +11,9 @@
   },
   "whitelistedNonPeerDependencies": [
     "lodash",
-    "ngx-mask"
+    "ngx-mask",
+    "moment",
+    "@angular/cdk",
+    "ngx-take-until-destroy"
   ]
 }

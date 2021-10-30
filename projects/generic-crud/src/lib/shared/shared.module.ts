@@ -18,12 +18,13 @@ import {
   DatatableComponent,
   DynamicFormComponent,
   AddEditComponent,
-  ListComponent
+  ListComponent,
+  DynamicButtonsComponent,
+  ValidationMessageComponent,
+  DateOfBirthComponent
 } from './_controls/index';
 import { GenericService } from './_service/index';
 import { GenericResolver } from './_resolvers/generic.resolver';
-import { DynamicButtonsComponent } from './_controls/dynamic-buttons/dynamic-buttons.component';
-import { ValidationMessageComponent } from './_controls/validation-message/validation-message.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ValidationMessageComponent } from './_controls/validation-message/valid
     AddEditComponent,
     ListComponent,
     DynamicButtonsComponent,
+    DateOfBirthComponent,
 
     SafePipe, KeysPipe, ValidationMessageComponent
   ],
@@ -70,6 +72,7 @@ import { ValidationMessageComponent } from './_controls/validation-message/valid
     AddEditComponent,
     ListComponent,
     DynamicButtonsComponent,
+    DateOfBirthComponent,
 
     SafePipe, KeysPipe
   ],
