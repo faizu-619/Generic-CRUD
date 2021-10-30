@@ -1,0 +1,19 @@
+<ng-container [formGroup]="form">
+    <ng-container *ngFor="let item of options | async; let i = index;">
+        <div class="custom-control custom-radio" *ngIf="i < 4" (click)="selectValue(item.key);">
+            <input type="radio" class="custom-control-input" [id]="item.value" [value]="item.key"
+                [formControlName]="control.key" (change)="selectValue(item.key)">
+            <label class="custom-control-label" [for]="item.value">{{ item.value }}</label>
+        </div>
+    </ng-container>
+
+    <div class="form-group has-float-label" [ngClass]="{ 'active': dropdown.value && dropdown.value.length }">
+        <select class="form-control" [formControlName]="control.key" (change)="selectValue($event.target.value)" #dropdown>
+            <!-- <option value="null"></option> -->
+            <ng-container *ngFor="let item of options | async; let i = index">
+                <option *ngIf="i > 3" [value]="item.key">{{ item.value }}</option>
+            </ng-container>
+        </select>
+        <label [for]="control.label">{{control.label}}</label>
+    </div>
+</ng-container>
