@@ -46,7 +46,7 @@ import { GenericResolver } from './_resolvers/generic.resolver';
     SelectDropdownComponent,
     SingleDateComponent,
     TextBoxComponent,
-    DynamicControlComponent,
+
     DatatableComponent,
     DynamicFormComponent,
     AddEditComponent,
@@ -66,7 +66,7 @@ import { GenericResolver } from './_resolvers/generic.resolver';
     SelectDropdownComponent,
     SingleDateComponent,
     TextBoxComponent,
-    DynamicControlComponent,
+
     DatatableComponent,
     DynamicFormComponent,
     AddEditComponent,
