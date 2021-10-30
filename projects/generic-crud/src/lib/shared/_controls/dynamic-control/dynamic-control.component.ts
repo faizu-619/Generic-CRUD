@@ -11,7 +11,7 @@ import { RemoteDataService } from '../_services/remote-data.service';
 @Component({
     selector: 'lib-dynamic-control',
     templateUrl: './dynamic-control.component.html',
-    styleUrls:['./dynamic-control.component.css'],
+    styleUrls: ['./dynamic-control.component.css'],
     providers: [RemoteDataService]
 })
 export class DynamicControlComponent implements OnInit {
@@ -88,4 +88,8 @@ export class DynamicControlComponent implements OnInit {
     }
 
     get isValid() { return (!this.parentFormSubmitted && this.form.controls[this.control.key].valid); }
+    get hasValue(): boolean {
+        return (this.form.controls[this.control.key].value && this.form.controls[this.control.key].value.length)
+            || (this.control.controlType == ControlType.RangeDate &&  this.form.controls[this.control.key].valid);
+    }
 }

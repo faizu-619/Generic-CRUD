@@ -5,7 +5,6 @@ import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/
   selector: '[libControlState]'
 })
 export class ControlStateDirective {
-
   private el: any;
   @Input('libControlState') form: FormGroup;
   number: any = '';
@@ -27,13 +26,15 @@ export class ControlStateDirective {
   @HostListener('focusin', ['$event.target'])
   onFocusIn(target: any) {
     setTimeout(() => {
-      this.renderer.addClass(this.el.parentElement, 'active');
+    // console.log('focusin dicpatched.', target);
+    this.renderer.addClass(this.el.parentElement, 'active');
     }, 0);
   }
 
   @HostListener('focusout', ['$event.target'])
   onFocusOut(target: any) {
     setTimeout(() => {
+      // console.log('focusout dicpatched.', target);
 
       if (target && target.value && target.value.length) {
         this.renderer.addClass(this.el.parentElement, 'active');
@@ -44,11 +45,10 @@ export class ControlStateDirective {
   }
   private updateView(frm: FormGroup = null): void {
     const input =
-      this.el.querySelector('input') || this.el.querySelector('select');
+      this.el.querySelector('input:not([type=hidden])') || this.el.querySelector('select');
 
-    if (frm && frm.controls[input?.id]) {
-      if (frm.controls[input?.id].value?.toString()?.length) {
-
+    if (frm && frm.controls[input?.name]) {
+      if (frm.controls[input?.name].value?.toString()?.length) {
         this.renderer.addClass(this.el.parentElement, 'active');
       } else {
         this.renderer.removeClass(this.el.parentElement, 'active');
