@@ -1,0 +1,19 @@
+<div class="progress-bar-main">
+  <ul>
+    <ng-container *ngFor="let step of steps; let i = index;">
+      <li [ngClass]="(selectedIndex == i) ? 'active' : (selectedIndex >= i) ? 'active visited' : ''">
+        <a (click)="(stepClickEnable && selectedIndex = i)">
+          <ng-container *ngIf="step.stepLabel; else showLabelText" [ngTemplateOutlet]="step.stepLabel.template">
+          </ng-container>
+          <ng-template #showLabelText>
+            {{ step.label }}
+          </ng-template>
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+<div class="container" formState>
+  <!-- <div class="alert alert-error" *ngIf="selected!.hasError">{{selected!.errorMessage}}</div> -->
+  <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+</div>
