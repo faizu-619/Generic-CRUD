@@ -45,7 +45,7 @@ export class ControlStateDirective {
   }
   private updateView(): void {
     const input =
-      this.el.querySelector('input:not([type=hidden])') || this.el.querySelector('select');
+      this.el.querySelector('input:not([type=hidden])') || this.el.querySelector('select') || this.el.querySelector('textarea');
 
     if (input?.value?.toString()?.length) {
       this.renderer.addClass(this.el.parentElement, 'active');
