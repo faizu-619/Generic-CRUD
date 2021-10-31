@@ -1,6 +1,6 @@
 {
   "name": "generic-crud",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "A simple Angular based package to create run-time CRUD for any object or table.",
   "author": "Muhammad Faizan",
   "repository": {
