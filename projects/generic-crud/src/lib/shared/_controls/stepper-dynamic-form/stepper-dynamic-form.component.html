@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="form.valid && SubmitForm()" libFormState>
+
+    <lib-custom-stepper #cdkStepper (selectionChange)="changeStep($event)" formArrayName="steps" [linear]="isLinear">
+
+        <ng-container *ngFor="let controls of controlsArray; let i = index">
+
+            <cdk-step [editable]="isEditable" [formGroupName]="i" [stepControl]="formArray.get([i])">
+                <ng-template cdkStepLabel>
+                    <ng-container *ngIf="controls.stepLabel">
+                        {{controls.stepLabel}}
+                    </ng-container>
+                </ng-template>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-8">
+
+                        <lib-dynamic-control *ngFor="let control of controls.form" [form]="formArray.get([i])"
+                            [parentFormSubmitted]="submited" [controlObject]="control"></lib-dynamic-control>
+
+                        <div class="btn-padding form-padding">
+                            <button *ngIf="controls.allowBack" class="btn btn-secondary" [disabled]="!isEditable"
+                                (click)="cdkStepper.previous()">
+                                Back
+                            </button>
+
+                            <button *ngIf="controls.allowNext" type="button" cdkStepperNext
+                                [disabled]="formArray.get([i]).invalid" class="btn btn-primary ml-2">
+                                Continue
+                            </button>
+
+                            <button *ngIf="controls.allowSubmit" type="submit" [disabled]="formArray.get([i]).invalid"
+                                class="btn btn-success ml-2">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </cdk-step>
+        </ng-container>
+    </lib-custom-stepper>
+
+</form>

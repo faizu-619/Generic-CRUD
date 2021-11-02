@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { CdkStepperModule } from '@angular/cdk/stepper';
 
 import { ListComponent } from './shared/_controls/list/list.component';
 import { AddEditComponent } from './shared/_controls/add-edit/add-edit.component';
@@ -30,6 +31,8 @@ import { ValidationMessageComponent } from './shared/_controls/validation-messag
 import { ControlStateDirective } from './shared/_directives/controlState.directive';
 import { DateOfBirthComponent } from './shared/_controls/date-of-birth/date-of-birth.component';
 import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textbox/autocomplete-textbox.module';
+import { StepperDynamicFormComponent } from './shared/_controls/stepper-dynamic-form/stepper-dynamic-form.component';
+import { CustomStepperComponent } from './shared/_controls/custom-stepper/custom-stepper.component';
 
 @NgModule({
   imports: [
@@ -44,6 +47,7 @@ import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textb
       { path: 'edit/:modelName/:id', component: AddEditComponent, resolve: [GenericResolver] },
     ]),
     NgxMaskModule.forRoot(),
+    CdkStepperModule,
     AutocompleteTextboxModule,
     NgxDaterangepickerMd.forRoot()
   ],
@@ -62,6 +66,8 @@ import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textb
     DynamicButtonsComponent,
     ValidationMessageComponent,
     DateOfBirthComponent,
+    CustomStepperComponent,
+    StepperDynamicFormComponent,
 
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, ControlStateDirective,
 
@@ -82,6 +88,9 @@ import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textb
     DynamicButtonsComponent,
     ValidationMessageComponent,
     DateOfBirthComponent,
+    CustomStepperComponent,
+    StepperDynamicFormComponent,
+
 
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , ControlStateDirective
   ],

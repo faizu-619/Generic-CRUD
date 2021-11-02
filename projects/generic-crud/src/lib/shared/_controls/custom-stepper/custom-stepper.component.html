@@ -1,5 +1,5 @@
-<div class="progress-bar-main">
-  <ul>
+<nav>
+  <ul id="progressbar">
     <ng-container *ngFor="let step of steps; let i = index;">
       <li [ngClass]="(selectedIndex == i) ? 'active' : (selectedIndex >= i) ? 'active visited' : ''">
         <a (click)="(stepClickEnable && selectedIndex = i)">
@@ -12,8 +12,7 @@
       </li>
     </ng-container>
   </ul>
-</div>
-<div class="container" formState>
-  <!-- <div class="alert alert-error" *ngIf="selected!.hasError">{{selected!.errorMessage}}</div> -->
+</nav>
+<div class="container">
   <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
 </div>

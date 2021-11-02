@@ -6,16 +6,19 @@ import { GenericCRUDModule, LayoutStyle } from 'Generic-CRUD';
 
 import { AppComponent } from './app.component';
 import { AddEditCustomComponent } from './add-edit-custom/add-edit-custom.component';
+import { StepsFormComponent } from './steps-form/steps-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddEditCustomComponent
+    AddEditCustomComponent,
+    StepsFormComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       { path: 'add-custom', component: AddEditCustomComponent },
+      { path: 'step-form', component: StepsFormComponent },
     ], { relativeLinkResolution: 'legacy' }),
     GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap })
   ],

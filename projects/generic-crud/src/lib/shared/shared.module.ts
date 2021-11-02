@@ -25,6 +25,7 @@ import {
 } from './_controls/index';
 import { GenericService } from './_service/index';
 import { GenericResolver } from './_resolvers/generic.resolver';
+import { StepperDynamicFormComponent } from './_controls/stepper-dynamic-form/stepper-dynamic-form.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { GenericResolver } from './_resolvers/generic.resolver';
     ListComponent,
     DynamicButtonsComponent,
     DateOfBirthComponent,
+    StepperDynamicFormComponent,
 
     SafePipe, KeysPipe, ValidationMessageComponent
   ],
@@ -73,6 +75,7 @@ import { GenericResolver } from './_resolvers/generic.resolver';
     ListComponent,
     DynamicButtonsComponent,
     DateOfBirthComponent,
+    StepperDynamicFormComponent,
 
     SafePipe, KeysPipe
   ],
