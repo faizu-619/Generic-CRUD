@@ -22,7 +22,7 @@ export class AutocompleteTextboxComponent implements OnInit {
     return this.form.controls[this.control.key];
   }
   get isValid() { return (this.form.controls[this.control.key].valid); }
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -38,6 +38,7 @@ export class AutocompleteTextboxComponent implements OnInit {
             observer.complete();
           } catch (error) {
             observer.error(error);
+            this.frmControl.setValue(null);
           } finally {
           }
         });
@@ -47,11 +48,17 @@ export class AutocompleteTextboxComponent implements OnInit {
   }
 
   SelectValue(value: (string | {})): void {
-    console.log(this.form.controls);
-    if (value && typeof(value) === 'string') {
+    // console.log(this.form.controls);
+    if (value && typeof (value) === 'string') {
       this.frmControl.setValue(value);
-    } else if (value && typeof(value) === 'object' && this.control.remoteKey) {
-      this.frmControl.setValue(value[this.control.remoteKey]);
+    } else if (value && typeof (value) === 'object') {
+      if (this.control.remoteKey) {
+        this.frmControl.setValue(value[this.control.remoteKey]);
+      } else {
+        this.frmControl.setValue(value);
+      }
+    } else {
+      this.frmControl.setValue(null);
     }
   }
 }

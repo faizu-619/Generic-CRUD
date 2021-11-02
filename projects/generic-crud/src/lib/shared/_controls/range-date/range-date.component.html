@@ -1,4 +1,4 @@
-<div *ngIf="isReady" [formGroup]="form">
+<div *ngIf="isReady" [formGroup]="form" libControlState>
   <input type="text" ngxDaterangepickerMd [formControlName]="control.key"
     [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }" [readonly]="control.isDisabled"
     [showCustomRangeLabel]="true" [alwaysShowCalendars]="true" [ranges]="ranges"
