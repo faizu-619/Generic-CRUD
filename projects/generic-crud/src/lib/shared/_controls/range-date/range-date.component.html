@@ -1,7 +1,7 @@
-<div *ngIf="isReady" [formGroup]="form" libControlState>
+<ng-container *ngIf="isReady" [formGroup]="form" libControlState>
   <input type="text" ngxDaterangepickerMd [formControlName]="control.key"
     [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }" [readonly]="control.isDisabled"
-    [showCustomRangeLabel]="true" [alwaysShowCalendars]="true" [ranges]="ranges"
-    [linkedCalendars]="true" [isInvalidDate]="isInvalidDate" [showClearButton]="false"
-    [showDropdowns]="true" showCancel="true" />
-</div>
+    [showCustomRangeLabel]="control.showCustomRangeLabel" [alwaysShowCalendars]="control.alwaysShowCalendars" [ranges]="control.ranges"
+    [linkedCalendars]="control.linkedCalendars" [isInvalidDate]="isInvalidDate" [showClearButton]="control.showClearButton"
+    [showDropdowns]="control.showDropdowns" [showCancel]="control.showCancel" [showRangeLabelOnInput]="control.showRangeLabelOnInput" />
+</ng-container>

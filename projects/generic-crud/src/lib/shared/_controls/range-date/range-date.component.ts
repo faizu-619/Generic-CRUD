@@ -16,32 +16,14 @@ export class RangeDateComponent implements OnInit {
 
     innerForm: FormGroup;
     isReady: boolean = false;
-    alwaysShowCalendars: boolean;
-    ranges: any = {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-    }
-
-    invalidDates: moment.Moment[] = [];
 
     isInvalidDate = (m: moment.Moment) => {
-        return this.invalidDates.some(d => d.isSame(m, 'day'))
+        return this.control.invalidDates.some(d => d.isSame(m, 'day'))
     }
-
 
     get isValid() { return this.isReady && (this.form.controls[this.control.key].valid); }
 
     constructor(private fb: FormBuilder) {
-        // this.innerForm = this.fb.group({
-        //     selected: [{
-        //       startDate: '',
-        //       endDate: ''
-        //     }, Validators.required],
-        //   });
         this.innerForm = this.fb.group({
             startDate: '',
             endDate: ''
@@ -49,12 +31,6 @@ export class RangeDateComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        // this.form.controls[this.control.key] = this.innerForm;
-        // this.form.controls[this.control.key] = this.fb.group({
-        //     startDate: this.control.dateFrom,
-        //     endDate: this.control.dateTo
-        // }, { validators: [Validators.required] });
         this.isReady = true;
     }
 }
