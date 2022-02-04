@@ -34,9 +34,9 @@ export class ValidationMessageComponent implements OnInit {
         if (control.errors.hasOwnProperty(key)) {
           if (control.errors[key] !== null && typeof control.errors[key] === 'object') {
             if (key === 'pattern') {
-              messages += `<div>${this.control.validationRegexMessage}</div>`;
+              messages += `${this.control.validationRegexMessage}<br>`;
             } else {
-              let msg = `<div>${this.validationMessageConstants[key]}</div>`;
+              let msg = `${this.validationMessageConstants[key]}<br>`;
               for (const propKey in control.errors[key]) {
                 if (control.errors[key].hasOwnProperty(propKey)) {
                   msg = _.replace(msg, RegExp(`{{${propKey}}}`, 'g'), control.errors[key][propKey]);
@@ -45,7 +45,7 @@ export class ValidationMessageComponent implements OnInit {
               messages += msg;
             }
           } else {
-            messages += `<div>${this.validationMessageConstants[key]}</div>`;
+            messages += `${this.validationMessageConstants[key]}<br>`;
           }
         }
       }
