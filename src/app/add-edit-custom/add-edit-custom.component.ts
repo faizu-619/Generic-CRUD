@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterAutocompleteTextbox, FilterRangeDate, DynamicFormComponent } from 'Generic-CRUD';
+import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterAutocompleteTextbox, FilterRangeDate, DynamicFormComponent, FilterCustomControl } from 'Generic-CRUD';
 import * as moment from 'moment';
 import { Observable, of } from 'rxjs';
 import { delay, first } from 'rxjs/operators';
+import { ColorPickerComponent } from '../color-picker/color-picker.component';
+import { NgSelectCustomComponent } from '../ng-select-custom/ng-select-custom.component';
 // import { FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox } from 'projects/generic-crud/src/lib/shared/_controls/_models';
 // import {
 //   FilterSingleDate,
@@ -144,7 +146,21 @@ export class AddEditCustomComponent implements OnInit, AfterViewInit {
       // 'value': true,
       'required': false,
       'isDisabled': false,
-    })
+    }),
+    'customSelect': new FilterCustomControl({
+      component: NgSelectCustomComponent,
+      // value: 'john@test.com',
+      key: 'customSelect',
+      label: 'Ng-Select',
+      required: true
+    }),
+    'color': new FilterCustomControl({
+      component: ColorPickerComponent,
+      // value: 'john@test.com',
+      key: 'color',
+      label: 'color',
+      required: true
+    }),
   };
 
   formBasic = Object.values(this.formSetting);

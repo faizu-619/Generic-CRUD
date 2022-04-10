@@ -73,5 +73,6 @@ export enum ControlType {
     CheckBox = 6,
     TextArea = 7,
     DateOfBirth = 8,
-    AutocompleteTextbox = 9
+    AutocompleteTextbox = 9,
+    CustomControl = 10
 }

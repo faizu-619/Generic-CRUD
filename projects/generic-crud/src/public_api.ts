@@ -6,6 +6,8 @@
 export * from './lib/generic-crud.service';
 export * from './lib/generic-crud.module';
 export * from './lib/shared/interfaces/generic-config.interface';
+export * from './lib/shared/interfaces/custom-component';
+
 export * from './lib/shared/_service/generic.service';
 export * from './lib/shared/_controls/_services/filter-control.service';
 export * from './lib/shared/_controls/_services/remote-data.service';
@@ -23,6 +25,7 @@ export * from './lib/shared/_controls/_models/button.model';
 export * from './lib/shared/_controls/_models/mask-value.model';
 export * from './lib/shared/_controls/_models/filter-date-of-birth';
 export * from './lib/shared/_controls/_models/filter-autocomplete-textbox';
+export * from './lib/shared/_controls/_models/filter-custom-control';
 
 export * from './lib/shared/_controls/range-date/range-date.component';
 export * from './lib/shared/_controls/select-dropdown/select-dropdown.component';
