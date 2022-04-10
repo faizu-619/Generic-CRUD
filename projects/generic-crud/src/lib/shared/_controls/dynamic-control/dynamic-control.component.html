@@ -1,33 +1,35 @@
 <div class="form-group has-float-label" [formGroup]="form"
-    [ngClass]="{ 'active': hasValue, 'has-success': isValid, 'has-error': !isValid}">
-    <ng-container [ngSwitch]="control.controlType">
+  [ngClass]="{ 'active': hasValue, 'has-success': isValid, 'has-error': !isValid}">
+  <ng-container [ngSwitch]="control.controlType">
 
-      <lib-text-box *ngSwitchCase="1" [control]="control" [form]="form" libControlState></lib-text-box>
+    <lib-text-box *ngSwitchCase="1" [control]="control" [form]="form" libControlState></lib-text-box>
 
-      <lib-single-date *ngSwitchCase="3" [control]="control" [form]="form" libControlState></lib-single-date>
+    <lib-single-date *ngSwitchCase="3" [control]="control" [form]="form" libControlState></lib-single-date>
 
-      <lib-range-date *ngSwitchCase="4" [control]="control" [form]="form"></lib-range-date>
+    <lib-range-date *ngSwitchCase="4" [control]="control" [form]="form"></lib-range-date>
 
-      <lib-select-dropdown *ngSwitchCase="5" [control]="control" [form]="form" libControlState></lib-select-dropdown>
+    <lib-select-dropdown *ngSwitchCase="5" [control]="control" [form]="form" libControlState></lib-select-dropdown>
 
-      <lib-check-box *ngSwitchCase="6" [control]="control" [form]="form"></lib-check-box>
+    <lib-check-box *ngSwitchCase="6" [control]="control" [form]="form"></lib-check-box>
 
-      <lib-text-area *ngSwitchCase="7" [control]="control" [form]="form" libControlState></lib-text-area>
+    <lib-text-area *ngSwitchCase="7" [control]="control" [form]="form" libControlState></lib-text-area>
 
-      <lib-date-of-birth *ngSwitchCase="8" [control]="control" [form]="form"></lib-date-of-birth>
+    <lib-date-of-birth *ngSwitchCase="8" [control]="control" [form]="form"></lib-date-of-birth>
 
-      <lib-autocomplete-textbox *ngSwitchCase="9" (valueUpdate)="searchOptions($event)" [form]="form" libControlState
-        [options]="options$" [control]="control"></lib-autocomplete-textbox>
+    <lib-autocomplete-textbox *ngSwitchCase="9" (valueUpdate)="searchOptions($event)" [form]="form" libControlState
+      [options]="options$" [control]="control"></lib-autocomplete-textbox>
 
-    </ng-container>
+    <lib-custom-filter *ngSwitchCase="10" [control]="control" [form]="form" libControlState></lib-custom-filter>
 
-    <label *ngIf="control.controlType != 6 && control.controlType != 8" [attr.for]="control.key" class="">
-      {{control.label}}
-      <i *ngIf="control.label && control.required" class="text-danger">*</i>
-    </label>
+  </ng-container>
 
-    <div class="invalid-feedback d-block" lib-validation-message [control]="control" [form]="form"
-      [parentFormSubmitted]="parentFormSubmitted"></div>
-  </div>
-  <!-- <div [libControlState]='form'>
+  <label *ngIf="control.controlType != 6 && control.controlType != 8" [attr.for]="control.key" class="">
+    {{control.label}}
+    <i *ngIf="control.label && control.required" class="text-danger">*</i>
+  </label>
+
+  <div class="invalid-feedback d-block" lib-validation-message [control]="control" [form]="form"
+    [parentFormSubmitted]="parentFormSubmitted"></div>
+</div>
+<!-- <div [libControlState]='form'>
   </div> -->

@@ -1,0 +1,21 @@
+<!-- <ng-select [items]="cars" 
+           bindLabel="name" 
+           bindValue="id" 
+           [(ngModel)]="selectedCar">
+</ng-select> -->
+
+<!-- <ng-select [(ngModel)]="selectedCar">
+    <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
+ </ng-select> -->
+
+
+<ng-container [formGroup]="form">
+    <ng-select #agesSelect [items]="ages"
+                   [selectOnTab]="true"
+                   bindValue="value"
+                   labelForId="customSelect"
+                   (ngModelChange)="showConfirm(confirmation)"
+                   placeholder="Select customSelect"
+                   formControlName="customSelect">
+        </ng-select>
+</ng-container>

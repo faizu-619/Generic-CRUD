@@ -30,6 +30,8 @@ import { ValidationMessageComponent } from './shared/_controls/validation-messag
 import { ControlStateDirective } from './shared/_directives/controlState.directive';
 import { DateOfBirthComponent } from './shared/_controls/date-of-birth/date-of-birth.component';
 import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textbox/autocomplete-textbox.module';
+import { CustomFilterComponent } from './shared/_controls/custom-filter/custom-filter.component';
+import { CustomFilterDirective } from './shared/_directives/custom-filter.directive';
 
 @NgModule({
   imports: [
@@ -62,10 +64,13 @@ import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textb
     DynamicButtonsComponent,
     ValidationMessageComponent,
     DateOfBirthComponent,
+    CustomFilterComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, ControlStateDirective,
-
-    DefaultDateInputDirective
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, 
+    
+    ControlStateDirective,
+    DefaultDateInputDirective,
+    CustomFilterDirective
   ],
   exports: [
     CheckBoxComponent,
@@ -82,8 +87,13 @@ import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textb
     DynamicButtonsComponent,
     ValidationMessageComponent,
     DateOfBirthComponent,
+    CustomFilterComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , ControlStateDirective
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , 
+    
+    ControlStateDirective,
+    DefaultDateInputDirective,
+    CustomFilterDirective
   ],
   providers: [
 
