@@ -23,7 +23,7 @@
 
   </ng-container>
 
-  <label *ngIf="control.controlType != 6 && control.controlType != 8" [attr.for]="control.key" class="">
+  <label *ngIf="control.controlType != 6 && control.controlType != 8 && control.controlType != 10" [attr.for]="control.key" class="">
     {{control.label}}
     <i *ngIf="control.label && control.required" class="text-danger">*</i>
   </label>
