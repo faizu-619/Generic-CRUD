@@ -4,7 +4,6 @@ import { fromEvent } from 'rxjs';
 import { Overlay, OverlayRef, ConnectionPositionPair } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { filter, takeUntil } from 'rxjs/operators';
-import { untilDestroyed } from 'ngx-take-until-destroy';
 
 import { AtxtAutocompleteComponent } from '../component/atxt-autocomplete/atxt-autocomplete.component';
 
@@ -29,7 +28,7 @@ export class AtxtAutocompleteDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     fromEvent(this.origin, 'focus').pipe(
-      untilDestroyed(this)
+      // untilDestroyed(this)
     ).subscribe(() => {
       this.openDropdown();
 

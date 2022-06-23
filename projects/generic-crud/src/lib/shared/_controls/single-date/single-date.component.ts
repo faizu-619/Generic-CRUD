@@ -14,18 +14,18 @@ export class SingleDateComponent implements OnInit, OnDestroy {
     @Input() control: FilterSingleDate;
     @Input() form: FormGroup;
 
-    subscription: Subscription;
+    subscription: Subscription = new Subscription();
     // model: Date;
 
     constructor(private datePipe: DatePipe) { }
 
     ngOnInit() {
-        this.subscription = this.form.controls[this.control.key].valueChanges
+        this.subscription.add(this.form.controls[this.control.key].valueChanges
             .subscribe((value) => {
                 if (value) {
                     this.form.controls[this.control.key].setValue(this.transform(value), { emitEvent: false });
                 }
-            });
+            }));
     }
 
     onSelect() {

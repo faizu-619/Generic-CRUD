@@ -1,28 +1,22 @@
 import { AsyncValidator, AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
-import { Observable, of, timer } from 'rxjs';
-import { map, catchError, switchMap } from 'rxjs/operators';
-import * as _ from 'lodash';
-
-import { RemoteDataService } from '../_services/remote-data.service';
-import { isBoolean, isNullOrUndefined, isObject, isArray } from 'util';
 import { Injectable, Injector } from '@angular/core';
 
 
-@Injectable({ providedIn: 'root' })
-export class ServerSideValidator implements AsyncValidator {
-  // constructor(private remoteDataService: RemoteDataService) {}
-  constructor(private injectorService: Injector) { }
+// @Injectable({ providedIn: 'root' })
+// export class ServerSideValidator implements AsyncValidator {
+//   // constructor(private remoteDataService: RemoteDataService) {}
+//   constructor(private injectorService: Injector) { }
 
-  validate(
-    ctrl: AbstractControl
-  ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    const remoteDataService = this.injectorService.get(RemoteDataService);
-    return remoteDataService.getRemoteData(`/Users?username=${ctrl.value}`).pipe(
-      map(isTaken => (isTaken ? { exists: true } : null)),
-      catchError(() => of(null))
-    );
-  }
-}
+//   validate(
+//     ctrl: AbstractControl
+//   ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+//     const remoteDataService = this.injectorService.get(RemoteDataService);
+//     return remoteDataService.getRemoteData(`/Users?username=${ctrl.value}`).pipe(
+//       map(isTaken => (isTaken ? { exists: true } : null)),
+//       catchError(() => of(null))
+//     );
+//   }
+// }
 
 
 // export function ServerSideValidator(service: RemoteDataService, ctrlObject: FilterBase<any>): AsyncValidatorFn {
