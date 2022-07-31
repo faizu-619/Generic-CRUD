@@ -32,6 +32,7 @@ import { DateOfBirthComponent } from './shared/_controls/date-of-birth/date-of-b
 import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textbox/autocomplete-textbox.module';
 import { CustomFilterComponent } from './shared/_controls/custom-filter/custom-filter.component';
 import { CustomFilterDirective } from './shared/_directives/custom-filter.directive';
+import { PropertyPanelComponent } from './shared/_controls/property-panel/property-panel.component';
 
 @NgModule({
   imports: [
@@ -65,6 +66,7 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
     ValidationMessageComponent,
     DateOfBirthComponent,
     CustomFilterComponent,
+    PropertyPanelComponent,
 
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, 
     
@@ -88,6 +90,7 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
     ValidationMessageComponent,
     DateOfBirthComponent,
     CustomFilterComponent,
+    PropertyPanelComponent,
 
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , 
     

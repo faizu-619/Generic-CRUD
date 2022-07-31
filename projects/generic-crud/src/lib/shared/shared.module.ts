@@ -25,6 +25,7 @@ import {
 } from './_controls/index';
 import { GenericService } from './_service/index';
 import { GenericResolver } from './_resolvers/generic.resolver';
+import { PropertyPanelComponent } from './_controls/property-panel/property-panel.component';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import { GenericResolver } from './_resolvers/generic.resolver';
     DynamicButtonsComponent,
     DateOfBirthComponent,
 
-    SafePipe, KeysPipe, ValidationMessageComponent
+    SafePipe, KeysPipe, ValidationMessageComponent, PropertyPanelComponent
   ],
   exports: [
     ReactiveFormsModule,

@@ -1,8 +1,10 @@
+import { Inject } from '@angular/core';
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { GenericConfig, GENERIC_CONFIG } from '../../interfaces/generic-config.interface';
 
 import { ControlType, FilterBase } from '../_models/filterBase';
 import { DynamicControlService } from '../_services/filter-control.service';
@@ -26,6 +28,7 @@ export class DynamicControlComponent implements OnInit {
     options$: Observable<any[]>;
 
     constructor(
+        @Inject(GENERIC_CONFIG) private config: GenericConfig,
         private fcs: DynamicControlService,
         private remote: RemoteDataService,
     ) { }
