@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { FilterBase, FilterTextbox, FilterDropdown, FilterSingleDate, FilterRangeDate, ControlType } from '../_models/index';
 import { compareValidator } from '../_validators/compare.validator';
-import { ServerSideValidator } from '../_validators/server-side.validator';
+// import { ServerSideValidator } from '../_validators/server-side.validator';
 import { RemoteDataService } from '../_services/remote-data.service';
 
 @Injectable({ providedIn: 'root' })
@@ -141,9 +141,9 @@ export class DynamicControlService {
             validations.push(compareValidator(ctrlObject.compareWith));
         }
 
-        if (ctrlObject.remoteValidation && ctrlObject.remoteValidation.remoteUrl && ctrlObject.remoteValidation.remoteUrl.length) {
-            validations.push(ServerSideValidator); // (this.remoteService, ctrlObject)
-        }
+        // if (ctrlObject.remoteValidation && ctrlObject.remoteValidation.remoteUrl && ctrlObject.remoteValidation.remoteUrl.length) {
+        //     validations.push(ServerSideValidator); // (this.remoteService, ctrlObject)
+        // }
 
         return validations;
     }

@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 import { ListComponent } from './shared/_controls/list/list.component';
 import { AddEditComponent } from './shared/_controls/add-edit/add-edit.component';
@@ -47,7 +46,6 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
     ]),
     NgxMaskModule.forRoot(),
     AutocompleteTextboxModule,
-    NgxDaterangepickerMd.forRoot()
   ],
   declarations: [
     CheckBoxComponent,

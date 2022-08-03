@@ -1,6 +1,6 @@
 {
   "name": "generic-crud",
-  "version": "0.0.20",
+  "version": "0.0.21-beta",
   "description": "A simple Angular based package to create run-time CRUD for any object or table.",
   "author": "Muhammad Faizan",
   "repository": {
@@ -9,14 +9,12 @@
   },
   "peerDependencies": {
     "@angular/common": "^11.0.3",
-    "@angular/core": "^11.0.3"
-  },
-  "dependencies": {
+    "@angular/core": "^11.0.3",
     "@angular/cdk": "^11.0.2",
     "lodash": "^4.17.15",
     "moment": "^2.29.1",
-    "ngx-daterangepicker-material": "^2.4.2",
-    "ngx-mask": "^11.1.4",
-    "ngx-take-until-destroy": "^5.4.0"
+    "ngx-mask": "^11.1.4"
+  },
+  "dependencies": {
   }
 }

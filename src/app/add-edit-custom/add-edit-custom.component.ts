@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterAutocompleteTextbox, FilterRangeDate, DynamicFormComponent, FilterCustomControl } from 'Generic-CRUD';
-import * as moment from 'moment';
+import * as _moment from 'moment';
 import { Observable, of } from 'rxjs';
 import { delay, first } from 'rxjs/operators';
 import { ColorPickerComponent } from '../color-picker/color-picker.component';
@@ -79,14 +79,14 @@ export class AddEditCustomComponent implements OnInit, AfterViewInit {
       label: 'Enter range',
       required: true,
       ranges:  {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-        'This Year': [moment().startOf('year').startOf('year'), moment().endOf('year')],
-        'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
+        'Today': [_moment(), _moment()],
+        'Yesterday': [_moment().subtract(1, 'days'), _moment().subtract(1, 'days')],
+        'Last 7 Days': [_moment().subtract(6, 'days'), _moment()],
+        'Last 30 Days': [_moment().subtract(29, 'days'), _moment()],
+        'This Month': [_moment().startOf('month'), _moment().endOf('month')],
+        'Last Month': [_moment().subtract(1, 'month').startOf('month'), _moment().subtract(1, 'month').endOf('month')],
+        'This Year': [_moment().startOf('year').startOf('year'), _moment().endOf('year')],
+        'Last Year': [_moment().subtract(1, 'year').startOf('year'), _moment().subtract(1, 'year').endOf('year')],
     }
     }),
     'address': new FilterTextArea({

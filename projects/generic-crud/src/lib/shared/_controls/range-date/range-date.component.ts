@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as moment from 'moment';
-
 import { FilterRangeDate, subType } from '../_models/filter-range-date';
 
 @Component({

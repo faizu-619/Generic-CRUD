@@ -5,12 +5,10 @@
   "lib": {
     "entryFile": "src/public_api.ts"
   },
-  "whitelistedNonPeerDependencies": [
+  "allowedNonPeerDependencies": [
     "lodash",
     "ngx-mask",
     "moment",
-    "@angular/cdk",
-    "ngx-take-until-destroy",
-    "ngx-daterangepicker-material"
+    "@angular/cdk"
   ]
 }
