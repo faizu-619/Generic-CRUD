@@ -29,7 +29,7 @@
     "core-js": "^3.18.3",
     "jquery": "^3.6.0",
     "ngx-colors": "^2.6.2",
-    "moment": "^2.29.2",
+    "moment": "^2.29.4",
     "ngx-daterangepicker-material": "^2.4.2",
     "ngx-mask": "^11.1.5",
     "ngx-take-until-destroy": "^5.4.0",
