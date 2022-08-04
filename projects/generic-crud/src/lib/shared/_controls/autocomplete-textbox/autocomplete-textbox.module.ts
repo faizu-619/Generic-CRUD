@@ -11,6 +11,9 @@ import { AutocompleteTextboxComponent } from './autocomplete-textbox.component';
 import { FilterPipe } from './pipe/filter.pipe';
 
 
+/**
+ * @ignore
+ */
 @NgModule({
   declarations: [
     AtxtOptionComponent,

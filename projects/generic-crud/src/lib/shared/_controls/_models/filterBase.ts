@@ -1,5 +1,8 @@
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 
+/**
+ * @ignore
+ */
 export class FilterBase<T> {
     value: T;
     key: string;
@@ -64,6 +67,10 @@ export class FilterBase<T> {
     }
 }
 
+
+/**
+ * @ignore
+ */
 export enum ControlType {
     TextBox = 1,
     Number = 2,

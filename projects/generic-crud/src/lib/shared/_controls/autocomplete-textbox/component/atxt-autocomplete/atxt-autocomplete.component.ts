@@ -4,6 +4,9 @@ import { merge } from 'rxjs';
 import { AutocompleteContentDirective } from '../../directive/autocomplete-content.directive';
 import { AtxtOptionComponent } from '../atxt-option/atxt-option.component';
 
+/**
+ * @ignore
+ */
 @Component({
   selector: 'app-atxt-autocomplete',
   templateUrl: './atxt-autocomplete.component.html',

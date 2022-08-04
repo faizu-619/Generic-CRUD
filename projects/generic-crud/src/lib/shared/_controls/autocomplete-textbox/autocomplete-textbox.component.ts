@@ -16,15 +16,25 @@ export class AutocompleteTextboxComponent implements OnInit {
 
   @Output() valueUpdate = new EventEmitter<string>();
 
+  /**
+ * @ignore
+ */
   innerControl = new FormControl();
 
-  get frmControl(): AbstractControl {
+  private get frmControl(): AbstractControl {
     return this.form.controls[this.control.key];
   }
+
   get isValid() { return (this.form.controls[this.control.key].valid); }
 
+  /**
+ * @ignore
+ */
   constructor() { }
 
+  /**
+ * @ignore
+ */
   ngOnInit(): void {
     this.innerControl.valueChanges.pipe(
       debounceTime(400),
@@ -47,6 +57,9 @@ export class AutocompleteTextboxComponent implements OnInit {
     ).subscribe();
   }
 
+  /**
+* @ignore
+*/
   SelectValue(value: (string | {})): void {
     // console.log(this.form.controls);
     if (value && typeof (value) === 'string') {

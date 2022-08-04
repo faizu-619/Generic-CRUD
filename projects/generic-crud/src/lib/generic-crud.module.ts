@@ -33,6 +33,21 @@ import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textb
 import { CustomFilterComponent } from './shared/_controls/custom-filter/custom-filter.component';
 import { CustomFilterDirective } from './shared/_directives/custom-filter.directive';
 
+/**
+ * Generic-CRUD
+ * 
+ * Usage:
+ * Import GenericCRUDModule in your application.
+ * 
+ * imports: [
+ * ...
+ * GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap }),
+ * ...
+ * ],
+ *
+ * Example of usage:
+ * <example-url>src/app/app.module.ts</example-url>
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -66,8 +81,8 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
     DateOfBirthComponent,
     CustomFilterComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, 
-    
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe,
+
     ControlStateDirective,
     DefaultDateInputDirective,
     CustomFilterDirective
@@ -89,8 +104,8 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
     DateOfBirthComponent,
     CustomFilterComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , 
-    
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe,
+
     ControlStateDirective,
     DefaultDateInputDirective,
     CustomFilterDirective

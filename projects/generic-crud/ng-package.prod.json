@@ -2,17 +2,9 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/generic-crud",
   "lib": {
-    "entryFile": "src/public_api.ts",
-    "umdModuleIds": {
-      "lodash": "lodash",
-      "ngx-mask": "ngx-mask",
-      "moment": "moment",
-      "util": "util",
-      "ngx-take-until-destroy": "ngx-take-until-destroy",
-      "ngx-daterangepicker-material": "ngx-daterangepicker-material"
-    }
+    "entryFile": "src/public_api.ts"
   },
-  "whitelistedNonPeerDependencies": [
+  "allowedNonPeerDependencies": [
     "lodash",
     "ngx-mask",
     "moment",

@@ -10,7 +10,9 @@ import {
 import { GenericService } from '../_service/generic.service';
 
 
-
+/**
+ * @ignore
+ */
 @Injectable({ providedIn: 'root' })
 export class GenericResolver implements Resolve<GenericModel> {
 

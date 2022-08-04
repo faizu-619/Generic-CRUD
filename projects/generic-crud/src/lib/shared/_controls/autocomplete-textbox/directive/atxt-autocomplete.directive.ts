@@ -8,6 +8,9 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 
 import { AtxtAutocompleteComponent } from '../component/atxt-autocomplete/atxt-autocomplete.component';
 
+/**
+ * @ignore
+ */
 @Directive({
   selector: '[appAtxtAutocomplete]'
 })

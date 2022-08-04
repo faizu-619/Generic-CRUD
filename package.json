@@ -10,7 +10,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "json-server api/db.json --routes api/routes.json --no-cors=true"
+    "api": "json-server api/db.json --routes api/routes.json --no-cors=true",
+    "compodoc-api": "npx compodoc -p projects/generic-crud/tsconfig.doc.json --output documentation/api -n Generic-CRUD-API --theme material --minimal --disableSourceCode --disableDomTree --disableTemplateTab --disableStyleTab --disablePrivate --disableProtected --disableInternal",
+    "compodoc-example": "npx compodoc -p tsconfig.doc.json --output documentation/examples -n Generic-CRUD-Examples --theme readthedocs --disablePrivate --disableProtected --disableInternal"
   },
   "private": true,
   "dependencies": {
@@ -28,8 +30,8 @@
     "bootstrap": "^4.6.0",
     "core-js": "^3.18.3",
     "jquery": "^3.6.0",
-    "ngx-colors": "^2.6.2",
     "moment": "^2.29.4",
+    "ngx-colors": "^2.6.2",
     "ngx-daterangepicker-material": "^2.4.2",
     "ngx-mask": "^11.1.5",
     "ngx-take-until-destroy": "^5.4.0",
@@ -42,6 +44,7 @@
     "@angular/cli": "^11.0.7",
     "@angular/compiler-cli": "^11.2.14",
     "@angular/language-service": "^11.2.14",
+    "@compodoc/compodoc": "^1.1.19",
     "@types/jasmine": "^3.6.11",
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "^14.14.45",

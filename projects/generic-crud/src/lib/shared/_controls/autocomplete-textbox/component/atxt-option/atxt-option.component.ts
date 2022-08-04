@@ -2,6 +2,9 @@ import { Component, OnInit, Input, ElementRef, ChangeDetectionStrategy } from '@
 import { Observable, fromEvent } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
 
+/**
+ * @ignore
+ */
 @Component({
   selector: 'app-atxt-option',
   templateUrl: './atxt-option.component.html',
