@@ -8,9 +8,6 @@
     "url": "https://github.com/faizu-619/Generic-CRUD"
   },
   "peerDependencies": {
-    "@angular/common": "^11.0.3",
-    "@angular/core": "^11.0.3",
-    "@angular/cdk": "^11.0.2",
     "lodash": "^4.17.15",
     "moment": "^2.29.1",
     "ngx-mask": "^11.1.4"
