@@ -24,11 +24,9 @@ import { TextAreaComponent } from './shared/_controls/text-area/text-area.compon
 import { NestedValuePipe } from './shared/_pipes/nested-value.pipe';
 import { DynamicButtonsComponent } from './shared/_controls/dynamic-buttons/dynamic-buttons.component';
 import { GENERIC_CONFIG, GenericConfig } from './shared/interfaces/generic-config.interface';
-import { DefaultDateInputDirective } from './shared/_directives/default-date-input.directive';
 import { ValidationMessageComponent } from './shared/_controls/validation-message/validation-message.component';
 import { ControlStateDirective } from './shared/_directives/controlState.directive';
 import { DateOfBirthComponent } from './shared/_controls/date-of-birth/date-of-birth.component';
-import { AutocompleteTextboxModule } from './shared/_controls/autocomplete-textbox/autocomplete-textbox.module';
 import { CustomFilterComponent } from './shared/_controls/custom-filter/custom-filter.component';
 import { CustomFilterDirective } from './shared/_directives/custom-filter.directive';
 
@@ -45,7 +43,6 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
       { path: 'edit/:modelName/:id', component: AddEditComponent, resolve: [GenericResolver] },
     ]),
     NgxMaskModule.forRoot(),
-    AutocompleteTextboxModule,
   ],
   declarations: [
     CheckBoxComponent,
@@ -67,7 +64,6 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, 
     
     ControlStateDirective,
-    DefaultDateInputDirective,
     CustomFilterDirective
   ],
   exports: [
@@ -90,7 +86,6 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
     DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , 
     
     ControlStateDirective,
-    DefaultDateInputDirective,
     CustomFilterDirective
   ],
   providers: [

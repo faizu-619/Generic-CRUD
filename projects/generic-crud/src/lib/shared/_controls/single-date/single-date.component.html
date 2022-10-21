@@ -2,9 +2,6 @@
   <input type="hidden" [id]="control.key" [formControlName]="control.key">
 </div> -->
 
-<!-- libDefaultDateInput
-    [dateFormat]="control.format" -->
-
 <ng-container [formGroup]="form">
   <input [formControlName]="control.key"
     [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"

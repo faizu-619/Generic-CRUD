@@ -1,10 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterAutocompleteTextbox, FilterRangeDate, DynamicFormComponent, FilterCustomControl } from 'Generic-CRUD';
+import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterRangeDate, DynamicFormComponent, FilterCustomControl } from 'Generic-CRUD';
 import * as _moment from 'moment';
-import { Observable, of } from 'rxjs';
-import { delay, first } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { ColorPickerComponent } from '../color-picker/color-picker.component';
 import { NgSelectCustomComponent } from '../ng-select-custom/ng-select-custom.component';
 // import { FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox } from 'projects/generic-crud/src/lib/shared/_controls/_models';
@@ -102,16 +101,6 @@ export class AddEditCustomComponent implements OnInit, AfterViewInit {
       label: 'Enter another address',
       required: false,
       rowLength: 3
-    }),
-    'country': new FilterAutocompleteTextbox({
-      'key': 'country',
-      'label': 'Select country',
-      // 'value': 'Pakistan',
-      'required': true,
-      'isRemote': true,
-      'remoteUrl': 'https://restcountries.com/v2/name/',
-      'remoteKey': 'name',
-      'remoteValue': 'name',
     }),
     'city': new FilterTextbox({
       // value: 'Gerogia',

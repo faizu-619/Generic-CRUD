@@ -40,3 +40,4 @@ Thumbs.db
 */node_modules/**
 **/node_modules/**
 .vscode/launch.json
+.angular/**

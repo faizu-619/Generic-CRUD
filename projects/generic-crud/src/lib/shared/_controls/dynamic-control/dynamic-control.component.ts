@@ -89,7 +89,7 @@ export class DynamicControlComponent implements OnInit {
 
     get isValid() { return (!this.parentFormSubmitted && this.form.controls[this.control.key].valid); }
     get hasValue(): boolean {
-        return (this.form.controls[this.control.key].value && this.form.controls[this.control.key].value.length)
+        return !this.form.controls[this.control.key] || (this.form.controls[this.control.key].value && this.form.controls[this.control.key].value.length)
             || (this.control.controlType == ControlType.RangeDate &&  this.form.controls[this.control.key].valid);
     }
 }

@@ -12,7 +12,6 @@
   "allowedNonPeerDependencies": [
     "lodash",
     "ngx-mask",
-    "moment",
-    "@angular/cdk"
+    "moment"
   ]
 }
