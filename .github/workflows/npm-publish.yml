@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
+      - run: npm i
       # - run: npm test
       - run: npm run build:Generic-CRUD
       - run: npm publish
