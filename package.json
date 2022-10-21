@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build:Generic-CRUD": "ng build Generic-CRUD",
+    "build": "ng build --configuration production",
+    "build:Generic-CRUD": "ng build Generic-CRUD --configuration production",
     "test:Generic-CRUD": "ng test Generic-CRUD",
     "test": "ng test",
     "lint": "ng lint",

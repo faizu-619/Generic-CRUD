@@ -2,12 +2,7 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/generic-crud",
   "lib": {
-    "entryFile": "src/public_api.ts",
-    "umdModuleIds": {
-      "lodash": "lodash",
-      "ngx-mask": "ngx-mask",
-      "moment": "moment"
-    }
+    "entryFile": "src/public_api.ts"
   },
   "allowedNonPeerDependencies": [
     "lodash",
