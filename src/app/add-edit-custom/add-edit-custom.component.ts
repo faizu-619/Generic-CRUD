@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
 import moment from 'moment';
 import {Observable} from 'rxjs';
 import {ColorPickerComponent} from '../color-picker/color-picker.component';
