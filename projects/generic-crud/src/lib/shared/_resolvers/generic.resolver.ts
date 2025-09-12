@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { catchError, mergeMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,7 @@ import { GenericService } from '../_service/generic.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class GenericResolver implements Resolve<GenericModel> {
+export class GenericResolver  {
 
   constructor(private service: GenericService<GenericModel>) { }
 

@@ -18,12 +18,6 @@
       "dom"
     ],
     "paths": {
-      "test-lib": [
-        "dist/test-lib"
-      ],
-      "test-lib/*": [
-        "dist/test-lib/*"
-      ],
       "Generic-CRUD": [
         "dist/generic-crud"
       ],
