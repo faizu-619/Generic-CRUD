@@ -8,7 +8,7 @@ import { GenericCRUDModule, LayoutStyle } from 'Generic-CRUD';
 import { AppComponent } from './app.component';
 import { AddEditCustomComponent } from './add-edit-custom/add-edit-custom.component';
 import { NgSelectCustomComponent } from './ng-select-custom/ng-select-custom.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 
 @NgModule({
@@ -23,9 +23,10 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: 'add-custom', component: AddEditCustomComponent },
+      {path: 'add-custom', component: AddEditCustomComponent},
     ]),
-    GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap })
+    GenericCRUDModule.forRoot({style: LayoutStyle.Bootstrap}),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
