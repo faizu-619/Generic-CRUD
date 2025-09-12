@@ -171,9 +171,7 @@ export class AddEditCustomComponent implements OnInit, AfterViewInit {
   ];
 
   constructor(
-    private dynCtrlService: DynamicControlService,
-    private route: ActivatedRoute,
-    private router: Router
+    private dynCtrlService: DynamicControlService
   ) {
   }
 
