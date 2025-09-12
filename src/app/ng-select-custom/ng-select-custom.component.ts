@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NgSelectConfig } from '@ng-select/ng-select';
 import { CustomComponent, FilterCustomControl } from 'Generic-CRUD';
 
 @Component({

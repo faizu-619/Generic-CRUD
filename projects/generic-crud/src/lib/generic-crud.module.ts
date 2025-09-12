@@ -4,8 +4,6 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NgxMaskModule, IConfig } from 'ngx-mask';
-
 import { ListComponent } from './shared/_controls/list/list.component';
 import { AddEditComponent } from './shared/_controls/add-edit/add-edit.component';
 import { GenericResolver } from './shared/_resolvers/generic.resolver';
@@ -42,7 +40,6 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
       { path: 'add/:modelName', component: AddEditComponent, resolve: [GenericResolver] },
       { path: 'edit/:modelName/:id', component: AddEditComponent, resolve: [GenericResolver] },
     ]),
-    NgxMaskModule.forRoot(),
   ],
   declarations: [
     CheckBoxComponent,
@@ -61,8 +58,8 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
     DateOfBirthComponent,
     CustomFilterComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe, 
-    
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe,
+
     ControlStateDirective,
     CustomFilterDirective
   ],
@@ -83,8 +80,8 @@ import { CustomFilterDirective } from './shared/_directives/custom-filter.direct
     DateOfBirthComponent,
     CustomFilterComponent,
 
-    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe , 
-    
+    DynamicPipe, SafePipe, KeysPipe, NestedValuePipe ,
+
     ControlStateDirective,
     CustomFilterDirective
   ],

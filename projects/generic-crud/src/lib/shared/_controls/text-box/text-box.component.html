@@ -7,9 +7,11 @@
         [readonly]="control.isDisabled" [type]="control.type" autocomplete="off" autofocus="on">
     <input *ngIf="control.format" [formControlName]="control.key"
         [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
-        [readonly]="control.isDisabled" [type]="control.type" 
-        [mask]="control.format.mask"
-        [prefix]="control.format.prefix"
-        [suffix]="control.format.suffix"
+        [readonly]="control.isDisabled" [type]="control.type"
         autocomplete="off" autofocus="on">
 </ng-container>
+
+
+<!--[mask]="control.format.mask"-->
+<!--[prefix]="control.format.prefix"-->
+<!--[suffix]="control.format.suffix"-->
