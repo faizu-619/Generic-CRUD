@@ -24,6 +24,7 @@
       "Generic-CRUD/*": [
         "dist/generic-crud/*"
       ]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   }
 }

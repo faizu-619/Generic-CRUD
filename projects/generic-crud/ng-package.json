@@ -6,9 +6,5 @@
     "entryFile": "src/public_api.ts"
   },
   "allowedNonPeerDependencies": [
-    "lodash",
-    "ngx-mask",
-    "moment",
-    "@angular/cdk"
   ]
 }

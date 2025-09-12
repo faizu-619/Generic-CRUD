@@ -1,16 +1,20 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ButtonModel, ButtonType, DynamicControlService, FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox, FilterDateOfBirth, FilterRangeDate, DynamicFormComponent, FilterCustomControl } from 'Generic-CRUD';
-import * as _moment from 'moment';
-import { Observable } from 'rxjs';
-import { ColorPickerComponent } from '../color-picker/color-picker.component';
-import { NgSelectCustomComponent } from '../ng-select-custom/ng-select-custom.component';
-// import { FilterCheckbox, FilterDropdown, FilterTextArea, FilterTextbox } from 'projects/generic-crud/src/lib/shared/_controls/_models';
-// import {
-//   FilterSingleDate,
-//   FilterTextbox, FilterTextArea, FilterDropdown, FilterCheckbox
-// } from 'Generic-CRUD/lib/shared/_controls/_models';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import moment from 'moment';
+import {Observable} from 'rxjs';
+import {ColorPickerComponent} from '../color-picker/color-picker.component';
+import {NgSelectCustomComponent} from '../ng-select-custom/ng-select-custom.component';
+import {
+  ButtonModel, ButtonType, DynamicControlService,
+  DynamicFormComponent,
+  FilterCheckbox, FilterCustomControl,
+  FilterDateOfBirth,
+  FilterDropdown,
+  FilterRangeDate,
+  FilterTextArea,
+  FilterTextbox
+} from 'Generic-CRUD';
 
 @Component({
   selector: 'app-add-edit-custom',
@@ -24,24 +28,24 @@ export class AddEditCustomComponent implements OnInit, AfterViewInit {
 
   countries = new Observable<any[]>((observer) => {
     // observable execution
-    observer.next([{ name: 'USA' }, { name: 'Pakistan' }]);
+    observer.next([{name: 'USA'}, {name: 'Pakistan'}]);
     observer.complete();
   });
 
   fakeValues = new Observable<any>((observer) => {
     setTimeout(() => {
       observer.next({
-        "email": "jane@test.com",
-        "password": "Asd@12345",
-        "birthDate": "10/09/1985",
-        "rangeDate": { "startDate": "2020-11-06", "endDate": "2021-11-13" },
-        "address": "Flat#2545 Bath Island",
-        "address1": "Land Mark 2",
-        "country": "Pakistan",
-        "city": "Houston",
-        "state": "TX",
-        "zip": "19875122",
-        "agree": false
+        'email': 'jane@test.com',
+        'password': 'Asd@12345',
+        'birthDate': '10/09/1985',
+        'rangeDate': {'startDate': '2020-11-06', 'endDate': '2021-11-13'},
+        'address': 'Flat#2545 Bath Island',
+        'address1': 'Land Mark 2',
+        'country': 'Pakistan',
+        'city': 'Houston',
+        'state': 'TX',
+        'zip': '19875122',
+        'agree': false
       });
       observer.complete();
     }, 100);
@@ -77,16 +81,16 @@ export class AddEditCustomComponent implements OnInit, AfterViewInit {
       key: 'rangeDate',
       label: 'Enter range',
       required: true,
-      ranges:  {
-        'Today': [_moment(), _moment()],
-        'Yesterday': [_moment().subtract(1, 'days'), _moment().subtract(1, 'days')],
-        'Last 7 Days': [_moment().subtract(6, 'days'), _moment()],
-        'Last 30 Days': [_moment().subtract(29, 'days'), _moment()],
-        'This Month': [_moment().startOf('month'), _moment().endOf('month')],
-        'Last Month': [_moment().subtract(1, 'month').startOf('month'), _moment().subtract(1, 'month').endOf('month')],
-        'This Year': [_moment().startOf('year').startOf('year'), _moment().endOf('year')],
-        'Last Year': [_moment().subtract(1, 'year').startOf('year'), _moment().subtract(1, 'year').endOf('year')],
-    }
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+        'This Year': [moment().startOf('year').startOf('year'), moment().endOf('year')],
+        'Last Year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
+      }
     }),
     'address': new FilterTextArea({
       // value: 'H# 1234',
@@ -170,20 +174,36 @@ export class AddEditCustomComponent implements OnInit, AfterViewInit {
     private dynCtrlService: DynamicControlService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+  }
+
   ngAfterViewInit(): void {
-    // this.formComponent.form.patchValue({ "email": "faizan@test.com", "password": "Asd 123", "birthDate": "18/05/1995", "rangeDate": { "startDate": "2021-11-06T19:00:00.000Z", "endDate": "2021-11-13T18:59:59.999Z" }, "address": "H# 1234", "address1": "Land Mark", "country": "Pakistan", "city": "Gerogia", "state": "AL", "zip": "745200", "agree": true });
+    /*this.formComponent.form.patchValue({
+      'email': 'faizan@test.com',
+      'password': 'Asd 123',
+      'birthDate': '18/05/1995',
+      'rangeDate':
+        {'startDate': '2021-11-06T19:00:00.000Z', 'endDate': '2021-11-13T18:59:59.999Z'},
+      'address': 'H# 1234',
+      'address1': 'Land Mark',
+      'country': 'Pakistan',
+      'city':
+        'Gerogia',
+      'state': 'AL',
+      'zip': '745200',
+      'agree': true
+    });*/
   }
 
   ngOnInit() {
     this.form = this.dynCtrlService.toFormGroup(this.formBasic);
-    
+
 
     this.fakeValues.subscribe((data) => {
       // this.form.patchValue(data);
 
       this.formComponent.form.patchValue(data);
-    })
+    });
   }
 
   SubmitForm() {

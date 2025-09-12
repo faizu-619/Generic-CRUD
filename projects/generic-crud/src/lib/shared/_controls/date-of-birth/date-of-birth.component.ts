@@ -1,8 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import * as _moment from 'moment';
-import * as _ from 'lodash';
-import { FilterDateOfBirth } from '../_models';
-import { FormGroup } from '@angular/forms';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import moment from 'moment';
+import {FilterDateOfBirth} from '../_models';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'lib-date-of-birth',
@@ -28,12 +27,10 @@ export class DateOfBirthComponent implements OnInit, OnDestroy {
     if (this.form.get(this.control.key).value) {
       const date = new Date(this.form.get(this.control.key).value);
 
-      //console.log(moment(date).get("month")+1);
-      this.selectedYear = _moment(date).get("year");
-      const month = _moment(date).get("month") + 1;
-      this.selectedMonth = month;
+      this.selectedYear = moment(date).get('year');
+      this.selectedMonth = moment(date).get('month') + 1;
       this.DAYS(this.selectedMonth, this.selectedYear);
-      this.selectedDay = _moment(date).get("date");
+      this.selectedDay = moment(date).get('date');
 
     }
     this.YEARS();
@@ -44,20 +41,20 @@ export class DateOfBirthComponent implements OnInit, OnDestroy {
 
   YEARS(): any {
     this.years = [];
-    const dateStart = _moment().add((-1 * this.control.maxAge), 'y');
-    const dateEnd = _moment().add((-1 * this.control.minAge), 'y');
+    const dateStart = moment().add((-1 * this.control.maxAge), 'y');
+    const dateEnd = moment().add((-1 * this.control.minAge), 'y');
     while (dateEnd.diff(dateStart, 'years') >= 0) {
       this.years.push(dateStart.format('YYYY'));
       dateStart.add(1, 'year');
     }
-    this.years = this.years.sort((a, b) => { return b - a });
+    this.years = this.years.sort((a, b) => b - a);
     return this.years;
   }
 
   MONTHS(): any {
     this.months = [];
-    const dateStart = _moment();
-    const dateEnd = _moment().add(12, 'month');
+    const dateStart = moment();
+    const dateEnd = moment().add(12, 'month');
     while (dateEnd.diff(dateStart, 'months') > 0) {
       this.months.push(dateStart.format('MM'));
       dateStart.add(1, 'month');
@@ -67,7 +64,7 @@ export class DateOfBirthComponent implements OnInit, OnDestroy {
 
   DAYS(month, year): any {
     this.days = [];
-    const dateStart = _moment(`${year}-${month}`, 'YYYY-MM');
+    const dateStart = moment(`${year}-${month}`, 'YYYY-MM');
     if (dateStart.isValid()) {
       const dateEnd = dateStart.daysInMonth();
       for (let index = 1; index <= dateEnd; index++) {
@@ -82,9 +79,9 @@ export class DateOfBirthComponent implements OnInit, OnDestroy {
     if (this.control && this.selectedMonth && this.selectedYear && this.selectedDay) {
       const value = `${this.selectedYear}-${this.selectedMonth}-${this.selectedDay}`;
 
-      var a = new Date(value)
+      const a = new Date(value);
 
-      var f = _moment().diff(a, 'days');
+      const f = moment().diff(a, 'days');
       if (f >= 6570) {
         this.form.controls[this.control.key].setValue(value);
         this.error = false;
