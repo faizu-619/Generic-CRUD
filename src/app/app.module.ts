@@ -10,6 +10,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ColorPickerComponent} from './color-picker/color-picker.component';
 import {GenericCRUDModule} from '../../projects/generic-crud/src/lib/generic-crud.module';
 import {LayoutStyle} from '../../projects/generic-crud/src/lib/shared/interfaces/generic-config.interface';
+import {BASE_URL} from '../../projects/generic-crud/src/lib/shared/_service/generic.service';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import {LayoutStyle} from '../../projects/generic-crud/src/lib/shared/interfaces
     GenericCRUDModule.forRoot({style: LayoutStyle.Bootstrap}),
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: BASE_URL, useValue: environment.apiUrl },
+    { provide: 'BASE_URL', useValue: environment.apiUrl }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
