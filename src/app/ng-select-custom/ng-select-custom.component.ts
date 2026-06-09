@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { CustomComponent, FilterCustomControl } from 'Generic-CRUD';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {CustomComponent} from '../../../projects/generic-crud/src/lib/shared/interfaces/custom-component';
+import {FilterCustomControl} from '../../../projects/generic-crud/src/lib/shared/_controls/_models';
 
 @Component({
   selector: 'app-ng-select-custom',
@@ -12,18 +13,29 @@ export class NgSelectCustomComponent implements CustomComponent, OnInit {
   @Input() form: FormGroup;
 
   ages: any[] = [
-    { value: '<18', label: 'Under 18' },
-    { value: '18', label: '18' },
-    { value: '>18', label: 'More than 18' },
+    {value: '<18', label: 'Under 18'},
+    {value: '18', label: '18'},
+    {value: '>18', label: 'More than 18'},
   ];
 
   constructor(private fb: FormBuilder) {
+  }
 
-    console.log(this.ages);
+  valueChange?: (value: any) => void;
+
+  writeValue(obj: any): void {
+  }
+
+  registerOnChange(fn: any): void {
+  }
+
+  registerOnTouched(fn: any): void {
+  }
+
+  setDisabledState?(isDisabled: boolean): void {
   }
 
   ngOnInit() {
-    console.log(this.ages);
   }
 
   toggleAgeDisable() {

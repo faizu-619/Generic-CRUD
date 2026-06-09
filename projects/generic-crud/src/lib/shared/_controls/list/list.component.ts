@@ -7,7 +7,7 @@ import { IColumnClickParams } from '../_models/datatable.model';
 import { GENERIC_CONFIG } from '../../interfaces/generic-config.interface';
 
 @Component({
-  selector: 'lib-list',
+  selector: 'gc-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
@@ -44,7 +44,6 @@ export class ListComponent implements OnInit {
   }
 
   columnClickHandler(event: IColumnClickParams): void {
-    // console.log(event);
     if (event.column && event.column.columnName === 'Download') {
       // this.downloadCertificate(Number(event.value));
     } else if (event.column && event.column.columnName === 'Remove') {

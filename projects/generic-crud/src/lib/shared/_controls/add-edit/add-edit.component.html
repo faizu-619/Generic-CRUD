@@ -7,7 +7,7 @@
     <div class="card-body">
         <p *ngIf="isLoading"><em>Loading...</em></p>
 
-        <lib-dynamic-form *ngIf="!isLoading" [controls]="modelType.controls"
-            [actionButtons]="modelType.actionButtons || defaultActions" (OnSubmit)="save($event)"></lib-dynamic-form>
+        <gc-dynamic-form *ngIf="!isLoading" [controls]="modelType.controls"
+            [actionButtons]="modelType.actionButtons || defaultActions" (OnSubmit)="save($event)"></gc-dynamic-form>
     </div>
 </div>

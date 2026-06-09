@@ -8,7 +8,7 @@ import { ButtonModel, ButtonType } from '../_models/button.model';
 
 
 @Component({
-  selector: 'lib-add-edit',
+  selector: 'gc-add-edit',
   templateUrl: './add-edit.component.html',
   styleUrls: ['./add-edit.component.css']
 })
@@ -68,14 +68,11 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
   save(data: any) {
     this.defaultService.save(this.modelType.tableName, data)
       .subscribe(result => {
-        if (result) {
+        if (result && this.formComponent) {
           this.formComponent.form.patchValue(result || {});
         }
-        // console.log(this.formComponent.form);
-        // console.log(result);
       },
         error => {
-          // this.alertService.saveError(error);
           this.router.navigate(['/error']);
         });
   }
@@ -91,14 +88,12 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
   private get(id: number): void {
     this.defaultService.get(this.modelType.tableName, id)
       .subscribe(result => {
-        if (result) {
+        if (result && this.formComponent) {
           this.formComponent.form.patchValue(result || {});
         }
       },
         error => {
-          // this.alertService.saveError(error);
-          console.log(error);
-          // this.router.navigate(['/clients']);
+          this.router.navigate(['/error']);
         });
   }
 

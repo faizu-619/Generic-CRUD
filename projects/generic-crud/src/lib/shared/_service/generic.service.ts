@@ -1,6 +1,8 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, InjectionToken } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+
+export const BASE_URL = new InjectionToken<string>('BASE_URL');
 
 @Injectable({ providedIn: 'root' })
 export class GenericService<Type> {
@@ -10,7 +12,7 @@ export class GenericService<Type> {
 
   constructor(
     private http: HttpClient,
-    @Inject('BASE_URL') private baseUrl: string
+    @Inject(BASE_URL) private baseUrl: string
   ) {}
 
   getSchema(modelName: string): Observable<any> {

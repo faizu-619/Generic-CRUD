@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { IDatatableColumn, IColumnClickParams } from '../_models/datatable.model';
 
 @Component({
-  selector: 'lib-datatable',
+  selector: 'gc-datatable',
   templateUrl: './datatable.component.html',
   styleUrls: ['./datatable.component.css']
 })
@@ -30,20 +30,20 @@ export class DatatableComponent implements OnInit {
 
   setDynamicColumns() {
     this.columns = [];
-    Object.keys(this.data[0] || []).forEach(element => {
-      this.columns.push({
-        columnName: element, key: element, sort: false,
-        cellTemplate: null, headTemplate: null, onClick: null
+    if (this.data && this.data.length > 0) {
+      Object.keys(this.data[0] || {}).forEach(element => {
+        this.columns.push({
+          columnName: element, key: element, sort: false,
+          cellTemplate: null, headTemplate: null, onClick: null
+        });
       });
-    });
+    }
   }
 
   onRowClick(event: any): void {
-    // console.log(event);
   }
 
   onColumnClick(event: any, column: any, value: any): void {
-    // console.log(event);
     this.columnClick.emit({ event: event, column: column, value: value });
   }
 

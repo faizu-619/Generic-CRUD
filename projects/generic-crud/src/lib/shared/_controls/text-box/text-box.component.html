@@ -1,17 +1,18 @@
-<!-- <mat-form-field [formGroup]="form">
-    <input matInput [formControlName]="control.key" [id]="control.key" [type]="control.type" [placeholder]="control.label">
-</mat-form-field> -->
-<ng-container [formGroup]="form">
-    <input *ngIf="!control.format" [formControlName]="control.key"
-        [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
-        [readonly]="control.isDisabled" [type]="control.type" autocomplete="off" autofocus="on">
-    <input *ngIf="control.format" [formControlName]="control.key"
-        [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
-        [readonly]="control.isDisabled" [type]="control.type"
-        autocomplete="off" autofocus="on">
-</ng-container>
-
-
-<!--[mask]="control.format.mask"-->
-<!--[prefix]="control.format.prefix"-->
-<!--[suffix]="control.format.suffix"-->
+<input *ngIf="!control.format"
+       [value]="value || ''"
+       (input)="onInputChange($event)"
+       (blur)="onBlur()"
+       [disabled]="disabled || control.isDisabled"
+       [type]="control.type"
+       class="form-control"
+       autocomplete="off"
+       autofocus="on">
+<input *ngIf="control.format"
+       [value]="value || ''"
+       (input)="onInputChange($event)"
+       (blur)="onBlur()"
+       [disabled]="disabled || control.isDisabled"
+       [type]="control.type"
+       class="form-control"
+       autocomplete="off"
+       autofocus="on">

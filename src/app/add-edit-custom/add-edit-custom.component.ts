@@ -4,16 +4,17 @@ import moment from 'moment';
 import {Observable} from 'rxjs';
 import {ColorPickerComponent} from '../color-picker/color-picker.component';
 import {NgSelectCustomComponent} from '../ng-select-custom/ng-select-custom.component';
+import {DynamicFormComponent} from '../../../projects/generic-crud/src/lib/shared/_controls';
 import {
-  ButtonModel, ButtonType, DynamicControlService,
-  DynamicFormComponent,
+  ButtonModel, ButtonType,
   FilterCheckbox, FilterCustomControl,
-  FilterDateOfBirth,
-  FilterDropdown,
+  FilterDateOfBirth, FilterDropdown,
   FilterRangeDate,
   FilterTextArea,
   FilterTextbox
-} from 'Generic-CRUD';
+} from '../../../projects/generic-crud/src/lib/shared/_controls/_models';
+import {DynamicControlService} from '../../../projects/generic-crud/src/lib/shared/_controls/_services/filter-control.service';
+
 
 @Component({
   selector: 'app-add-edit-custom',

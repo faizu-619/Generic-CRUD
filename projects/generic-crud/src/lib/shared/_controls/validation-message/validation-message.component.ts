@@ -5,7 +5,7 @@ import { FilterBase } from '../_models';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: '[lib-validation-message]',
+  selector: '[gc-validation-message]',
   templateUrl: './validation-message.component.html',
   styleUrls: ['./validation-message.component.css']
 })

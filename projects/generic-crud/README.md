@@ -3,51 +3,132 @@
 
 A simple Angular based package to create run-time CRUD for any API, Object or Table.
 
-## Getting Started
-
-Installation
-===============================
+## Installation
 
 #### npm
 ```shell
-$ npm install generic-crud --save
+$ npm install generic-crud lodash --save
 ```
-<!-- 
-#### bower
-```shell
-$ bower install angular-bootstrap-colorpicker --save
-``` -->
 
-Include module `GenericCRUDModule`.
+## Configuration
+
+Include module `GenericCRUDModule` and configure the BASE_URL provider.
 Add a dependency to your app, for instance:
 
-    import { BrowserModule } from '@angular/platform-browser';
-    import { NgModule } from '@angular/core';
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-    import { GenericCRUDModule } from 'Generic-CRUD';
+import { GenericCRUDModule, BASE_URL } from 'generic-crud';
 
-    import { AppComponent } from './app.component';
-    import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { environment } from './environments/environment';
 
-    @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        RouterModule.forRoot([]),
-        GenericCRUDModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
-    })
-    export class AppModule { }
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot([]),
+    GenericCRUDModule.forRoot({ style: 1 }) // 1 for Bootstrap, 2 for Material
+  ],
+  providers: [
+    { provide: BASE_URL, useValue: environment.apiUrl }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
+## Breaking Changes (v0.0.22+)
 
-Examples:
-===============================
+**Important:** If upgrading from earlier versions:
 
-#### First Step
+1. **BASE_URL Provider Required**: You must now provide the `BASE_URL` token in your app module:
+   ```typescript
+   import { BASE_URL } from 'generic-crud';
+   
+   providers: [
+     { provide: BASE_URL, useValue: 'http://localhost:3000' }
+   ]
+   ```
+
+2. **Lodash Peer Dependency**: Install lodash as a peer dependency:
+   ```shell
+   npm install lodash --save
+   ```
+
+3. **TSLint → ESLint Migration**: The project has migrated from TSLint to ESLint. If contributing or developing:
+   - TSLint has been removed (deprecated since 2019)
+   - ESLint is now configured with Angular-specific rules
+   - Run `npm run lint` to check code quality
+   - Run `npm run lint:fix` to auto-fix issues
+
+4. **ControlValueAccessor Implementation**: All form controls now implement `ControlValueAccessor` (v0.0.22+):
+   - Controls no longer require `[form]` input parameter
+   - Use `formControlName` directive instead (standard Angular pattern)
+   - **Better Performance**: Reduced change detection cycles
+   - **Better Reusability**: Controls can be used independently with `ngModel` or `formControlName`
+   - **Breaking Change**: If you have custom components implementing `CustomComponent` interface, update them to use `valueChange` callback instead of `form` parameter
+
+## Development
+
+### Architecture
+
+#### ControlValueAccessor Pattern
+
+All form controls in this library implement Angular's `ControlValueAccessor` interface, following best practices:
+
+**Benefits:**
+- ✅ **Decoupled**: Controls are independent and don't need parent form reference
+- ✅ **Performance**: Reduced change detection overhead
+- ✅ **Flexibility**: Works with `formControlName`, `ngModel`, or reactive forms
+- ✅ **Reusability**: Controls can be used in any context
+
+**Creating Custom Controls:**
+
+If you need to create a custom control, extend the `BaseControlValueAccessor`:
+
+```typescript
+import { Component, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BaseControlValueAccessor } from 'generic-crud';
+
+@Component({
+  selector: 'my-custom-control',
+  template: `
+    <input 
+      [value]="value || ''" 
+      (input)="updateValue($event.target.value)"
+      (blur)="onTouched()"
+      [disabled]="disabled">
+  `,
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => MyCustomControlComponent),
+    multi: true
+  }]
+})
+export class MyCustomControlComponent extends BaseControlValueAccessor {
+  // Your custom logic here
+}
+```
+
+### Code Quality
+
+This library uses ESLint for code quality and consistency:
+
+```shell
+# Check for linting errors
+npm run lint
+
+# Auto-fix linting issues
+npm run lint:fix
+```
+
+## Getting Started
 
 Setup CRUD Config on `src\assets\setup\Posts.json`, Example file below:
 

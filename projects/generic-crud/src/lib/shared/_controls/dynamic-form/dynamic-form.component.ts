@@ -6,7 +6,7 @@ import { DynamicControlService } from '../_services/filter-control.service';
 import { ButtonModel } from '../_models/button.model';
 
 @Component({
-  selector: 'lib-dynamic-form',
+  selector: 'gc-dynamic-form',
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.css']
 })

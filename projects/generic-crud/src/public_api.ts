@@ -8,9 +8,10 @@ export * from './lib/generic-crud.module';
 export * from './lib/shared/interfaces/generic-config.interface';
 export * from './lib/shared/interfaces/custom-component';
 
-export * from './lib/shared/_service/generic.service';
+export { GenericService, BASE_URL } from './lib/shared/_service/generic.service';
 export * from './lib/shared/_controls/_services/filter-control.service';
 export * from './lib/shared/_controls/_services/remote-data.service';
+export * from './lib/shared/_controls/_base/base-control-value-accessor';
 
 export * from './lib/shared/_controls/_models/filter-dropdown';
 export * from './lib/shared/_controls/_models/filter-textbox';

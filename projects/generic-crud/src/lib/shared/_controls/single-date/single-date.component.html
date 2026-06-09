@@ -1,27 +1,8 @@
-<!-- <div [formGroup]="form">
-  <input type="hidden" [id]="control.key" [formControlName]="control.key">
-</div> -->
-
-<ng-container [formGroup]="form">
-  <input [formControlName]="control.key"
-    [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }"
-    [readonly]="control.isDisabled"
-    type="date" autocomplete="off">
-</ng-container>
-
-<!-- 
-<mat-form-field [formGroup]="form">
-    <input matInput [matDatepicker]="picker" [id]="control.key" [formControlName]="control.key" [placeholder]="control.label">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-</mat-form-field> -->
-
-<!--<div class="input-group">
-  <input type="text" class="form-control form-control-sm" [disabled]="form.disabled" 
-  [(ngModel)]="model" (dateSelect)="onSelect($event)">
-  <div class="input-group-append">
-    <button type="button" class="input-group-text btn" [disabled]="form.disabled" (click)="d.toggle()">
-      <i class="fa fa-calendar"></i>
-    </button>
-  </div>
-</div>-->
+<input
+  [value]="value || ''"
+  (change)="onDateChange($event)"
+  (blur)="onBlur()"
+  [disabled]="disabled || control.isDisabled"
+  type="date"
+  class="form-control"
+  autocomplete="off">

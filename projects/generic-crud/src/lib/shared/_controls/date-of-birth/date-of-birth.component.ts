@@ -1,16 +1,23 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, forwardRef, Input, OnDestroy, OnInit} from '@angular/core';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import moment from 'moment';
 import {FilterDateOfBirth} from '../_models';
-import {FormGroup} from '@angular/forms';
+import {BaseControlValueAccessor} from '../_base';
 
 @Component({
-  selector: 'lib-date-of-birth',
+  selector: 'gc-date-of-birth',
   templateUrl: './date-of-birth.component.html',
-  styleUrls: ['./date-of-birth.component.css']
+  styleUrls: ['./date-of-birth.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DateOfBirthComponent),
+      multi: true
+    }
+  ]
 })
-export class DateOfBirthComponent implements OnInit, OnDestroy {
+export class DateOfBirthComponent extends BaseControlValueAccessor implements OnInit, OnDestroy {
   @Input() control: FilterDateOfBirth;
-  @Input() form: FormGroup;
 
   selectedYear = 0;
   selectedMonth = 0;
@@ -20,18 +27,17 @@ export class DateOfBirthComponent implements OnInit, OnDestroy {
   days = [];
   error: boolean;
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 
   ngOnInit(): void {
-
-    if (this.form.get(this.control.key).value) {
-      const date = new Date(this.form.get(this.control.key).value);
-
+    if (this.value) {
+      const date = new Date(this.value);
       this.selectedYear = moment(date).get('year');
       this.selectedMonth = moment(date).get('month') + 1;
       this.DAYS(this.selectedMonth, this.selectedYear);
       this.selectedDay = moment(date).get('date');
-
     }
     this.YEARS();
   }
@@ -78,31 +84,17 @@ export class DateOfBirthComponent implements OnInit, OnDestroy {
     this.DAYS(this.selectedMonth, this.selectedYear);
     if (this.control && this.selectedMonth && this.selectedYear && this.selectedDay) {
       const value = `${this.selectedYear}-${this.selectedMonth}-${this.selectedDay}`;
-
       const a = new Date(value);
-
       const f = moment().diff(a, 'days');
       if (f >= 6570) {
-        this.form.controls[this.control.key].setValue(value);
+        this.updateValue(value);
         this.error = false;
       } else {
-        this.form.controls[this.control.key].setValue(null);
+        this.updateValue(null);
         this.error = true;
       }
-
-    } else if (this.control && this.form) {
-      this.form.controls[this.control.key].setValue(null);
+    } else {
+      this.updateValue(null);
     }
   }
-
-  // private updateValue(value: string) {
-  //   if (value && value.length && moment(value).isValid()) {
-  //     var date = moment(value);
-  //     this.selectedYear = date.year();
-  //     this.selectedMonth = date.month();
-  //     this.DAYS(this.selectedMonth, this.selectedYear);
-  //     this.selectedDay = date.day();
-  //   }
-  // }
-
 }

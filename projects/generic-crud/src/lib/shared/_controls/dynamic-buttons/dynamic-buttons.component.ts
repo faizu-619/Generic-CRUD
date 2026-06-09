@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ButtonModel } from '../_models/button.model';
 
 @Component({
-  selector: 'lib-dynamic-buttons',
+  selector: 'gc-dynamic-buttons',
   templateUrl: './dynamic-buttons.component.html',
   styleUrls: ['./dynamic-buttons.component.css']
 })

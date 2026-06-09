@@ -23,7 +23,6 @@ export class GenericResolver  {
     return this.service.getSchema(route.paramMap.get('modelName')).pipe(catchError(error => {
       return error;
     }), map((result) => {
-      // console.log(result);
       if (result && result.controls) {
         const model = new GenericModel();
         model.tableName = result.tableName || '';

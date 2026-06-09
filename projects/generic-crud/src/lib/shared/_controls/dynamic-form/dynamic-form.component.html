@@ -1,14 +1,14 @@
 
 <form [formGroup]="form" (ngSubmit)="form.valid && SubmitForm()">
 
-  <lib-dynamic-control
+  <gc-dynamic-control
   *ngFor="let control of controls"
   [form]="form"
   [parentFormSubmitted]="form.dirty || submited"
   [controlObject]="control"
-  ></lib-dynamic-control>
+  ></gc-dynamic-control>
 
-  <lib-dynamic-buttons [btnList]="actionButtons"></lib-dynamic-buttons>
+  <gc-dynamic-buttons [btnList]="actionButtons"></gc-dynamic-buttons>
   <!-- <button type="submit" class="btn btn-default">Save</button>
   <button type="reset" class="btn btn-default">Reset</button> -->
 </form>

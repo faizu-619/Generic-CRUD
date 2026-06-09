@@ -1,6 +1,7 @@
-<ng-container [formGroup]="form">
-  <textarea [formControlName]="control.key"
-    [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }" 
-    [readonly]="control.isDisabled"
-    [rows]="control.rowLength"></textarea>
-</ng-container>
+<textarea 
+  [value]="value || ''"
+  (input)="onInputChange($event)"
+  (blur)="onBlur()"
+  [disabled]="disabled || control.isDisabled"
+  [rows]="control.rowLength"
+  class="form-control"></textarea>

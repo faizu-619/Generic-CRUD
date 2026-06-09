@@ -9,8 +9,8 @@
   <div class="card-body">
     <p *ngIf="!listData"><em>Loading...</em></p>
 
-    <lib-datatable *ngIf="listData" [data]="listData" (columnClick)="columnClickHandler($event)"
+    <gc-datatable *ngIf="listData" [data]="listData" (columnClick)="columnClickHandler($event)"
       [columns]="modelType.listColumns">
-    </lib-datatable>
+    </gc-datatable>
   </div>
 </div>

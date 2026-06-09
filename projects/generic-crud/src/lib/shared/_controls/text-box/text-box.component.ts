@@ -1,21 +1,36 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {Component, forwardRef, Input, OnInit} from '@angular/core';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
-import { FilterTextbox } from '../_models/filter-textbox';
+import {FilterTextbox} from '../_models';
+import {BaseControlValueAccessor} from '../_base';
 
 @Component({
-    selector: 'lib-text-box',
-    templateUrl: './text-box.component.html',
-    styleUrls: ['./text-box.component.css']
-})
-export class TextBoxComponent implements OnInit {
-    @Input() control: FilterTextbox;
-    @Input() form: FormGroup;
-    constructor() { }
-
-    ngOnInit() {
-        // console.log(this.control);
+  selector: 'gc-text-box',
+  templateUrl: './text-box.component.html',
+  styleUrls: ['./text-box.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TextBoxComponent),
+      multi: true
     }
+  ]
+})
+export class TextBoxComponent extends BaseControlValueAccessor implements OnInit {
+  @Input() control: FilterTextbox;
 
-    get isValid() { return (this.form.controls[this.control.key].valid); }
+  constructor() {
+    super();
+  }
+
+  ngOnInit() {
+  }
+
+  onInputChange(event: any): void {
+    this.updateValue(event.target.value);
+  }
+
+  onBlur(): void {
+    this.onTouched();
+  }
 }

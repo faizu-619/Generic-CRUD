@@ -1,20 +1,35 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FilterTextArea } from '../_models/filter-text-area';
+import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
 
 @Component({
-  selector: 'lib-text-area',
+  selector: 'gc-text-area',
   templateUrl: './text-area.component.html',
-  styleUrls: ['./text-area.component.css']
+  styleUrls: ['./text-area.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TextAreaComponent),
+      multi: true
+    }
+  ]
 })
-export class TextAreaComponent implements OnInit {
+export class TextAreaComponent extends BaseControlValueAccessor implements OnInit {
   @Input() control: FilterTextArea;
-  @Input() form: FormGroup;
-  constructor() { }
 
-  ngOnInit() {
-    // console.log(this.control);
+  constructor() {
+    super();
   }
 
-  get isValid() { return (this.form.controls[this.control.key].valid); }
+  ngOnInit() {
+  }
+
+  onInputChange(event: any): void {
+    this.updateValue(event.target.value);
+  }
+
+  onBlur(): void {
+    this.onTouched();
+  }
 }

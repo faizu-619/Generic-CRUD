@@ -1,16 +1,17 @@
-<!-- <mat-form-field [formGroup]="form">
-    <mat-select [id]="control.key" [formControlName]="control.key" [placeholder]="control.label" (selectionChange)="onChange($event)">
-        <mat-option *ngFor="let opt of control.options" [value]="opt.key" [disabled]="opt.disabled || false">{{opt.value}}</mat-option>
-    </mat-select>
-</mat-form-field> -->
-
-<ng-container [formGroup]="form">
-    <select *ngIf="!control.multiSelect" [formControlName]="control.key"
-        [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }">
-        <option *ngFor="let opt of control.options" [ngValue]="opt.key">{{opt.value}}</option>
-    </select>
-    <select *ngIf="control.multiSelect" [formControlName]="control.key" multiple=""
-        [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }">
-        <option *ngFor="let opt of control.options" [ngValue]="opt">{{opt.value}}</option>
-    </select>
-</ng-container>
+<select *ngIf="!control.multiSelect" 
+    [value]="value"
+    (change)="onSelectChange($event)"
+    (blur)="onBlur()"
+    [disabled]="disabled || control.isDisabled"
+    class="form-control">
+    <option *ngFor="let opt of control.options" [value]="opt.key">{{opt.value}}</option>
+</select>
+<select *ngIf="control.multiSelect" 
+    [value]="value"
+    (change)="onSelectChange($event)"
+    (blur)="onBlur()"
+    [disabled]="disabled || control.isDisabled"
+    multiple
+    class="form-control">
+    <option *ngFor="let opt of control.options" [value]="opt.key">{{opt.value}}</option>
+</select>

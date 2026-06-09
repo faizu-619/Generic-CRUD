@@ -1,7 +1,73 @@
-<ng-container *ngIf="isReady" [formGroup]="form" libControlState>
-  <!-- <input type="text" ngxDaterangepickerMd [formControlName]="control.key"
-    [ngClass]="{ 'form-control': true, 'is-invalid': !isValid, 'is-valid': isValid }" [readonly]="control.isDisabled"
-    [showCustomRangeLabel]="control.showCustomRangeLabel" [alwaysShowCalendars]="control.alwaysShowCalendars" [ranges]="control.ranges"
-    [linkedCalendars]="control.linkedCalendars" [isInvalidDate]="isInvalidDate" [showClearButton]="control.showClearButton"
-    [showDropdowns]="control.showDropdowns" [showCancel]="control.showCancel" [showRangeLabelOnInput]="control.showRangeLabelOnInput" /> -->
+<ng-container *ngIf="isReady">
+  <div class="date-range-picker" libControlState>
+    <div class="date-input-wrapper" (click)="toggleCalendar()">
+      <input
+        type="text"
+        [value]="getDisplayValue()"
+        [readonly]="true"
+        [ngClass]="{ 'form-control': true,  'disabled': control.isDisabled }"
+      />
+
+      <!--      'is-invalid': !isValid, 'is-valid': isValid,-->
+      <span class="calendar-icon">📅</span>
+    </div>
+
+    <div class="calendar-popup" *ngIf="isOpen">
+      <div class="calendar-header">
+        <button type="button" class="nav-btn" (click)="previousMonth()">‹</button>
+        <span class="calendar-title">{{ monthNames[currentMonth.getMonth()] }} {{ currentMonth.getFullYear() }}</span>
+        <span class="calendar-title">{{ monthNames[nextMonth.getMonth()] }} {{ nextMonth.getFullYear() }}</span>
+        <button type="button" class="nav-btn" (click)="nextMonthClick()">›</button>
+      </div>
+
+      <div class="calendar-body">
+        <!-- Left Calendar -->
+        <div class="calendar-month">
+          <div class="calendar-weekdays">
+            <div class="calendar-weekday" *ngFor="let day of weekDays">{{ day }}</div>
+          </div>
+          <div class="calendar-days">
+            <div class="calendar-week" *ngFor="let week of currentMonthDays">
+              <div
+                *ngFor="let date of week"
+                [ngClass]="getDateClasses(date, currentMonth)"
+                (click)="selectDate(date)"
+                (mouseenter)="onMouseEnter(date)"
+                (mouseleave)="onMouseLeave()"
+              >
+                {{ date.getDate() }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Calendar -->
+        <div class="calendar-month">
+          <div class="calendar-weekdays">
+            <div class="calendar-weekday" *ngFor="let day of weekDays">{{ day }}</div>
+          </div>
+          <div class="calendar-days">
+            <div class="calendar-week" *ngFor="let week of nextMonthDays">
+              <div
+                *ngFor="let date of week"
+                [ngClass]="getDateClasses(date, nextMonth)"
+                (click)="selectDate(date)"
+                (mouseenter)="onMouseEnter(date)"
+                (mouseleave)="onMouseLeave()"
+              >
+                {{ date.getDate() }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-footer">
+        <button type="button" class="btn-clear" (click)="clearSelection()">Clear</button>
+        <button type="button" class="btn-apply" (click)="applySelection()"
+                [disabled]="!selectedRange.startDate || !selectedRange.endDate">Apply
+        </button>
+      </div>
+    </div>
+  </div>
 </ng-container>

@@ -1,29 +1,35 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FilterCheckbox } from '../_models/filter-checkbox';
-
+import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
 
 @Component({
-    selector: 'lib-check-box',
+    selector: 'gc-check-box',
     templateUrl: './check-box.component.html',
-    styleUrls: ['./check-box.component.css']
+    styleUrls: ['./check-box.component.css'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CheckBoxComponent),
+            multi: true
+        }
+    ]
 })
-export class CheckBoxComponent implements OnInit {
+export class CheckBoxComponent extends BaseControlValueAccessor<boolean> implements OnInit {
     @Input() control: FilterCheckbox;
-    @Input() form: FormGroup;
 
-    // tslint:disable-next-line:no-output-on-prefix
     @Output() onCheckChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-    constructor() { }
+    constructor() {
+        super();
+    }
 
     ngOnInit() {
-        // console.log('CheckBox Init!', this.control);
     }
 
-    SelectionChange(event: boolean) {
-        this.onCheckChange.emit(event);
+    SelectionChange(event: any): void {
+        const checked = event.target.checked;
+        this.updateValue(checked);
+        this.onCheckChange.emit(checked);
     }
-
-    get isValid() { return (this.form.controls[this.control.key].valid); }
 }

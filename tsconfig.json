@@ -23,6 +23,9 @@
       ],
       "Generic-CRUD/*": [
         "dist/generic-crud/*"
+      ],
+      "generic-crud-bootstrap": [
+        "dist/generic-crud-bootstrap"
       ]
     },
     "allowSyntheticDefaultImports": true

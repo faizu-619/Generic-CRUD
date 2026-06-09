@@ -1,40 +1,48 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, OnDestroy, forwardRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { FilterSingleDate } from '../_models/filter-single-date';
+import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
 
 @Component({
-    selector: 'lib-single-date',
+    selector: 'gc-single-date',
     templateUrl: './single-date.component.html',
     styleUrls: ['./single-date.component.css'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => SingleDateComponent),
+            multi: true
+        }
+    ]
 })
-export class SingleDateComponent implements OnInit, OnDestroy {
+export class SingleDateComponent extends BaseControlValueAccessor implements OnInit, OnDestroy {
     @Input() control: FilterSingleDate;
-    @Input() form: FormGroup;
 
     subscription: Subscription = new Subscription();
-    // model: Date;
 
-    constructor(private datePipe: DatePipe) { }
+    constructor(private datePipe: DatePipe) {
+        super();
+    }
 
     ngOnInit() {
-        this.subscription.add(this.form.controls[this.control.key].valueChanges
-            .subscribe((value) => {
-                if (value) {
-                    this.form.controls[this.control.key].setValue(this.transform(value), { emitEvent: false });
-                }
-            }));
     }
 
-    onSelect() {
-        // console.log(this.model);
-        // this.form.controls[this.control.key].setValue(this.model);
+    onDateChange(event: any): void {
+        const value = event.target.value;
+        if (value) {
+            const formattedValue = this.transform(value);
+            this.updateValue(formattedValue);
+        } else {
+            this.updateValue(null);
+        }
     }
 
-    get isValid() { return (this.form.controls[this.control.key].valid); }
-
+    onBlur(): void {
+        this.onTouched();
+    }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
