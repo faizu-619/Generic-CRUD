@@ -6,7 +6,7 @@
     "@angular/core": "^16.2.0 || ^17.0.0",
     "@angular/forms": "^16.2.0 || ^17.0.0",
     "@angular/router": "^16.2.0 || ^17.0.0",
-    "Generic-CRUD": "^17.0.0"
+    "generic-crud": "^17.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

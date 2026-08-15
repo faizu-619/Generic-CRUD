@@ -3,10 +3,10 @@
  */
 
 
-export * from './lib/generic-crud.service';
 export * from './lib/generic-crud.module';
 export * from './lib/shared/interfaces/generic-config.interface';
 export * from './lib/shared/interfaces/custom-component';
+export * from './lib/shared/_resolvers/generic.resolver';
 
 export { GenericService, BASE_URL } from './lib/shared/_service/generic.service';
 export * from './lib/shared/_controls/_services/filter-control.service';
@@ -35,7 +35,6 @@ export * from './lib/shared/_controls/single-date/single-date.component';
 export * from './lib/shared/_controls/dynamic-control/dynamic-control.component';
 export * from './lib/shared/_controls/datatable/datatable.component';
 export * from './lib/shared/_controls/dynamic-form/dynamic-form.component';
-export * from './lib/shared/_controls/dynamic-control/dynamic-control.component';
 export * from './lib/shared/_controls/add-edit/add-edit.component';
 export * from './lib/shared/_controls/list/list.component';
 export * from './lib/shared/_controls/dynamic-buttons/dynamic-buttons.component';
