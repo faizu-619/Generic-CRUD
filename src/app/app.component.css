@@ -1,0 +1,16 @@
+.ui-mode-badge {
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-radius: 999px;
+	color: #f8f9fa;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	padding: 0.2rem 0.65rem;
+	text-transform: uppercase;
+}
+
+.ui-mode-badge.bootstrap-mode {
+	background: #0d6efd;
+	border-color: #0d6efd;
+	color: #ffffff;
+}

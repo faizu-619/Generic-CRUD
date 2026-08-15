@@ -1,8 +1,8 @@
 import {Component, forwardRef, Input, OnDestroy, OnInit} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
-import moment from 'moment';
 import {FilterDateOfBirth} from '../_models';
 import {BaseControlValueAccessor} from '../_base';
+import {DateOfBirthLogic} from '../_logic';
 
 @Component({
   selector: 'gc-date-of-birth',
@@ -18,6 +18,7 @@ import {BaseControlValueAccessor} from '../_base';
 })
 export class DateOfBirthComponent extends BaseControlValueAccessor implements OnInit, OnDestroy {
   @Input() control: FilterDateOfBirth;
+  private readonly dateOfBirthLogic = new DateOfBirthLogic();
 
   selectedYear = 0;
   selectedMonth = 0;
@@ -32,13 +33,15 @@ export class DateOfBirthComponent extends BaseControlValueAccessor implements On
   }
 
   ngOnInit(): void {
-    if (this.value) {
-      const date = new Date(this.value);
-      this.selectedYear = moment(date).get('year');
-      this.selectedMonth = moment(date).get('month') + 1;
+    const parsed = this.dateOfBirthLogic.parseValue(this.value);
+    if (parsed) {
+      this.selectedYear = parsed.selectedYear;
+      this.selectedMonth = parsed.selectedMonth;
       this.DAYS(this.selectedMonth, this.selectedYear);
-      this.selectedDay = moment(date).get('date');
+      this.selectedDay = parsed.selectedDay;
     }
+
+    this.MONTHS();
     this.YEARS();
   }
 
@@ -46,55 +49,33 @@ export class DateOfBirthComponent extends BaseControlValueAccessor implements On
   }
 
   YEARS(): any {
-    this.years = [];
-    const dateStart = moment().add((-1 * this.control.maxAge), 'y');
-    const dateEnd = moment().add((-1 * this.control.minAge), 'y');
-    while (dateEnd.diff(dateStart, 'years') >= 0) {
-      this.years.push(dateStart.format('YYYY'));
-      dateStart.add(1, 'year');
-    }
-    this.years = this.years.sort((a, b) => b - a);
+    this.years = this.dateOfBirthLogic.getYears(this.control.maxAge, this.control.minAge);
     return this.years;
   }
 
   MONTHS(): any {
-    this.months = [];
-    const dateStart = moment();
-    const dateEnd = moment().add(12, 'month');
-    while (dateEnd.diff(dateStart, 'months') > 0) {
-      this.months.push(dateStart.format('MM'));
-      dateStart.add(1, 'month');
-    }
+    this.months = this.dateOfBirthLogic.getMonths();
     return this.months;
   }
 
   DAYS(month, year): any {
-    this.days = [];
-    const dateStart = moment(`${year}-${month}`, 'YYYY-MM');
-    if (dateStart.isValid()) {
-      const dateEnd = dateStart.daysInMonth();
-      for (let index = 1; index <= dateEnd; index++) {
-        this.days.push(index);
-      }
-    }
+    this.days = this.dateOfBirthLogic.getDays(Number(month), Number(year));
     return this.days;
   }
 
   changeDate(): void {
     this.DAYS(this.selectedMonth, this.selectedYear);
-    if (this.control && this.selectedMonth && this.selectedYear && this.selectedDay) {
-      const value = `${this.selectedYear}-${this.selectedMonth}-${this.selectedDay}`;
-      const a = new Date(value);
-      const f = moment().diff(a, 'days');
-      if (f >= 6570) {
-        this.updateValue(value);
-        this.error = false;
-      } else {
-        this.updateValue(null);
-        this.error = true;
-      }
-    } else {
-      this.updateValue(null);
-    }
+
+    const result = this.dateOfBirthLogic.buildChangeResult(
+      {
+        selectedYear: Number(this.selectedYear),
+        selectedMonth: Number(this.selectedMonth),
+        selectedDay: Number(this.selectedDay)
+      },
+      this.control?.minAge || 18
+    );
+
+    this.updateValue(result.value);
+    this.error = result.error;
   }
 }

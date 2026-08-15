@@ -1,10 +1,11 @@
-import {Component, Input, OnInit, AfterViewInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {delay} from 'rxjs/operators';
 import {ControlType, FilterBase} from '../_models';
 import {DynamicControlService} from '../_services/filter-control.service';
 import {RemoteDataService} from '../_services/remote-data.service';
+import {DynamicControlLogic} from '../_logic';
 
 @Component({
   selector: 'gc-dynamic-control',
@@ -22,6 +23,7 @@ export class DynamicControlComponent implements OnInit {
 
   control: FilterBase<any>;
   options$: Observable<any[]>;
+  private readonly dynamicControlLogic = new DynamicControlLogic();
 
   constructor(
     private fcs: DynamicControlService,
@@ -30,31 +32,40 @@ export class DynamicControlComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.isRenderedAsParameter && this.param) {
-      this.control = this.fcs.fromParameterType(this.param);
-    } else if (this.dataType) {
-      this.control = this.fcs.fromDataType(this.dataType);
-    } else {
-      this.setControl(this.controlObject);
+    const resolvedControl = this.dynamicControlLogic.resolveInitialControl(
+      {
+        isRenderedAsParameter: this.isRenderedAsParameter,
+        param: this.param,
+        dataType: this.dataType,
+        controlObject: this.controlObject
+      },
+      this.fcs.fromParameterType.bind(this.fcs),
+      this.fcs.fromDataType.bind(this.fcs)
+    );
+
+    this.control = resolvedControl.control;
+    if (resolvedControl.shouldSetControl) {
+      this.setControl(this.control);
       this.onChanges();
     }
   }
 
   searchOptions(value: string): void {
-    if (typeof this.control.remoteUrl === 'string') {
+    const sourceType = this.dynamicControlLogic.resolveRemoteSourceType(this.control.remoteUrl);
+
+    if (sourceType === 'url') {
       this.options$ = this.remote.getRemoteData(this.control.remoteUrl, value);
-    } else if (typeof this.control.remoteUrl === 'object') {
+    } else if (sourceType === 'observable') {
       this.options$ = (this.control.remoteUrl as Observable<any>);
     }
   }
 
   private setControl(ctrl: FilterBase<any>, param?: any): void {
     this.control = ctrl;
-    if (ctrl.isRemote && ctrl.controlType != ControlType.AutocompleteTextbox) {
+
+    if (this.dynamicControlLogic.canLoadRemote(ctrl)) {
       const handleResult = (result) => {
-        if (Array.isArray(result)) {
-          this.remote.updateDataToControl(result);
-        } else if (typeof result === 'string') {
+        if (this.dynamicControlLogic.shouldUpdateRemoteControlData(result)) {
           this.remote.updateDataToControl(result);
         }
       };
@@ -63,11 +74,13 @@ export class DynamicControlComponent implements OnInit {
         // Error handling can be implemented by the consumer
       };
 
-      if (typeof ctrl.remoteUrl === 'string') {
+      const sourceType = this.dynamicControlLogic.resolveRemoteSourceType(ctrl.remoteUrl);
+
+      if (sourceType === 'url') {
         this.remote.getRemoteData(ctrl.remoteUrl, param)
           .subscribe(handleResult, handleError);
 
-      } else if (typeof ctrl.remoteUrl === 'object') {
+      } else if (sourceType === 'observable') {
         (ctrl.remoteUrl as Observable<any>)
           .pipe(delay(1000))
           .subscribe(handleResult, handleError);
@@ -76,7 +89,7 @@ export class DynamicControlComponent implements OnInit {
   }
 
   onChanges(): void {
-    if (this.control.onChangeKey && this.control.onChangeKey.length > 0) {
+    if (this.dynamicControlLogic.shouldSubscribeToOnChange(this.control)) {
       this.form.get(this.control.onChangeKey).valueChanges.subscribe(val => {
         this.setControl(this.control, val);
       });
@@ -88,14 +101,22 @@ export class DynamicControlComponent implements OnInit {
   }
 
   get isValid() {
-    return (!this.parentFormSubmitted && this.form.controls[this.control.key].valid);
+    return this.dynamicControlLogic.isValid(
+      this.parentFormSubmitted,
+      this.form.controls[this.control.key].valid
+    );
   }
 
   get hasValue(): boolean {
-    return !this.form.controls[this.control.key]
-      || (this.form.controls[this.control.key].value
-        && this.form.controls[this.control.key].value.length)
-      || (this.control.controlType === ControlType.RangeDate
-        && this.form.controls[this.control.key].valid);
+    const currentControl = this.form.controls[this.control.key];
+    if (!currentControl) {
+      return true;
+    }
+
+    return this.dynamicControlLogic.hasValue(
+      currentControl.value,
+      this.control.controlType,
+      currentControl.valid
+    );
   }
 }

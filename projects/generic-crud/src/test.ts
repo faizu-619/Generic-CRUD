@@ -1,6 +1,5 @@
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
-import 'core-js/es7/reflect';
 import 'zone.js';
 import 'zone.js/testing';
 import { getTestBed } from '@angular/core/testing';
@@ -16,7 +15,18 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 );
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
+
+// Support both legacy require.context and modern webpackContext test discovery.
+const legacyContext = typeof require !== 'undefined' && require.context
+  ? require.context('./', true, /\.spec\.ts$/)
+  : null;
+
+if (legacyContext) {
+  legacyContext.keys().map(legacyContext);
+} else {
+  const webpackContext = (import.meta as any).webpackContext;
+  if (webpackContext) {
+    const context = webpackContext('./', { recursive: true, regExp: /\.spec\.ts$/ });
+    context.keys().forEach(context);
+  }
+}

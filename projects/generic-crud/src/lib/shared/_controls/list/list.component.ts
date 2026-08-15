@@ -5,6 +5,7 @@ import { GenericModel } from '../_models/generic.model';
 import { GenericService } from '../../_service/generic.service';
 import { IColumnClickParams } from '../_models/datatable.model';
 import { GENERIC_CONFIG } from '../../interfaces/generic-config.interface';
+import { ListActionLogic, ListActionType } from '../_logic';
 
 @Component({
   selector: 'gc-list',
@@ -15,6 +16,7 @@ export class ListComponent implements OnInit {
 
   public listData: any[];
   modelType: GenericModel;
+  private readonly listActionLogic = new ListActionLogic();
 
   constructor(
     private defaultService: GenericService<GenericModel>,
@@ -44,12 +46,14 @@ export class ListComponent implements OnInit {
   }
 
   columnClickHandler(event: IColumnClickParams): void {
-    if (event.column && event.column.columnName === 'Download') {
+    const action = this.listActionLogic.resolveAction(event.column && event.column.columnName, event.value);
+
+    if (action.type === ListActionType.Download) {
       // this.downloadCertificate(Number(event.value));
-    } else if (event.column && event.column.columnName === 'Remove') {
-      this.delete(Number(event.value));
-    } else if (event.column && event.column.columnName === 'Edit') {
-      this.router.navigate(['edit', this.modelType.tableName, event.value]);
+    } else if (action.type === ListActionType.Remove && action.id !== null) {
+      this.delete(action.id);
+    } else if (action.type === ListActionType.Edit) {
+      this.router.navigate(['edit', this.modelType.tableName, action.rawValue]);
     }
   }
 

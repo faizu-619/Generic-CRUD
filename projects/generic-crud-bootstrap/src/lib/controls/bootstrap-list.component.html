@@ -1,0 +1,17 @@
+<div class="gcb-control gcb-list card">
+  <div *ngIf="modelType?.title" class="card-header d-flex justify-content-between align-items-center">
+    <span>{{ modelType.title }}</span>
+    <button (click)="addNewHandler()" class="btn btn-primary btn-sm">Add New</button>
+  </div>
+
+  <div class="card-body">
+    <p *ngIf="!listData"><em>Loading...</em></p>
+
+    <gcb-datatable
+      *ngIf="listData"
+      [data]="listData"
+      [columns]="modelType?.listColumns"
+      (columnClick)="columnClickHandler($event)">
+    </gcb-datatable>
+  </div>
+</div>

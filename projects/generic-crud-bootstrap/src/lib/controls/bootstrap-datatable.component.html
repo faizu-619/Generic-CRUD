@@ -1,0 +1,42 @@
+<div class="gcb-control gcb-datatable">
+  <div *ngIf="loading" class="d-flex justify-content-center py-2">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="table-responsive" *ngIf="!loading">
+    <table class="table table-bordered table-hover align-middle mb-0">
+      <thead class="table-light">
+        <tr>
+          <ng-container *ngFor="let item of columns">
+            <th *ngIf="!item.hide">
+              <div *ngIf="item.headTemplate; else defaultHead"
+                   [innerHTML]="interpolate(item.headTemplate, item.columnName, item.key)"></div>
+              <ng-template #defaultHead>{{ item.columnName }}</ng-template>
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of data">
+          <ng-container *ngFor="let column of columns">
+            <td *ngIf="!column.hide"
+                (click)="column?.onClick && onColumnClick($event, column, item[column.key])">
+              <span *ngIf="column.cellTemplate; else defaultCell"
+                    [innerHTML]="interpolate(column.cellTemplate, item[column.key], column.key)"></span>
+              <ng-template #defaultCell>{{ nestedValue(item, column.key) }}</ng-template>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+
+      <tfoot *ngIf="!data || data.length < 1">
+        <tr>
+          <td [attr.colspan]="columns.length" class="text-center text-muted">No records found!</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

@@ -1,25 +1,43 @@
 <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
   <a class="navbar-brand" href="#">Generic CRUD Demo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
 
-      <li class="nav-item">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <a class="nav-link" routerLink="/">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/list/Posts">Posts</a>
+
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="baseMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Default UI
+        </a>
+        <div class="dropdown-menu" aria-labelledby="baseMenu">
+          <a class="dropdown-item" routerLink="/list/Posts" routerLinkActive="active">Posts</a>
+          <a class="dropdown-item" routerLink="/list/Users" routerLinkActive="active">Users</a>
+          <a class="dropdown-item" routerLink="/add-custom" routerLinkActive="active">Custom Form</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/list/Users">Users</a>
+
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="bootstrapMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Bootstrap UI
+        </a>
+        <div class="dropdown-menu" aria-labelledby="bootstrapMenu">
+          <a class="dropdown-item" routerLink="/bootstrap/list/Posts" routerLinkActive="active">Posts</a>
+          <a class="dropdown-item" routerLink="/bootstrap/list/Users" routerLinkActive="active">Users</a>
+          <a class="dropdown-item" routerLink="/bootstrap/add-custom" routerLinkActive="active">Custom Form</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/add-custom">Custom Form</a>
-      </li>
+
     </ul>
+
+    <span class="ui-mode-badge" [class.bootstrap-mode]="currentMode === 'Bootstrap UI'">
+      {{ currentMode }}
+    </span>
   </div>
 </nav>
 

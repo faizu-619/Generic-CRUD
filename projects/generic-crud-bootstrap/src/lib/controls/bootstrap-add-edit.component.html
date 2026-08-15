@@ -1,0 +1,17 @@
+<div class="gcb-control gcb-add-edit card">
+  <div *ngIf="modelType?.title" class="card-header d-flex justify-content-between align-items-center">
+    <span>{{ modelType.title }}</span>
+    <a href="javascript:void(0);" class="btn btn-outline-info btn-sm" (click)="goBack()">Back</a>
+  </div>
+
+  <div class="card-body">
+    <p *ngIf="isLoading"><em>Loading...</em></p>
+
+    <gcb-dynamic-form
+      *ngIf="!isLoading"
+      [controls]="modelType?.controls"
+      [actionButtons]="modelType?.actionButtons || defaultActions"
+      (OnSubmit)="save($event)">
+    </gcb-dynamic-form>
+  </div>
+</div>

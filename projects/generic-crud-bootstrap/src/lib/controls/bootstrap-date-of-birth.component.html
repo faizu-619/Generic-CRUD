@@ -1,0 +1,42 @@
+
+<div class="gcb-control gcb-date-of-birth mb-2">
+  <label *ngIf="control?.label" class="form-label">
+    {{ control?.label }}
+    <span *ngIf="control?.required" class="text-danger">*</span>
+  </label>
+
+  <div class="row g-2">
+    <div class="col-4">
+      <select class="form-select"
+              [disabled]="disabled || control?.isDisabled"
+              [(ngModel)]="selectedMonth"
+              (change)="onSelectionChange()">
+        <option [ngValue]="0">Month</option>
+        <option *ngFor="let month of months" [ngValue]="month">{{ month }}</option>
+      </select>
+    </div>
+
+    <div class="col-4">
+      <select class="form-select"
+              [disabled]="disabled || control?.isDisabled"
+              [(ngModel)]="selectedDay"
+              (change)="onSelectionChange()">
+        <option [ngValue]="0">Day</option>
+        <option *ngFor="let day of days" [ngValue]="day">{{ day }}</option>
+      </select>
+    </div>
+
+    <div class="col-4">
+      <select class="form-select"
+              [disabled]="disabled || control?.isDisabled"
+              [(ngModel)]="selectedYear"
+              (change)="onSelectionChange()">
+        <option [ngValue]="0">Year</option>
+        <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="text-danger small mt-1" *ngIf="error">Must be {{ control?.minAge || 18 }} years or older.</div>
+</div>
+

@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GenericService } from '../../_service/generic.service';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { GenericModel } from '../_models/generic.model';
-import { ButtonModel, ButtonType } from '../_models/button.model';
+import { ButtonModel } from '../_models/button.model';
+import { AddEditLogic } from '../_logic';
 
 
 @Component({
@@ -13,28 +14,10 @@ import { ButtonModel, ButtonType } from '../_models/button.model';
   styleUrls: ['./add-edit.component.css']
 })
 export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
+  private readonly addEditLogic = new AddEditLogic();
   isLoading = true;
   modelType: any;
-  defaultActions: ButtonModel<string>[] = [
-    {
-      hrefLink: '',
-      key: 'btnSubmit',
-      label: 'Save',
-      order: 0,
-      buttonType: ButtonType.Submit,
-      isDisabled: false,
-      customClass: 'btn btn-primary'
-    },
-    {
-      hrefLink: '',
-      key: 'btnReset',
-      label: 'Reset',
-      order: 0,
-      buttonType: ButtonType.Reset,
-      isDisabled: false,
-      customClass: 'btn btn-default'
-    }
-  ];
+  defaultActions: ButtonModel<string>[] = this.addEditLogic.createDefaultActions();
 
   @ViewChild(DynamicFormComponent) formComponent: DynamicFormComponent;
 
@@ -45,20 +28,26 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
     private router: Router
   ) {
     this.route.data.subscribe((data: any) => {
-      if (data && data[0]) {
-        this.modelType = Object.assign({}, data[0]);
+      const model = this.addEditLogic.mapModelFromRouteData(data);
+      if (model) {
+        this.modelType = model;
       }
     });
   }
 
   ngOnInit() {
-    const Id = Number(this.route.snapshot.params['id'] || '0');
-    if (Id > 0) {
-      this.modelType.title = ('Edit ' + this.modelType.title);
-      this.get(Id);
+    const mode = this.addEditLogic.resolveModeState(
+      this.route.snapshot.params['id'],
+      this.modelType.title
+    );
+
+    this.modelType.title = mode.title;
+    if (mode.isEditMode) {
+      this.get(mode.id);
     } else {
-      this.modelType.title = ('New ' + this.modelType.title);
+      this.modelType.title = mode.title;
     }
+
     this.isLoading = false;
   }
 
@@ -68,12 +57,12 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
   save(data: any) {
     this.defaultService.save(this.modelType.tableName, data)
       .subscribe(result => {
-        if (result && this.formComponent) {
+        if (this.addEditLogic.shouldPatchForm(result, !!this.formComponent)) {
           this.formComponent.form.patchValue(result || {});
         }
       },
         error => {
-          this.router.navigate(['/error']);
+          this.router.navigate(this.addEditLogic.getErrorRoute());
         });
   }
 
@@ -88,17 +77,17 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
   private get(id: number): void {
     this.defaultService.get(this.modelType.tableName, id)
       .subscribe(result => {
-        if (result && this.formComponent) {
+        if (this.addEditLogic.shouldPatchForm(result, !!this.formComponent)) {
           this.formComponent.form.patchValue(result || {});
         }
       },
         error => {
-          this.router.navigate(['/error']);
+          this.router.navigate(this.addEditLogic.getErrorRoute());
         });
   }
 
   goBack() {
-    this.router.navigate(['/list/' + this.modelType.tableName]);
+    this.router.navigate(this.addEditLogic.getBackRoute(this.modelType.tableName));
   }
 
 }

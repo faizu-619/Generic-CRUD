@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { FilterDropdown } from '../_models/filter-dropdown';
 import { RemoteDataService } from '../_services/remote-data.service';
 import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
+import { DropdownOptionsLogic } from '../_logic';
 
 @Component({
     selector: 'gc-select-dropdown',
@@ -20,6 +21,7 @@ import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
 })
 export class SelectDropdownComponent extends BaseControlValueAccessor implements OnInit, OnDestroy {
     @Input() control: FilterDropdown;
+    private readonly dropdownOptionsLogic = new DropdownOptionsLogic();
 
     @Output() change = new EventEmitter<any>();
 
@@ -45,13 +47,11 @@ export class SelectDropdownComponent extends BaseControlValueAccessor implements
     }
 
     loadOptions(result: any[]) {
-        this.control.options = [];
-        result.forEach(element => {
-            this.control.options.push({
-                key: element[this.control.remoteKey] || '',
-                value: element[this.control.remoteValue] || ''
-            });
-        });
+        this.control.options = this.dropdownOptionsLogic.mapOptions(
+            result,
+            this.control.remoteKey,
+            this.control.remoteValue
+        );
     }
 
     onSelectChange(event: any): void {

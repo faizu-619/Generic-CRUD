@@ -1,0 +1,17 @@
+
+<div class="gcb-control gcb-text-area mb-2">
+  <label *ngIf="control?.label" class="form-label" [attr.for]="control?.key">
+    {{ control?.label }}
+    <span *ngIf="control?.required" class="text-danger">*</span>
+  </label>
+
+  <textarea
+    class="form-control"
+    [attr.id]="control?.key"
+    [rows]="rows"
+    [disabled]="disabled || control?.isDisabled"
+    [value]="value || ''"
+    (input)="onInput($any($event.target).value)"
+    (blur)="onBlur()"></textarea>
+</div>
+

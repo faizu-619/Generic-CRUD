@@ -1,0 +1,17 @@
+
+<div class="gcb-control gcb-check-box form-check mb-2">
+  <input
+    class="form-check-input"
+    [attr.id]="control?.key"
+    type="checkbox"
+    [checked]="!!value"
+    [disabled]="disabled || control?.isDisabled"
+    (change)="onInput($any($event.target).checked)"
+    (blur)="onBlur()" />
+
+  <label *ngIf="control?.label" class="form-check-label" [attr.for]="control?.key">
+    {{ control?.label }}
+    <span *ngIf="control?.required" class="text-danger">*</span>
+  </label>
+</div>
+

@@ -46,3 +46,4 @@ export * from './lib/shared/_directives/controlState.directive';
 export * from './lib/shared/_directives/custom-filter.directive';
 export * from './lib/shared/_controls/validation-message/validation-message.component';
 export * from './lib/shared/_controls/custom-filter/custom-filter.component';
+export * from './lib/shared/_controls/_logic';

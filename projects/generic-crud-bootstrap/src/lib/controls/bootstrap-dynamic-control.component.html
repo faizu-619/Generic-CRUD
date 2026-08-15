@@ -1,0 +1,16 @@
+<div class="gcb-control gcb-dynamic-control mb-3"
+     [formGroup]="form"
+     [ngClass]="{ 'active': hasValue, 'has-success': isValid, 'has-error': !isValid }">
+  <ng-container [ngSwitch]="control?.controlType">
+    <gcb-text-box *ngSwitchCase="ControlType.TextBox" [control]="control" [formControlName]="control.key"></gcb-text-box>
+    <gcb-single-date *ngSwitchCase="ControlType.SingleDate" [control]="control" [formControlName]="control.key"></gcb-single-date>
+    <gcb-range-date *ngSwitchCase="ControlType.RangeDate" [control]="control" [formControlName]="control.key"></gcb-range-date>
+    <gcb-select-dropdown *ngSwitchCase="ControlType.Dropdown" [control]="control" [formControlName]="control.key"></gcb-select-dropdown>
+    <gcb-check-box *ngSwitchCase="ControlType.CheckBox" [control]="control" [formControlName]="control.key"></gcb-check-box>
+    <gcb-text-area *ngSwitchCase="ControlType.TextArea" [control]="control" [formControlName]="control.key"></gcb-text-area>
+    <gcb-date-of-birth *ngSwitchCase="ControlType.DateOfBirth" [control]="control" [formControlName]="control.key"></gcb-date-of-birth>
+    <gcb-custom-filter *ngSwitchCase="ControlType.CustomControl" [control]="control" [formControlName]="control.key"></gcb-custom-filter>
+  </ng-container>
+
+  <gcb-validation-message [control]="control" [form]="form" [parentFormSubmitted]="parentFormSubmitted"></gcb-validation-message>
+</div>

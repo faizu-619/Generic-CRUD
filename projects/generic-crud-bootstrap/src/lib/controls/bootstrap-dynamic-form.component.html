@@ -1,0 +1,12 @@
+<div class="gcb-control gcb-dynamic-form card border-0">
+  <form [formGroup]="form" (ngSubmit)="form.valid && submitForm()">
+    <gcb-dynamic-control
+      *ngFor="let control of controls"
+      [form]="form"
+      [parentFormSubmitted]="form.dirty || submited"
+      [controlObject]="control">
+    </gcb-dynamic-control>
+
+    <gcb-dynamic-buttons [btnList]="actionButtons"></gcb-dynamic-buttons>
+  </form>
+</div>

@@ -1,0 +1,19 @@
+
+<div class="gcb-control gcb-select-dropdown mb-2">
+  <label *ngIf="control?.label" class="form-label" [attr.for]="control?.key">
+    {{ control?.label }}
+    <span *ngIf="control?.required" class="text-danger">*</span>
+  </label>
+
+  <select
+    class="form-select"
+    [attr.id]="control?.key"
+    [disabled]="disabled || control?.isDisabled"
+    [value]="value"
+    (change)="onSelectChange($any($event.target).value)"
+    (blur)="onBlur()"
+    [attr.multiple]="control?.multiSelect ? '' : null">
+    <option *ngFor="let opt of control?.options || []" [value]="opt.key">{{ opt.value }}</option>
+  </select>
+</div>
+

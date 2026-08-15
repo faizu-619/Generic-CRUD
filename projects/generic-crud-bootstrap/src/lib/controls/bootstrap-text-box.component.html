@@ -1,0 +1,18 @@
+
+<div class="gcb-control gcb-text-box mb-2">
+  <label *ngIf="control?.label" class="form-label" [attr.for]="control?.key">
+    {{ control?.label }}
+    <span *ngIf="control?.required" class="text-danger">*</span>
+  </label>
+
+  <input
+    class="form-control"
+    [attr.id]="control?.key"
+    [attr.type]="inputType"
+    [attr.placeholder]="control?.label || ''"
+    [disabled]="disabled || control?.isDisabled"
+    [value]="value || ''"
+    (input)="onInput($any($event.target).value)"
+    (blur)="onBlur()" />
+</div>
+

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import * as _ from 'lodash';
 import { FilterBase } from '../_models';
+import { DEFAULT_VALIDATION_MESSAGES, ValidationMessageLogic } from '../_logic';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,44 +13,21 @@ export class ValidationMessageComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() control: FilterBase<any>;
   @Input() parentFormSubmitted: any;
+  private readonly validationMessageLogic = new ValidationMessageLogic();
 
-  validationMessageConstants = {
-    required: 'This field is required.',
-    email: 'This email is not valid.',
-    minlength: 'Keyword must be greater than {{requiredLength}} characters, current length is {{actualLength}}.',
-    maxlength: 'Keyword must not exceed {{requiredLength}} characters, current length is {{actualLength}}.',
-    min: 'Number must be greater than {{min}}.',
-    max: 'Number must not exceed {{max}}.',
-    compare: 'This field is not valid or matched with {{compareWith}}.',
-    exists: 'Already in use, please try with other.',
-    mask: '"{{actualValue}}" is not valid, require e.g "{{requiredMask}}".'
-  };
+  validationMessageConstants = DEFAULT_VALIDATION_MESSAGES;
 
   get validationMessage() {
-    let messages = '';
-    const control = this.form.get(this.control.key);
-    if (control && !control.valid) {
-      for (const key in control.errors) {
-        if (control.errors.hasOwnProperty(key)) {
-          if (control.errors[key] !== null && typeof control.errors[key] === 'object') {
-            if (key === 'pattern') {
-              messages += `${this.control.validationRegexMessage}<br>`;
-            } else {
-              let msg = `${this.validationMessageConstants[key]}<br>`;
-              for (const propKey in control.errors[key]) {
-                if (control.errors[key].hasOwnProperty(propKey)) {
-                  msg = _.replace(msg, RegExp(`{{${propKey}}}`, 'g'), control.errors[key][propKey]);
-                }
-              }
-              messages += msg;
-            }
-          } else {
-            messages += `${this.validationMessageConstants[key]}<br>`;
-          }
-        }
-      }
+    const frmControl = this.form.get(this.control.key);
+    if (frmControl && !frmControl.valid) {
+      return this.validationMessageLogic.formatMessages(
+        frmControl.errors,
+        this.control.validationRegexMessage,
+        this.validationMessageConstants
+      );
     }
-    return messages;
+
+    return '';
   }
 
   constructor() { }

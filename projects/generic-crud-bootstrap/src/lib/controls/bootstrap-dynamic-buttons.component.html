@@ -1,0 +1,38 @@
+<div class="gcb-control gcb-dynamic-buttons d-flex gap-2 flex-wrap" *ngIf="btnList?.length">
+  <ng-container *ngFor="let btn of btnList">
+    <a *ngIf="btn.buttonType === ButtonType.Link"
+       [routerLink]="[btn.hrefLink]"
+       [ngClass]="btn.customClass || 'btn btn-outline-primary'"
+       [id]="btn.key"
+       [attr.aria-disabled]="btn.isDisabled"
+       [innerHTML]="btn.label"></a>
+
+    <button *ngIf="btn.buttonType === ButtonType.Button"
+      type="button"
+      [ngClass]="btn.customClass || 'btn btn-secondary'"
+      [id]="btn.key"
+      [disabled]="btn.isDisabled"
+      [innerHTML]="btn.label"></button>
+
+    <button *ngIf="btn.buttonType === ButtonType.Submit"
+      type="submit"
+      [ngClass]="btn.customClass || 'btn btn-primary'"
+      [id]="btn.key"
+      [disabled]="btn.isDisabled"
+      [innerHTML]="btn.label"></button>
+
+    <button *ngIf="btn.buttonType === ButtonType.Reset"
+      type="reset"
+      [ngClass]="btn.customClass || 'btn btn-outline-secondary'"
+      [id]="btn.key"
+      [disabled]="btn.isDisabled"
+      [innerHTML]="btn.label"></button>
+
+    <button *ngIf="btn.buttonType === ButtonType.Menu"
+      type="button"
+      [ngClass]="btn.customClass || 'btn btn-light'"
+      [id]="btn.key"
+      [disabled]="btn.isDisabled"
+      [innerHTML]="btn.label"></button>
+  </ng-container>
+</div>

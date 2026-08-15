@@ -1,9 +1,18 @@
 import { PipeTransform, Pipe } from '@angular/core';
-import * as _ from 'lodash';
 
 @Pipe({ name: 'nested' })
 export class NestedValuePipe implements PipeTransform {
     transform(obj: any, key: string): any {
-      return _.get(obj, key);
+      if (!obj || !key) {
+        return undefined;
+      }
+
+      return key.split('.').reduce((current, segment) => {
+        if (current === null || current === undefined) {
+          return undefined;
+        }
+
+        return current[segment];
+      }, obj);
     }
 }

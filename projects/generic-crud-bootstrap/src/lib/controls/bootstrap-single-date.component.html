@@ -1,0 +1,17 @@
+
+<div class="gcb-control gcb-single-date mb-2">
+  <label *ngIf="control?.label" class="form-label" [attr.for]="control?.key">
+    {{ control?.label }}
+    <span *ngIf="control?.required" class="text-danger">*</span>
+  </label>
+
+  <input
+    class="form-control"
+    [attr.id]="control?.key"
+    type="date"
+    [value]="value || ''"
+    [disabled]="disabled || control?.isDisabled"
+    (change)="onDateChange($any($event.target).value)"
+    (blur)="onBlur()" />
+</div>
+

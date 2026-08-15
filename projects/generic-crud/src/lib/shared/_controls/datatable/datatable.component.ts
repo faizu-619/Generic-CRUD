@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import * as _ from 'lodash';
 import { IDatatableColumn, IColumnClickParams } from '../_models/datatable.model';
 
 @Component({
@@ -48,8 +47,8 @@ export class DatatableComponent implements OnInit {
   }
 
   interpolate(htmlString: string, value: string, key: string): string {
-    htmlString = _.replace(htmlString, RegExp('{{value}}', 'g'), value);
-    htmlString = _.replace(htmlString, RegExp('{{key}}', 'g'), key);
+    htmlString = (htmlString || '').replace(RegExp('{{value}}', 'g'), value);
+    htmlString = htmlString.replace(RegExp('{{key}}', 'g'), key);
     return htmlString || '';
   }
 
