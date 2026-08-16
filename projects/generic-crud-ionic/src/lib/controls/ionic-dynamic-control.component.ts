@@ -56,16 +56,26 @@ export class IonicDynamicControlComponent {
   }
 
   get isValid(): boolean {
-    return this.dynamicControlLogic.isValid(
-      this.parentFormSubmitted,
-      this.form.controls[this.control.key].valid
-    );
+    if (!this.control || !this.form || !this.form.controls) {
+      return false;
+    }
+
+    const currentControl = this.form.controls[this.control.key];
+    if (!currentControl) {
+      return false;
+    }
+
+    return currentControl.valid && (currentControl.dirty || currentControl.touched);
   }
 
   get hasValue(): boolean {
+    if (!this.control || !this.form || !this.form.controls) {
+      return false;
+    }
+
     const currentControl = this.form.controls[this.control.key];
     if (!currentControl) {
-      return true;
+      return false;
     }
 
     return this.dynamicControlLogic.hasValue(

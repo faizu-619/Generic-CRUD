@@ -5,6 +5,7 @@ export * from './validation-message/validation-message.logic';
 export * from './list/list-action.logic';
 export * from './list/list-route.logic';
 export * from './list/list-resolver.logic';
+export * from './list/datatable.logic';
 export * from './dynamic-control/dynamic-control.logic';
 export * from './add-edit/add-edit.logic';
 export * from './custom-filter/custom-filter.logic';

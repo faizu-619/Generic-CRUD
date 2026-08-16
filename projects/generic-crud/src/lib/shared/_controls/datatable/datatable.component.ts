@@ -8,6 +8,7 @@
   SimpleChanges
 } from '@angular/core';
 import { IDatatableColumn, IColumnClickParams } from '../_models/datatable.model';
+import { buildDynamicColumnsFromData, interpolateTemplate, shouldBuildDynamicColumns } from '../_logic';
 
 @Component({
   standalone: false,
@@ -34,24 +35,11 @@ export class DatatableComponent implements OnChanges {
 
     this.loading = true;
 
-    if (!this.columns || this.columns.length < 1) {
-      this.setDynamicColumns();
+    if (shouldBuildDynamicColumns(this.columns)) {
+      this.columns = buildDynamicColumnsFromData(this.data);
     }
 
     this.loading = false;
-  }
-
-
-  setDynamicColumns(): void {
-    this.columns = [];
-    if (this.data && this.data.length > 0) {
-      Object.keys(this.data[0] || {}).forEach((element: string) => {
-        this.columns.push({
-          columnName: element, key: element, sort: false,
-          cellTemplate: null, headTemplate: null, onClick: null
-        });
-      });
-    }
   }
 
   onRowClick(_event: any): void {
@@ -62,9 +50,7 @@ export class DatatableComponent implements OnChanges {
   }
 
   interpolate(htmlString: string, value: any, key: string): string {
-    htmlString = (htmlString || '').replace(RegExp('{{value}}', 'g'), String(value ?? ''));
-    htmlString = htmlString.replace(RegExp('{{key}}', 'g'), key);
-    return htmlString || '';
+    return interpolateTemplate(htmlString, value, key);
   }
 
 }

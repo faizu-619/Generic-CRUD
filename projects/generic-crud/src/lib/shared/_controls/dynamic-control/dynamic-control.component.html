@@ -1,5 +1,4 @@
-<div class="form-group has-float-label" [formGroup]="form"
-     [ngClass]="{ 'active': hasValue, 'has-success': isValid, 'has-error': !isValid}">
+<div class="form-group has-float-label" [formGroup]="form">
   <ng-container [ngSwitch]="control.controlType">
 
     <gc-text-box *ngSwitchCase="1" [control]="control" [formControlName]="control.key" libControlState></gc-text-box>

@@ -143,13 +143,6 @@
   ],
   "Posts": [
     {
-      "id": 1,
-      "userId": 1,
-      "title": "Welcome to Generic CRUD",
-      "createdOn": "2026-08-01",
-      "body": "This is a local post entry for quick CRUD testing."
-    },
-    {
       "id": 2,
       "userId": 2,
       "title": "Schema Driven Forms",

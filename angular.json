@@ -108,7 +108,7 @@
         }
       }
     },
-    "Generic-CRUD": {
+    "generic-crud": {
       "root": "projects/generic-crud",
       "sourceRoot": "projects/generic-crud/src",
       "projectType": "library",

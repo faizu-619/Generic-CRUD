@@ -1,19 +1,37 @@
-﻿import { FormGroup } from '@angular/forms';
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+﻿import { AfterViewInit, Directive, ElementRef, HostListener, OnDestroy, OnInit, Optional, Renderer2, Self } from '@angular/core';
+import { NgControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Directive({
   standalone: false,
   selector: '[libControlState]'
 })
-export class ControlStateDirective {
+export class ControlStateDirective implements OnInit, AfterViewInit, OnDestroy {
   private el: any;
-  // @Input('libControlState') form: FormGroup;
-  number: any = '';
+  private valueChangesSub?: Subscription;
+
   constructor(
     private elementRef: ElementRef<any>,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    @Optional() @Self() private ngControl?: NgControl
   ) {
     this.el = elementRef.nativeElement;
+  }
+
+  ngOnInit(): void {
+    // Reflect model-driven value writes (patchValue/setValue) as active float-label state.
+    this.valueChangesSub = this.ngControl?.valueChanges?.subscribe(() => {
+      this.scheduleUpdateView();
+    });
+  }
+
+  ngAfterViewInit(): void {
+    // Run after child control template renders so querySelector can find the input/select/textarea.
+    this.scheduleUpdateView();
+  }
+
+  ngOnDestroy(): void {
+    this.valueChangesSub?.unsubscribe();
   }
 
   @HostListener('input', ['$event'])
@@ -48,6 +66,13 @@ export class ControlStateDirective {
     } else {
       this.renderer.removeClass(this.el.parentElement, 'active');
     }
+  }
+
+  private scheduleUpdateView(): void {
+    setTimeout(() => {
+      this.updateView();
+      setTimeout(() => this.updateView(), 0);
+    }, 0);
   }
 
 }

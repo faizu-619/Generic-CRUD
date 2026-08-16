@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
+import { buildDynamicColumnsFromData, interpolateTemplate, resolveNestedValue, shouldBuildDynamicColumns } from 'Generic-CRUD';
 
 @Component({
   standalone: false,
@@ -20,8 +21,8 @@ export class IonicDatatableComponent implements OnChanges {
     }
 
     this.loading = true;
-    if (!this.columns || this.columns.length < 1) {
-      this.setDynamicColumns();
+    if (shouldBuildDynamicColumns(this.columns)) {
+      this.columns = buildDynamicColumnsFromData(this.data);
     }
     this.loading = false;
   }
@@ -31,32 +32,10 @@ export class IonicDatatableComponent implements OnChanges {
   }
 
   interpolate(htmlString: string, value: any, key: string): string {
-    return (htmlString || '')
-      .replace(/{{value}}/g, String(value ?? ''))
-      .replace(/{{key}}/g, key || '');
+    return interpolateTemplate(htmlString, value, key);
   }
 
   nestedValue(item: any, key: string): any {
-    if (!item || !key) {
-      return '';
-    }
-
-    return key.split('.').reduce((result, segment) => (result ? result[segment] : undefined), item) ?? '';
-  }
-
-  private setDynamicColumns(): void {
-    this.columns = [];
-    if (this.data && this.data.length > 0) {
-      Object.keys(this.data[0] || {}).forEach((element: string) => {
-        this.columns.push({
-          columnName: element,
-          key: element,
-          sort: false,
-          cellTemplate: null,
-          headTemplate: null,
-          onClick: null
-        });
-      });
-    }
+    return resolveNestedValue(item, key);
   }
 }

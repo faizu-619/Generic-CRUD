@@ -55,7 +55,7 @@ export class BootstrapAddEditComponent implements OnInit, OnDestroy, AfterViewIn
     this.defaultService.save(this.modelType.tableName, data).subscribe(
       result => {
         if (this.addEditLogic.shouldPatchForm(result, !!this.formComponent)) {
-          this.formComponent.form.patchValue(result || {});
+          setTimeout(() => this.formComponent.form.patchValue(result || {}));
         }
       },
       () => {
@@ -72,7 +72,7 @@ export class BootstrapAddEditComponent implements OnInit, OnDestroy, AfterViewIn
     this.defaultService.get(this.modelType.tableName, id).subscribe(
       result => {
         if (this.addEditLogic.shouldPatchForm(result, !!this.formComponent)) {
-          this.formComponent.form.patchValue(result || {});
+          setTimeout(() => this.formComponent.form.patchValue(result || {}));
         }
       },
       () => {

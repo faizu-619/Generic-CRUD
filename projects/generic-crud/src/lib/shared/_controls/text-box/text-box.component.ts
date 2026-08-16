@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnInit } from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {FilterTextbox} from '../_models';
@@ -21,11 +21,18 @@ import {BaseControlValueAccessor} from '../_base';
 export class TextBoxComponent extends BaseControlValueAccessor implements OnInit {
   @Input() control: FilterTextbox = new FilterTextbox();
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     super();
   }
 
   ngOnInit() {
+  }
+
+  writeValue(value: any): void {
+    setTimeout(() => {
+      this._value = value;
+      this.cdr.markForCheck();
+    });
   }
 
   onInputChange(event: any): void {

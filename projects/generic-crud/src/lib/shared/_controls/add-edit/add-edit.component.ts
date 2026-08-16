@@ -60,7 +60,7 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
     this.defaultService.save(this.modelType.tableName, data)
       .subscribe(result => {
         if (this.addEditLogic.shouldPatchForm(result, !!this.formComponent)) {
-          this.formComponent.form.patchValue(result || {});
+          setTimeout(() => this.formComponent.form.patchValue(result || {}));
         }
       },
         error => {
@@ -80,7 +80,7 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
     this.defaultService.get(this.modelType.tableName, id)
       .subscribe(result => {
         if (this.addEditLogic.shouldPatchForm(result, !!this.formComponent)) {
-          this.formComponent.form.patchValue(result || {});
+          setTimeout(() => this.formComponent.form.patchValue(result || {}));
         }
       },
         error => {
