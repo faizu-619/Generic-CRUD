@@ -27,6 +27,9 @@
       ],
       "generic-crud-bootstrap": [
         "dist/generic-crud-bootstrap"
+      ],
+      "generic-crud-ionic": [
+        "dist/generic-crud-ionic"
       ]
     },
     "allowSyntheticDefaultImports": true

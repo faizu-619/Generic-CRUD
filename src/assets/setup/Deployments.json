@@ -1,0 +1,182 @@
+{
+    "tableName": "Deployments",
+    "title": "Deployments",
+    "listColumns": [
+        {
+            "columnName": "Service",
+            "key": "serviceName",
+            "sort": true
+        },
+        {
+            "columnName": "Environment",
+            "key": "environmentName",
+            "sort": true
+        },
+        {
+            "columnName": "Channel",
+            "key": "channelName",
+            "sort": true
+        },
+        {
+            "columnName": "Release Date",
+            "key": "releaseDate",
+            "sort": true
+        },
+        {
+            "columnName": "Edit",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-info pull-right'>Edit</a>"
+        },
+        {
+            "columnName": "Remove",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-danger pull-right'>Delete</a>"
+        }
+    ],
+    "controls": [
+        {
+            "key": "id",
+            "label": "",
+            "value": "",
+            "required": false,
+            "type": "hidden",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "environment",
+            "label": "Environment",
+            "value": "",
+            "required": true,
+            "isRemote": true,
+            "remoteUrl": "/environments",
+            "remoteKey": "id",
+            "remoteValue": "name",
+            "order": 1,
+            "isDisabled": false,
+            "controlType": 5
+        },
+        {
+            "key": "service",
+            "label": "Service",
+            "value": "",
+            "required": true,
+            "isRemote": true,
+            "remoteUrl": "/servicesByEnvironment",
+            "remoteKey": "id",
+            "remoteValue": "name",
+            "onChangeKey": "environment",
+            "order": 2,
+            "isDisabled": false,
+            "controlType": 5
+        },
+        {
+            "key": "channel",
+            "label": "Release Channel",
+            "value": "",
+            "required": true,
+            "isRemote": true,
+            "remoteUrl": "/releaseChannels",
+            "remoteKey": "id",
+            "remoteValue": "name",
+            "order": 3,
+            "isDisabled": false,
+            "controlType": 5
+        },
+        {
+            "key": "serviceName",
+            "label": "Service Name",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 4,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "environmentName",
+            "label": "Environment Name",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 5,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "channelName",
+            "label": "Channel Name",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 6,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "releaseDate",
+            "label": "Release Date",
+            "value": "",
+            "required": true,
+            "order": 7,
+            "isDisabled": false,
+            "controlType": 3
+        },
+        {
+            "key": "deploymentWindow",
+            "label": "Deployment Window",
+            "value": {
+                "startDate": "",
+                "endDate": ""
+            },
+            "required": true,
+            "order": 8,
+            "isDisabled": false,
+            "controlType": 4
+        },
+        {
+            "key": "requiresDowntime",
+            "label": "Requires Downtime",
+            "value": "0",
+            "required": false,
+            "order": 9,
+            "isDisabled": false,
+            "controlType": 6
+        },
+        {
+            "key": "notes",
+            "label": "Deployment Notes",
+            "value": "",
+            "required": false,
+            "type": "text",
+            "order": 10,
+            "isDisabled": false,
+            "controlType": 7
+        }
+    ],
+    "actionButtons": [
+        {
+            "hrefLink": "",
+            "key": "btnSubmit",
+            "label": "Save",
+            "order": 0,
+            "buttonType": 3,
+            "isDisabled": false,
+            "customClass": "btn btn-primary"
+        },
+        {
+            "hrefLink": "",
+            "key": "btnReset",
+            "label": "Reset",
+            "order": 1,
+            "buttonType": 4,
+            "isDisabled": false,
+            "customClass": "btn btn-default"
+        }
+    ]
+}

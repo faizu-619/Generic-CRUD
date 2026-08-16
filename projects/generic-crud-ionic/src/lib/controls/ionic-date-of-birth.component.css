@@ -1,0 +1,3 @@
+.gci-control { display: block; }
+.gci-required { color: var(--ion-color-danger, #eb445a); }
+.gci-dob-error { display: block; padding: 0 16px; }

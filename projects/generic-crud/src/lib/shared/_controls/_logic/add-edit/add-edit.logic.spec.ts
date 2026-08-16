@@ -37,4 +37,14 @@ describe('AddEditLogic', () => {
     expect(logic.shouldPatchForm({}, true)).toBeTrue();
     expect(logic.shouldPatchForm(null, true)).toBeFalse();
   });
+
+  it('should build list back route with prefix when present', () => {
+    expect(logic.getBackRoute('Posts', 'bootstrap/add/:modelName')).toEqual(['/', 'bootstrap', 'list', 'Posts']);
+    expect(logic.getBackRoute('Posts', 'ionic/edit/:modelName/:id')).toEqual(['/', 'ionic', 'list', 'Posts']);
+  });
+
+  it('should build list back route without prefix', () => {
+    expect(logic.getBackRoute('Posts', 'add/:modelName')).toEqual(['/', 'list', 'Posts']);
+    expect(logic.getBackRoute('Posts')).toEqual(['/', 'list', 'Posts']);
+  });
 });

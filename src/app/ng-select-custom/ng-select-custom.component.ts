@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {CustomComponent} from '../../../projects/generic-crud/src/lib/shared/interfaces/custom-component';
-import {FilterCustomControl} from '../../../projects/generic-crud/src/lib/shared/_controls/_models';
+import {FormGroup} from '@angular/forms';
+import {CustomComponent, FilterCustomControl} from 'Generic-CRUD';
 
 @Component({
   selector: 'app-ng-select-custom',
@@ -9,8 +8,8 @@ import {FilterCustomControl} from '../../../projects/generic-crud/src/lib/shared
   styleUrls: ['./ng-select-custom.component.css']
 })
 export class NgSelectCustomComponent implements CustomComponent, OnInit {
-  @Input() control: FilterCustomControl;
-  @Input() form: FormGroup;
+  @Input() control!: FilterCustomControl;
+  @Input() form!: FormGroup;
 
   ages: any[] = [
     {value: '<18', label: 'Under 18'},
@@ -18,24 +17,47 @@ export class NgSelectCustomComponent implements CustomComponent, OnInit {
     {value: '>18', label: 'More than 18'},
   ];
 
-  constructor(private fb: FormBuilder) {
-  }
+  selectedValue = '';
+  disabled = false;
+  private onChange: (value: any) => void = () => {};
+  private onTouched: () => void = () => {};
+
+  constructor() {}
 
   valueChange?: (value: any) => void;
 
   writeValue(obj: any): void {
+    this.selectedValue = obj ?? '';
   }
 
   registerOnChange(fn: any): void {
+    this.onChange = fn;
   }
 
   registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 
   setDisabledState?(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 
   ngOnInit() {
+  }
+
+  onSelectionChange(value: string): void {
+    this.selectedValue = value;
+    this.onChange(value);
+    this.valueChange?.(value);
+  }
+
+  onSelectionEvent(event: Event): void {
+    const target = event.target as HTMLSelectElement | null;
+    this.onSelectionChange(target?.value || '');
+  }
+
+  onBlur(): void {
+    this.onTouched();
   }
 
   toggleAgeDisable() {

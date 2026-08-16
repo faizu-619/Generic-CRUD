@@ -1,0 +1,44 @@
+<div class="gci-control gci-range-date">
+  <ion-item lines="none" *ngIf="control?.label">
+    <ion-label>
+      {{ control?.label }}<span *ngIf="control?.required" class="gci-required">&nbsp;*</span>
+    </ion-label>
+  </ion-item>
+
+  <ion-grid class="gci-range-date-grid">
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <ion-item lines="full">
+          <ion-input [id]="startTriggerId" [readonly]="true" placeholder="Start date"
+                     [disabled]="disabled || control?.isDisabled" [value]="startDateValue"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="auto" class="gci-range-date-separator">to</ion-col>
+      <ion-col>
+        <ion-item lines="full">
+          <ion-input [id]="endTriggerId" [readonly]="true" placeholder="End date"
+                     [disabled]="disabled || control?.isDisabled" [value]="endDateValue"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button fill="outline" color="medium" type="button" (click)="clearSelection()">Clear</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-popover [trigger]="startTriggerId" [showBackdrop]="false" [dismissOnSelect]="true">
+    <ng-template>
+      <ion-datetime presentation="date" [value]="startDateValue || null"
+                    (ionChange)="onStartDateChange($event.detail.value)"></ion-datetime>
+    </ng-template>
+  </ion-popover>
+
+  <ion-popover [trigger]="endTriggerId" [showBackdrop]="false" [dismissOnSelect]="true">
+    <ng-template>
+      <ion-datetime presentation="date" [value]="endDateValue || null"
+                    (ionChange)="onEndDateChange($event.detail.value)"></ion-datetime>
+    </ng-template>
+  </ion-popover>
+
+  <ion-note *ngIf="displayValue" class="gci-range-date-display">{{ displayValue }}</ion-note>
+</div>

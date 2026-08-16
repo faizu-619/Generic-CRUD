@@ -1,0 +1,17 @@
+<ion-card class="gci-control gci-list">
+  <ion-card-header *ngIf="modelType?.title" class="gci-list-header">
+    <ion-card-title>{{ modelType.title }}</ion-card-title>
+    <ion-button size="small" (click)="addNewHandler()">Add New</ion-button>
+  </ion-card-header>
+
+  <ion-card-content>
+    <p *ngIf="!listData"><em>Loading...</em></p>
+
+    <gci-datatable
+      *ngIf="listData"
+      [data]="listData"
+      [columns]="modelType?.listColumns"
+      (columnClick)="columnClickHandler($event)">
+    </gci-datatable>
+  </ion-card-content>
+</ion-card>

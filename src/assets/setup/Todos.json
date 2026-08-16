@@ -1,0 +1,96 @@
+{
+    "tableName": "Todos",
+    "title": "Todos",
+    "listColumns": [
+        {
+            "columnName": "Title",
+            "key": "title",
+            "sort": true
+        },
+        {
+            "columnName": "Completed",
+            "key": "completed",
+            "sort": true
+        },
+        {
+            "columnName": "User Id",
+            "key": "userId",
+            "sort": true
+        },
+        {
+            "columnName": "Edit",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-info pull-right'>Edit</a>"
+        },
+        {
+            "columnName": "Remove",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-danger pull-right'>Delete</a>"
+        }
+    ],
+    "controls": [
+        {
+            "key": "id",
+            "label": "",
+            "value": "",
+            "required": false,
+            "type": "hidden",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "userId",
+            "label": "User Id",
+            "value": "1",
+            "required": true,
+            "type": "number",
+            "order": 1,
+            "isDisabled": false,
+            "controlType": 2
+        },
+        {
+            "key": "title",
+            "label": "Todo Title",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 2,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "completed",
+            "label": "Completed",
+            "value": "0",
+            "required": false,
+            "order": 3,
+            "isDisabled": false,
+            "controlType": 6
+        }
+    ],
+    "actionButtons": [
+        {
+            "hrefLink": "",
+            "key": "btnSubmit",
+            "label": "Save",
+            "order": 0,
+            "buttonType": 3,
+            "isDisabled": false,
+            "customClass": "btn btn-primary"
+        },
+        {
+            "hrefLink": "",
+            "key": "btnReset",
+            "label": "Reset",
+            "order": 1,
+            "buttonType": 4,
+            "isDisabled": false,
+            "customClass": "btn btn-default"
+        }
+    ]
+}

@@ -8,6 +8,7 @@ import { BootstrapDynamicFormComponent } from '../../../projects/generic-crud-bo
 import {
   ButtonModel,
   ButtonType,
+  DynamicControlService,
   FilterCheckbox,
   FilterCustomControl,
   FilterDateOfBirth,
@@ -15,8 +16,7 @@ import {
   FilterRangeDate,
   FilterTextArea,
   FilterTextbox
-} from '../../../projects/generic-crud/src/lib/shared/_controls/_models';
-import { DynamicControlService } from '../../../projects/generic-crud/src/lib/shared/_controls/_services/filter-control.service';
+} from 'Generic-CRUD';
 
 @Component({
   selector: 'app-add-edit-custom-bootstrap',

@@ -24,7 +24,15 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/assets/vendor/bootstrap.css"
+              "src/assets/vendor/bootstrap.css",
+              "node_modules/@ionic/angular/css/core.css",
+              "node_modules/@ionic/angular/css/normalize.css",
+              "node_modules/@ionic/angular/css/structure.css",
+              "node_modules/@ionic/angular/css/typography.css",
+              "node_modules/@ionic/angular/css/padding.css",
+              "node_modules/@ionic/angular/css/flex-utils.css",
+              "node_modules/@ionic/angular/css/display.css",
+              "node_modules/@ionic/angular/css/text-alignment.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -190,6 +198,39 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/generic-crud-bootstrap/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "generic-crud-ionic": {
+      "projectType": "library",
+      "root": "projects/generic-crud-ionic",
+      "sourceRoot": "projects/generic-crud-ionic/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/generic-crud-ionic/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/generic-crud-ionic/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/generic-crud-ionic/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/generic-crud-ionic/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

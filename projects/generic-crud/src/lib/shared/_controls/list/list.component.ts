@@ -5,7 +5,7 @@ import { GenericModel } from '../_models/generic.model';
 import { GenericService } from '../../_service/generic.service';
 import { IColumnClickParams } from '../_models/datatable.model';
 import { GENERIC_CONFIG } from '../../interfaces/generic-config.interface';
-import { ListActionLogic, ListActionType } from '../_logic';
+import { buildListRouteCommands, ListActionLogic, ListActionType } from '../_logic';
 
 @Component({
   selector: 'gc-list',
@@ -53,12 +53,12 @@ export class ListComponent implements OnInit {
     } else if (action.type === ListActionType.Remove && action.id !== null) {
       this.delete(action.id);
     } else if (action.type === ListActionType.Edit) {
-      this.router.navigate(['edit', this.modelType.tableName, action.rawValue]);
+      this.router.navigate(buildListRouteCommands(this.route.snapshot.routeConfig?.path, 'edit', this.modelType.tableName, action.rawValue));
     }
   }
 
   addNewHandler() {
-    this.router.navigate(['add', this.modelType.tableName]);
+    this.router.navigate(buildListRouteCommands(this.route.snapshot.routeConfig?.path, 'add', this.modelType.tableName));
   }
 
   delete(id: number): void {

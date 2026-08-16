@@ -18,6 +18,12 @@
         <div class="dropdown-menu" aria-labelledby="baseMenu">
           <a class="dropdown-item" routerLink="/list/Posts" routerLinkActive="active">Posts</a>
           <a class="dropdown-item" routerLink="/list/Users" routerLinkActive="active">Users</a>
+          <a class="dropdown-item" routerLink="/list/Albums" routerLinkActive="active">Albums</a>
+          <a class="dropdown-item" routerLink="/list/Todos" routerLinkActive="active">Todos</a>
+          <a class="dropdown-item" routerLink="/list/Comments" routerLinkActive="active">Comments</a>
+          <a class="dropdown-item" routerLink="/list/Workshops" routerLinkActive="active">Workshops</a>
+          <a class="dropdown-item" routerLink="/list/Releases" routerLinkActive="active">Releases</a>
+          <a class="dropdown-item" routerLink="/list/Deployments" routerLinkActive="active">Deployments</a>
           <a class="dropdown-item" routerLink="/add-custom" routerLinkActive="active">Custom Form</a>
         </div>
       </li>
@@ -29,13 +35,36 @@
         <div class="dropdown-menu" aria-labelledby="bootstrapMenu">
           <a class="dropdown-item" routerLink="/bootstrap/list/Posts" routerLinkActive="active">Posts</a>
           <a class="dropdown-item" routerLink="/bootstrap/list/Users" routerLinkActive="active">Users</a>
+          <a class="dropdown-item" routerLink="/bootstrap/list/Albums" routerLinkActive="active">Albums</a>
+          <a class="dropdown-item" routerLink="/bootstrap/list/Todos" routerLinkActive="active">Todos</a>
+          <a class="dropdown-item" routerLink="/bootstrap/list/Comments" routerLinkActive="active">Comments</a>
+          <a class="dropdown-item" routerLink="/bootstrap/list/Workshops" routerLinkActive="active">Workshops</a>
+          <a class="dropdown-item" routerLink="/bootstrap/list/Releases" routerLinkActive="active">Releases</a>
+          <a class="dropdown-item" routerLink="/bootstrap/list/Deployments" routerLinkActive="active">Deployments</a>
           <a class="dropdown-item" routerLink="/bootstrap/add-custom" routerLinkActive="active">Custom Form</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="ionicMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Ionic UI
+        </a>
+        <div class="dropdown-menu" aria-labelledby="ionicMenu">
+          <a class="dropdown-item" routerLink="/ionic/list/Posts" routerLinkActive="active">Posts</a>
+          <a class="dropdown-item" routerLink="/ionic/list/Users" routerLinkActive="active">Users</a>
+          <a class="dropdown-item" routerLink="/ionic/list/Albums" routerLinkActive="active">Albums</a>
+          <a class="dropdown-item" routerLink="/ionic/list/Todos" routerLinkActive="active">Todos</a>
+          <a class="dropdown-item" routerLink="/ionic/list/Comments" routerLinkActive="active">Comments</a>
+          <a class="dropdown-item" routerLink="/ionic/list/Workshops" routerLinkActive="active">Workshops</a>
+          <a class="dropdown-item" routerLink="/ionic/list/Releases" routerLinkActive="active">Releases</a>
+          <a class="dropdown-item" routerLink="/ionic/list/Deployments" routerLinkActive="active">Deployments</a>
+          <a class="dropdown-item" routerLink="/ionic/add-custom" routerLinkActive="active">Custom Form</a>
         </div>
       </li>
 
     </ul>
 
-    <span class="ui-mode-badge" [class.bootstrap-mode]="currentMode === 'Bootstrap UI'">
+    <span class="ui-mode-badge" [class.bootstrap-mode]="currentMode === 'Bootstrap UI'" [class.ionic-mode]="currentMode === 'Ionic UI'">
       {{ currentMode }}
     </span>
   </div>

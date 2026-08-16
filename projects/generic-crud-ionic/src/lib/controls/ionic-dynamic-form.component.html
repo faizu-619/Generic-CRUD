@@ -1,0 +1,12 @@
+<div class="gci-control gci-dynamic-form">
+  <form [formGroup]="form" (ngSubmit)="form.valid && submitForm()">
+    <gci-dynamic-control
+      *ngFor="let control of controls"
+      [form]="form"
+      [parentFormSubmitted]="form.dirty || submited"
+      [controlObject]="control">
+    </gci-dynamic-control>
+
+    <gci-dynamic-buttons [btnList]="actionButtons"></gci-dynamic-buttons>
+  </form>
+</div>

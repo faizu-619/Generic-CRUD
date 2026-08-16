@@ -1,0 +1,17 @@
+<ion-card class="gci-control gci-add-edit">
+  <ion-card-header *ngIf="modelType?.title" class="gci-add-edit-header">
+    <ion-card-title>{{ modelType.title }}</ion-card-title>
+    <ion-button fill="outline" color="medium" size="small" (click)="goBack()">Back</ion-button>
+  </ion-card-header>
+
+  <ion-card-content>
+    <p *ngIf="isLoading"><em>Loading...</em></p>
+
+    <gci-dynamic-form
+      *ngIf="!isLoading"
+      [controls]="modelType?.controls"
+      [actionButtons]="modelType?.actionButtons || defaultActions"
+      (OnSubmit)="save($event)">
+    </gci-dynamic-form>
+  </ion-card-content>
+</ion-card>

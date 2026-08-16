@@ -1,0 +1,156 @@
+{
+    "tableName": "Workshops",
+    "title": "Workshops",
+    "listColumns": [
+        {
+            "columnName": "Title",
+            "key": "title",
+            "sort": true
+        },
+        {
+            "columnName": "Category",
+            "key": "category",
+            "sort": true
+        },
+        {
+            "columnName": "Start Date",
+            "key": "startDate",
+            "sort": true
+        },
+        {
+            "columnName": "Virtual",
+            "key": "isVirtual",
+            "sort": true
+        },
+        {
+            "columnName": "Edit",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-info pull-right'>Edit</a>"
+        },
+        {
+            "columnName": "Remove",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-danger pull-right'>Delete</a>"
+        }
+    ],
+    "controls": [
+        {
+            "key": "id",
+            "label": "",
+            "value": "",
+            "required": false,
+            "type": "hidden",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "title",
+            "label": "Workshop Title",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 1,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "category",
+            "label": "Category",
+            "value": "",
+            "required": true,
+            "options": [
+                {
+                    "key": "Frontend",
+                    "value": "Frontend"
+                },
+                {
+                    "key": "Backend",
+                    "value": "Backend"
+                },
+                {
+                    "key": "DevOps",
+                    "value": "DevOps"
+                }
+            ],
+            "order": 2,
+            "isDisabled": false,
+            "isRemote": false,
+            "controlType": 5
+        },
+        {
+            "key": "startDate",
+            "label": "Start Date",
+            "value": "",
+            "required": true,
+            "order": 3,
+            "isDisabled": false,
+            "controlType": 3
+        },
+        {
+            "key": "scheduleRange",
+            "label": "Schedule Range",
+            "value": {
+                "startDate": "",
+                "endDate": ""
+            },
+            "required": true,
+            "order": 4,
+            "isDisabled": false,
+            "controlType": 4
+        },
+        {
+            "key": "maxSeats",
+            "label": "Max Seats",
+            "value": "30",
+            "required": true,
+            "type": "number",
+            "order": 5,
+            "isDisabled": false,
+            "controlType": 2
+        },
+        {
+            "key": "isVirtual",
+            "label": "Virtual Session",
+            "value": "0",
+            "required": false,
+            "order": 6,
+            "isDisabled": false,
+            "controlType": 6
+        },
+        {
+            "key": "description",
+            "label": "Description",
+            "value": "",
+            "required": false,
+            "type": "text",
+            "order": 7,
+            "isDisabled": false,
+            "controlType": 7
+        }
+    ],
+    "actionButtons": [
+        {
+            "hrefLink": "",
+            "key": "btnSubmit",
+            "label": "Save",
+            "order": 0,
+            "buttonType": 3,
+            "isDisabled": false,
+            "customClass": "btn btn-primary"
+        },
+        {
+            "hrefLink": "",
+            "key": "btnReset",
+            "label": "Reset",
+            "order": 1,
+            "buttonType": 4,
+            "isDisabled": false,
+            "customClass": "btn btn-default"
+        }
+    ]
+}

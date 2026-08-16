@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 export class AppComponent {
   title = 'Generic-CRUD-Example';
 
-  currentMode: 'Default UI' | 'Bootstrap UI' = 'Default UI';
+  currentMode: 'Default UI' | 'Bootstrap UI' | 'Ionic UI' = 'Default UI';
 
   constructor(private readonly router: Router) {
     this.setCurrentMode(this.router.url);
@@ -23,6 +23,16 @@ export class AppComponent {
   }
 
   private setCurrentMode(url: string): void {
-    this.currentMode = url.startsWith('/bootstrap') ? 'Bootstrap UI' : 'Default UI';
+    if (url.startsWith('/bootstrap')) {
+      this.currentMode = 'Bootstrap UI';
+      return;
+    }
+
+    if (url.startsWith('/ionic')) {
+      this.currentMode = 'Ionic UI';
+      return;
+    }
+
+    this.currentMode = 'Default UI';
   }
 }

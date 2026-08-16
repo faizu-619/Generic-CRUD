@@ -1,24 +1,63 @@
-# GenericCrudBootstrap
+# generic-crud-bootstrap
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+Bootstrap-themed UI components for `generic-crud`.
 
-## Code scaffolding
+This package mirrors the core control set with Bootstrap-specific templates and selectors (`gcb-*`).
 
-Run `ng generate component component-name --project generic-crud-bootstrap` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project generic-crud-bootstrap`.
-> Note: Don't forget to add `--project generic-crud-bootstrap` or else it will be added to the default project in your `angular.json` file. 
+## Installation
+
+```bash
+npm install generic-crud generic-crud-bootstrap lodash
+```
+
+## Peer Dependencies
+
+- `@angular/common`: `^16.2.0 || ^17.0.0`
+- `@angular/core`: `^16.2.0 || ^17.0.0`
+- `@angular/forms`: `^16.2.0 || ^17.0.0`
+- `@angular/router`: `^16.2.0 || ^17.0.0`
+- `generic-crud`: `^17.0.0`
+
+## Usage
+
+Import both core and Bootstrap modules in your app:
+
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+
+import { BASE_URL, GenericCRUDModule, GenericResolver, LayoutStyle } from 'generic-crud';
+import { GenericCrudBootstrapModule } from 'generic-crud-bootstrap';
+
+import { BootstrapAddEditComponent, BootstrapListComponent } from 'generic-crud-bootstrap';
+
+@NgModule({
+	imports: [
+		BrowserModule,
+		GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap }),
+		GenericCrudBootstrapModule,
+		RouterModule.forRoot([
+			{ path: 'bootstrap/list/:modelName', component: BootstrapListComponent, resolve: [GenericResolver] },
+			{ path: 'bootstrap/add/:modelName', component: BootstrapAddEditComponent, resolve: [GenericResolver] },
+			{ path: 'bootstrap/edit/:modelName/:id', component: BootstrapAddEditComponent, resolve: [GenericResolver] }
+		])
+	],
+	providers: [{ provide: BASE_URL, useValue: 'http://localhost:3000' }]
+})
+export class AppModule {}
+```
 
 ## Build
 
-Run `ng build generic-crud-bootstrap` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+ng build generic-crud-bootstrap --configuration production
+```
 
-## Publishing
+## Publish
 
-After building your library with `ng build generic-crud-bootstrap`, go to the dist folder `cd dist/generic-crud-bootstrap` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test generic-crud-bootstrap` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+ng build generic-crud-bootstrap --configuration production
+cd dist/generic-crud-bootstrap
+npm publish
+```

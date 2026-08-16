@@ -8,5 +8,6 @@ export interface GenericConfig {
 
 export enum LayoutStyle {
     Bootstrap = 1,
-    Material = 2
+    Material = 2,
+    Ionic = 3
 }

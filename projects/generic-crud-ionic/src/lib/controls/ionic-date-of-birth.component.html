@@ -1,0 +1,41 @@
+<div class="gci-control gci-date-of-birth">
+  <ion-item lines="none" *ngIf="control?.label">
+    <ion-label>
+      {{ control?.label }}<span *ngIf="control?.required" class="gci-required">&nbsp;*</span>
+    </ion-label>
+  </ion-item>
+
+  <ion-grid class="gci-dob-grid">
+    <ion-row>
+      <ion-col>
+        <ion-item lines="full">
+          <ion-select [disabled]="disabled || control?.isDisabled" [(ngModel)]="selectedMonth"
+                      (ionChange)="onSelectionChange()" placeholder="Month" interface="popover">
+            <ion-select-option [value]="0">Month</ion-select-option>
+            <ion-select-option *ngFor="let month of months" [value]="month">{{ month }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item lines="full">
+          <ion-select [disabled]="disabled || control?.isDisabled" [(ngModel)]="selectedDay"
+                      (ionChange)="onSelectionChange()" placeholder="Day" interface="popover">
+            <ion-select-option [value]="0">Day</ion-select-option>
+            <ion-select-option *ngFor="let day of days" [value]="day">{{ day }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item lines="full">
+          <ion-select [disabled]="disabled || control?.isDisabled" [(ngModel)]="selectedYear"
+                      (ionChange)="onSelectionChange()" placeholder="Year" interface="popover">
+            <ion-select-option [value]="0">Year</ion-select-option>
+            <ion-select-option *ngFor="let year of years" [value]="year">{{ year }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-note color="danger" class="gci-dob-error" *ngIf="error">Must be {{ control?.minAge || 18 }} years or older.</ion-note>
+</div>

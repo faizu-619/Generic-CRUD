@@ -1,0 +1,16 @@
+{
+  "name": "generic-crud-ionic",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^16.2.0 || ^17.0.0",
+    "@angular/core": "^16.2.0 || ^17.0.0",
+    "@angular/forms": "^16.2.0 || ^17.0.0",
+    "@angular/router": "^16.2.0 || ^17.0.0",
+    "generic-crud": "^17.0.0"
+  },
+  "dependencies": {
+    "@ionic/angular": "^8.8.18",
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

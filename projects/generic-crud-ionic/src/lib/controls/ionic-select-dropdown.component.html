@@ -1,0 +1,14 @@
+<ion-item class="gci-control gci-select-dropdown" lines="full">
+  <ion-label position="stacked" *ngIf="control?.label">
+    {{ control?.label }}<span *ngIf="control?.required" class="gci-required">&nbsp;*</span>
+  </ion-label>
+  <ion-select
+    [attr.id]="control?.key"
+    [disabled]="disabled || control?.isDisabled"
+    [multiple]="!!control?.multiSelect"
+    [value]="value"
+    (ionChange)="onSelectChange($event.detail.value)"
+    (ionBlur)="onBlur()">
+    <ion-select-option *ngFor="let opt of control?.options || []" [value]="opt.key">{{ opt.value }}</ion-select-option>
+  </ion-select>
+</ion-item>

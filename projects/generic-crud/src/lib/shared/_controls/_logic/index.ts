@@ -3,6 +3,7 @@ export * from './date-of-birth/date-of-birth.logic';
 export * from './dropdown/dropdown-options.logic';
 export * from './validation-message/validation-message.logic';
 export * from './list/list-action.logic';
+export * from './list/list-route.logic';
 export * from './dynamic-control/dynamic-control.logic';
 export * from './add-edit/add-edit.logic';
 export * from './custom-filter/custom-filter.logic';

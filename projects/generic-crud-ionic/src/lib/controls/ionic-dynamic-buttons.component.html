@@ -1,0 +1,48 @@
+<div class="gci-control gci-dynamic-buttons" *ngIf="btnList?.length">
+  <ng-container *ngFor="let btn of btnList">
+    <ion-button *ngIf="btn.buttonType === ButtonType.Anchor"
+      [routerLink]="[btn.hrefLink]"
+      fill="outline"
+      color="primary"
+      [id]="btn.key"
+      [disabled]="btn.isDisabled"
+      [innerHTML]="btn.label">
+    </ion-button>
+
+    <ion-button *ngIf="btn.buttonType === ButtonType.Button"
+      type="button"
+      fill="solid"
+      color="medium"
+      [id]="btn.key"
+      [disabled]="btn.isDisabled"
+      [innerHTML]="btn.label">
+    </ion-button>
+
+    <ion-button *ngIf="btn.buttonType === ButtonType.Submit"
+      type="submit"
+      fill="solid"
+      color="primary"
+      [id]="btn.key"
+      [disabled]="btn.isDisabled"
+      [innerHTML]="btn.label">
+    </ion-button>
+
+    <ion-button *ngIf="btn.buttonType === ButtonType.Reset"
+      type="reset"
+      fill="outline"
+      color="medium"
+      [id]="btn.key"
+      [disabled]="btn.isDisabled"
+      [innerHTML]="btn.label">
+    </ion-button>
+
+    <ion-button *ngIf="btn.buttonType === ButtonType.Back"
+      type="button"
+      fill="clear"
+      color="medium"
+      [id]="btn.key"
+      [disabled]="btn.isDisabled"
+      [innerHTML]="btn.label">
+    </ion-button>
+  </ng-container>
+</div>

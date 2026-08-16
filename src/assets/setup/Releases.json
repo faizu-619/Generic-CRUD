@@ -1,0 +1,161 @@
+{
+    "tableName": "Releases",
+    "title": "Releases",
+    "listColumns": [
+        {
+            "columnName": "Product",
+            "key": "product",
+            "sort": true
+        },
+        {
+            "columnName": "Version",
+            "key": "version",
+            "sort": true
+        },
+        {
+            "columnName": "Release Date",
+            "key": "releaseDate",
+            "sort": true
+        },
+        {
+            "columnName": "Status",
+            "key": "status",
+            "sort": true
+        },
+        {
+            "columnName": "Mandatory",
+            "key": "isMandatory",
+            "sort": true
+        },
+        {
+            "columnName": "Edit",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-info pull-right'>Edit</a>"
+        },
+        {
+            "columnName": "Remove",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-danger pull-right'>Delete</a>"
+        }
+    ],
+    "controls": [
+        {
+            "key": "id",
+            "label": "",
+            "value": "",
+            "required": false,
+            "type": "hidden",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "product",
+            "label": "Product",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 1,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "version",
+            "label": "Version",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 2,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "releaseDate",
+            "label": "Release Date",
+            "value": "",
+            "required": true,
+            "order": 3,
+            "isDisabled": false,
+            "controlType": 3
+        },
+        {
+            "key": "maintenanceWindow",
+            "label": "Maintenance Window",
+            "value": {
+                "startDate": "",
+                "endDate": ""
+            },
+            "required": true,
+            "order": 4,
+            "isDisabled": false,
+            "controlType": 4
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "value": "Planned",
+            "required": true,
+            "options": [
+                {
+                    "key": "Planned",
+                    "value": "Planned"
+                },
+                {
+                    "key": "Canary",
+                    "value": "Canary"
+                },
+                {
+                    "key": "GA",
+                    "value": "GA"
+                }
+            ],
+            "order": 5,
+            "isDisabled": false,
+            "isRemote": false,
+            "controlType": 5
+        },
+        {
+            "key": "isMandatory",
+            "label": "Mandatory",
+            "value": "0",
+            "required": false,
+            "order": 6,
+            "isDisabled": false,
+            "controlType": 6
+        },
+        {
+            "key": "notes",
+            "label": "Release Notes",
+            "value": "",
+            "required": false,
+            "type": "text",
+            "order": 7,
+            "isDisabled": false,
+            "controlType": 7
+        }
+    ],
+    "actionButtons": [
+        {
+            "hrefLink": "",
+            "key": "btnSubmit",
+            "label": "Save",
+            "order": 0,
+            "buttonType": 3,
+            "isDisabled": false,
+            "customClass": "btn btn-primary"
+        },
+        {
+            "hrefLink": "",
+            "key": "btnReset",
+            "label": "Reset",
+            "order": 1,
+            "buttonType": 4,
+            "isDisabled": false,
+            "customClass": "btn btn-default"
+        }
+    ]
+}

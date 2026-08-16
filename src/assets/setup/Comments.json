@@ -1,0 +1,107 @@
+{
+    "tableName": "Comments",
+    "title": "Comments",
+    "listColumns": [
+        {
+            "columnName": "Name",
+            "key": "name",
+            "sort": true
+        },
+        {
+            "columnName": "Email",
+            "key": "email",
+            "sort": true
+        },
+        {
+            "columnName": "Post Id",
+            "key": "postId",
+            "sort": true
+        },
+        {
+            "columnName": "Edit",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-info pull-right'>Edit</a>"
+        },
+        {
+            "columnName": "Remove",
+            "key": "id",
+            "sort": false,
+            "onClick": true,
+            "cellTemplate": "<a class='btn text-danger pull-right'>Delete</a>"
+        }
+    ],
+    "controls": [
+        {
+            "key": "id",
+            "label": "",
+            "value": "",
+            "required": false,
+            "type": "hidden",
+            "order": 0,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "postId",
+            "label": "Post Id",
+            "value": "1",
+            "required": true,
+            "type": "number",
+            "order": 1,
+            "isDisabled": false,
+            "controlType": 2
+        },
+        {
+            "key": "name",
+            "label": "Name",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 2,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "email",
+            "label": "Email",
+            "value": "",
+            "required": true,
+            "type": "email",
+            "order": 3,
+            "isDisabled": false,
+            "controlType": 1
+        },
+        {
+            "key": "body",
+            "label": "Comment",
+            "value": "",
+            "required": true,
+            "type": "text",
+            "order": 4,
+            "isDisabled": false,
+            "controlType": 7
+        }
+    ],
+    "actionButtons": [
+        {
+            "hrefLink": "",
+            "key": "btnSubmit",
+            "label": "Save",
+            "order": 0,
+            "buttonType": 3,
+            "isDisabled": false,
+            "customClass": "btn btn-primary"
+        },
+        {
+            "hrefLink": "",
+            "key": "btnReset",
+            "label": "Reset",
+            "order": 1,
+            "buttonType": 4,
+            "isDisabled": false,
+            "customClass": "btn btn-default"
+        }
+    ]
+}

@@ -33,9 +33,17 @@ export class BootstrapCustomFilterComponent extends BaseControlValueAccessor<any
     const componentRef = this.customHost.createComponent<CustomComponent>(this.control.component);
     componentRef.instance.control = this.control;
     componentRef.instance.valueChange = (value: any) => this.updateValue(value);
-    componentRef.instance.writeValue(this.value);
-    componentRef.instance.registerOnChange((value: any) => this.updateValue(value));
-    componentRef.instance.registerOnTouched(() => this.onTouched());
+
+    // Support custom components that expose valueChange only and do not implement full CVA hooks.
+    if (typeof componentRef.instance.writeValue === 'function') {
+      componentRef.instance.writeValue(this.value);
+    }
+    if (typeof componentRef.instance.registerOnChange === 'function') {
+      componentRef.instance.registerOnChange((value: any) => this.updateValue(value));
+    }
+    if (typeof componentRef.instance.registerOnTouched === 'function') {
+      componentRef.instance.registerOnTouched(() => this.onTouched());
+    }
   }
 }
 

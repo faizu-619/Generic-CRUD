@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
+  buildListRouteCommands,
   GENERIC_CONFIG,
   GenericModel,
   GenericService,
@@ -63,12 +64,12 @@ export class BootstrapListComponent implements OnInit {
     }
 
     if (action.type === ListActionType.Edit) {
-      this.router.navigate(['edit', this.modelType.tableName, action.rawValue]);
+      this.router.navigate(buildListRouteCommands(this.route.snapshot.routeConfig?.path, 'edit', this.modelType.tableName, action.rawValue));
     }
   }
 
   addNewHandler(): void {
-    this.router.navigate(['add', this.modelType.tableName]);
+    this.router.navigate(buildListRouteCommands(this.route.snapshot.routeConfig?.path, 'add', this.modelType.tableName));
   }
 
   delete(id: number): void {

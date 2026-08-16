@@ -4,16 +4,19 @@ import moment from 'moment';
 import {Observable} from 'rxjs';
 import {ColorPickerComponent} from '../color-picker/color-picker.component';
 import {NgSelectCustomComponent} from '../ng-select-custom/ng-select-custom.component';
-import {DynamicFormComponent} from '../../../projects/generic-crud/src/lib/shared/_controls';
 import {
-  ButtonModel, ButtonType,
-  FilterCheckbox, FilterCustomControl,
-  FilterDateOfBirth, FilterDropdown,
+  ButtonModel,
+  ButtonType,
+  DynamicControlService,
+  DynamicFormComponent,
+  FilterCheckbox,
+  FilterCustomControl,
+  FilterDateOfBirth,
+  FilterDropdown,
   FilterRangeDate,
   FilterTextArea,
   FilterTextbox
-} from '../../../projects/generic-crud/src/lib/shared/_controls/_models';
-import {DynamicControlService} from '../../../projects/generic-crud/src/lib/shared/_controls/_services/filter-control.service';
+} from 'Generic-CRUD';
 
 
 @Component({
@@ -22,9 +25,9 @@ import {DynamicControlService} from '../../../projects/generic-crud/src/lib/shar
   styleUrls: ['./add-edit-custom.component.css']
 })
 export class AddEditCustomComponent implements OnInit, AfterViewInit {
-  form: FormGroup;
+  form!: FormGroup;
   submited = false;
-  @ViewChild(DynamicFormComponent) formComponent: DynamicFormComponent;
+  @ViewChild(DynamicFormComponent) formComponent!: DynamicFormComponent;
 
   countries = new Observable<any[]>((observer) => {
     // observable execution

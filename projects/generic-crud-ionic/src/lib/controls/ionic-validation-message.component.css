@@ -1,0 +1,6 @@
+.gci-validation-message {
+  display: block;
+  color: var(--ion-color-danger, #eb445a);
+  font-size: 0.8rem;
+  padding: 0 16px;
+}

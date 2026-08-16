@@ -57,7 +57,11 @@ export class AddEditLogic {
     return ['/error'];
   }
 
-  getBackRoute(tableName: string): string[] {
-    return [`/list/${tableName}`];
+  getBackRoute(tableName: string, routePath?: string): string[] {
+    const prefix = (routePath || '')
+      .split('/')
+      .filter(segment => segment && segment !== 'add' && segment !== 'edit' && segment !== ':modelName' && segment !== ':id');
+
+    return ['/', ...prefix, 'list', tableName];
   }
 }

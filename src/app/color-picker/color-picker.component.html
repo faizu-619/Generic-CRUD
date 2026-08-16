@@ -1,3 +1,12 @@
-<ng-container>
-<!--    <ngx-colors ngx-colors-trigger style="display: inline-block; margin:5px;" colorsAnimation="false" formControlName="color"></ngx-colors>-->
-</ng-container>
+<div>
+	<label class="d-block" [attr.for]="control?.key">{{ control?.label || 'Pick color' }}</label>
+	<input
+		type="color"
+		class="form-control"
+		[id]="control?.key"
+		[value]="value"
+		[disabled]="disabled || control?.isDisabled"
+		(input)="onColorInput($event)"
+		(blur)="onBlur()" />
+	<small class="text-muted">{{ value }}</small>
+</div>

@@ -1,0 +1,4 @@
+.gci-control { display: block; }
+.gci-required { color: var(--ion-color-danger, #eb445a); }
+.gci-range-date-separator { display: flex; align-items: center; color: var(--ion-color-medium, #92949c); }
+.gci-range-date-display { display: block; padding: 0 16px; }

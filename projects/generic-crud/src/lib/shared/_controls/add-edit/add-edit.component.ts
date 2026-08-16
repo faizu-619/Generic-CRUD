@@ -87,7 +87,7 @@ export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   goBack() {
-    this.router.navigate(this.addEditLogic.getBackRoute(this.modelType.tableName));
+    this.router.navigate(this.addEditLogic.getBackRoute(this.modelType.tableName, this.route.snapshot.routeConfig?.path));
   }
 
 }

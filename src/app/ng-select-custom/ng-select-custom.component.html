@@ -8,14 +8,16 @@
     <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
  </ng-select> -->
 
-
-<ng-container>
-<!--    <ng-select #agesSelect [items]="ages"-->
-<!--                   [selectOnTab]="true"-->
-<!--                   bindValue="value"-->
-<!--                   labelForId="customSelect"-->
-<!--                   (ngModelChange)="showConfirm(null)"-->
-<!--                   placeholder="Select customSelect"-->
-<!--                   formControlName="customSelect">-->
-<!--        </ng-select>-->
-</ng-container>
+<div>
+    <label class="d-block" [attr.for]="control?.key">{{ control?.label || 'Select option' }}</label>
+    <select
+        class="form-control"
+        [id]="control?.key"
+        [disabled]="disabled || control?.isDisabled"
+        [value]="selectedValue"
+        (change)="onSelectionEvent($event)"
+        (blur)="onBlur()">
+        <option value="">Select value</option>
+        <option *ngFor="let age of ages" [value]="age.value">{{ age.label }}</option>
+    </select>
+</div>

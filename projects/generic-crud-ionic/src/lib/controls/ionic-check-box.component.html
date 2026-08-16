@@ -1,0 +1,12 @@
+<ion-item lines="none" class="gci-control gci-check-box">
+  <ion-checkbox
+    [attr.id]="control?.key"
+    labelPlacement="end"
+    justify="start"
+    [checked]="!!value"
+    [disabled]="disabled || control?.isDisabled"
+    (ionChange)="onInput($event.detail.checked)"
+    (ionBlur)="onBlur()">
+    {{ control?.label }}<span *ngIf="control?.required" class="gci-required">&nbsp;*</span>
+  </ion-checkbox>
+</ion-item>

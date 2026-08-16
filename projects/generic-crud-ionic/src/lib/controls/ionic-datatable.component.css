@@ -1,0 +1,31 @@
+.gci-datatable { display: block; }
+.gci-datatable-loading { display: flex; justify-content: center; padding: 16px 0; }
+.gci-datatable-scroll { overflow-x: auto; }
+
+.gci-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--ion-text-color, #000);
+}
+
+.gci-table th,
+.gci-table td {
+  border: 1px solid var(--ion-border-color, #ddd);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.gci-table thead th {
+  background: var(--ion-color-light, #f4f5f8);
+  font-weight: 600;
+}
+
+.gci-table tbody tr:hover {
+  background: var(--ion-color-light-tint, #f9f9fb);
+}
+
+.gci-datatable-empty {
+  text-align: center;
+  color: var(--ion-color-medium, #92949c);
+}

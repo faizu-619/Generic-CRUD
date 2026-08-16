@@ -1,203 +1,176 @@
 
 # Generic-CRUD
 
-A simple Angular based package to create run-time CRUD for any API, Object or Table.
+Schema-driven CRUD for Angular applications. Define entities in JSON and render list/add/edit pages at runtime.
 
-## Getting Started
+This workspace contains:
 
-Installation
-===============================
+- `generic-crud` (core library)
+- `generic-crud-bootstrap` (Bootstrap-themed controls)
+- `generic-crud-ionic` (Ionic-themed controls)
+- Demo app + local `json-server` API
 
-#### npm
-```shell
-$ npm install generic-crud --save
+## Packages
+
+- Core package: `generic-crud` (current version: `17.0.0`)
+- Bootstrap theme package: `generic-crud-bootstrap` (current version: `0.0.1`)
+- Ionic theme package: `generic-crud-ionic` (current version: `0.0.1`)
+
+## Quick Start (Consumer App)
+
+Install the core library and required peer dependency:
+
+```bash
+npm install generic-crud lodash
 ```
-<!-- 
-#### bower
-```shell
-$ bower install angular-bootstrap-colorpicker --save
-``` -->
 
-Include module `GenericCRUDModule`.
-Add a dependency to your app, for instance:
+Import and configure in your Angular app module:
 
-    import { BrowserModule } from '@angular/platform-browser';
-    import { NgModule } from '@angular/core';
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
-    import { GenericCRUDModule, LayoutStyle } from 'Generic-CRUD';
+import { AppComponent } from './app.component';
+import { environment } from './environments/environment';
+import { BASE_URL, GenericCRUDModule, LayoutStyle } from 'generic-crud';
 
-    import { AppComponent } from './app.component';
-    import { RouterModule } from '@angular/router';
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot([]),
+    GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap })
+  ],
+  providers: [{ provide: BASE_URL, useValue: environment.apiUrl }],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
 
-    @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        RouterModule.forRoot([]),
-        GenericCRUDModule.forRoot({ style: LayoutStyle.Bootstrap }),
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
-    })
-    export class AppModule { }
+## Schema Setup
 
-
-Examples:
-===============================
-
-#### First Step
-
-Setup CRUD Config on `src\assets\setup\Posts.json`, Example file below:
+Create a schema file in your app assets (for example `src/assets/setup/Posts.json`):
 
 ```json
 {
-    "tableName": "Posts",
-    "title": "Posts",
-    "listColumns": [
-        {
-            "columnName": "Title",
-            "key": "title",
-            "sort": true
-        },
-        {
-            "columnName": "",
-            "key": "body",
-            "sort": true
-        },
-        {
-            "columnName": "Edit",
-            "key": "id",
-            "sort": false,
-            "onClick": true,
-            "cellTemplate": "<a  class='btn text-info pull-right'>Edit</a>"
-        },
-        {
-            "columnName": "Remove",
-            "key": "id",
-            "sort": false,
-            "onClick": true,
-            "cellTemplate": "<a class='btn text-danger pull-right'>Delete</a>"
-        }
-    ],
-    "controls": [
-        {
-            "key": "id",
-            "label": "",
-            "value": "",
-            "required": false,
-            "type": "hidden",
-            "order": 0,
-            "isDisabled": false,
-            "controlType": 1
-        },
-        {
-            "key": "userId",
-            "label": "",
-            "value": "1",
-            "required": false,
-            "type": "hidden",
-            "order": 0,
-            "isDisabled": false,
-            "controlType": 1
-        },
-        {
-            "key": "title",
-            "label": "Post Title",
-            "value": "",
-            "required": true,
-            "type": "text",
-            "order": 0,
-            "isDisabled": false,
-            "controlType": 1
-        },
-        {
-            "key": "createdOn",
-            "label": "Created On",
-            "value": "",
-            "required": true,
-            "order": 0,
-            "isDisabled": false,
-            "controlType": 3,
-            "format": "M/d/yy"
-        },
-        {
-            "key": "body",
-            "label": "Body",
-            "value": "",
-            "required": true,
-            "type": "text",
-            "order": 1,
-            "isDisabled": false,
-            "controlType": 7
-        }
-    ],
-    "actionButtons": [
-        {
-            "hrefLink": "",
-            "key": "btnSubmit",
-            "label": "Save",
-            "order": 0,
-            "buttonType": "Submit",
-            "isDisabled": false,
-            "customClass": "btn btn-primary"
-        },
-        {
-            "hrefLink": "",
-            "key": "btnReset",
-            "label": "Reset",
-            "order": 0,
-            "buttonType": "Reset",
-            "isDisabled": false,
-            "customClass": "btn btn-default"
-        }
-    ]
+  "tableName": "Posts",
+  "title": "Posts",
+  "listColumns": [
+    { "columnName": "Title", "key": "title", "sort": true },
+    { "columnName": "Body", "key": "body", "sort": true }
+  ],
+  "controls": [
+    {
+      "key": "title",
+      "label": "Post Title",
+      "value": "",
+      "required": true,
+      "type": "text",
+      "order": 0,
+      "isDisabled": false,
+      "controlType": 1
+    },
+    {
+      "key": "body",
+      "label": "Body",
+      "value": "",
+      "required": true,
+      "type": "text",
+      "order": 1,
+      "isDisabled": false,
+      "controlType": 7
+    }
+  ]
 }
 ```
 
-#### Second Step
+Then navigate to one of the generated routes:
 
-Set your route to access your CRUD
+- `/list/Posts`
+- `/add/Posts`
+- `/edit/Posts/:id`
 
-```html
-    <ul class="navbar-nav mr-auto">
-      ...
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/list/Posts">Posts</a>
-      </li>
-    </ul>
+## Local Development (This Workspace)
+
+Install dependencies:
+
+```bash
+npm install
 ```
 
-<!-- Events:
-=============================== -->
+Run demo app and local API together:
 
-## Built With
+```bash
+npm start
+```
 
-* [Angular](https://angular.io/) - Angular is an application design framework and development platform for creating efficient and sophisticated single-page apps.
-* [Lodash](https://lodash.com/) - A modern JavaScript utility library delivering modularity, performance & extras.
-* [Bootstrap](https://getbootstrap.com/) - Build fast, responsive sites with Bootstrap.
+Run demo app only:
 
-## Contributing
-Feel free to suggest idea or report an issue, at any point that you understand. 
+```bash
+npm run start:app
+```
 
-Please read [CONTRIBUTING.md]() for details on our code of conduct, and the process for submitting pull requests to us.
+Run local API only:
 
-## Versioning
+```bash
+npm run api
+```
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/faizu-619/Generic-CRUD/tags). 
+Build:
 
-## Authors
+```bash
+npm run build
+npm run build:Generic-CRUD
+```
 
-* **Muhammad Faizan** - *Initial work* - [faizu-619](https://github.com/faizu-619)
+Test and lint:
 
-See also the list of [contributors](https://github.com/faizu-619/Generic-CRUD/contributors) who participated in this project.
+```bash
+npm test
+npm run test:Generic-CRUD
+npm run lint
+```
+
+## UI Variants
+
+- Core routes: `/list/:modelName`, `/add/:modelName`, `/edit/:modelName/:id`
+- Bootstrap demo routes: `/bootstrap/list/:modelName`, `/bootstrap/add/:modelName`, `/bootstrap/edit/:modelName/:id`
+- Ionic demo routes: `/ionic/list/:modelName`, `/ionic/add/:modelName`, `/ionic/edit/:modelName/:id`
+
+## Control Architecture
+
+The controls use Angular `ControlValueAccessor` through `BaseControlValueAccessor`.
+
+- Use `formControlName` in templates
+- Use `updateValue(...)` to push changes to the parent form
+- Call `onTouched()` on blur
+- Respect disabled state (`disabled` and `control.isDisabled`)
+
+## Publishing
+
+Publish core package:
+
+```bash
+npm run publish:Generic-CRUD
+```
+
+Publish Bootstrap package manually:
+
+```bash
+ng build generic-crud-bootstrap --configuration production
+cd dist/generic-crud-bootstrap
+npm publish
+```
+
+Publish Ionic package manually:
+
+```bash
+ng build generic-crud-ionic --configuration production
+cd dist/generic-crud-ionic
+npm publish
+```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Tired to create same component for multiple CRUD operations.
-* Inspired by Angular dynamic controls example.
+MIT. See [LICENSE](LICENSE).

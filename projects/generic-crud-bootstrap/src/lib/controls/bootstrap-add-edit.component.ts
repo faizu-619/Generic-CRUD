@@ -63,7 +63,7 @@ export class BootstrapAddEditComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   goBack(): void {
-    this.router.navigate(this.addEditLogic.getBackRoute(this.modelType.tableName));
+    this.router.navigate(this.addEditLogic.getBackRoute(this.modelType.tableName, this.route.snapshot.routeConfig?.path));
   }
 
   private get(id: number): void {

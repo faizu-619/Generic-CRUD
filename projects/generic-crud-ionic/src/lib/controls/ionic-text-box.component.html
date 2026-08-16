@@ -1,0 +1,21 @@
+<input
+  *ngIf="isHiddenType"
+  [attr.id]="control?.key"
+  type="hidden"
+  [value]="value || ''"
+  [disabled]="disabled || control?.isDisabled" />
+
+<ion-item *ngIf="!isHiddenType" class="gci-control gci-text-box" lines="full">
+  <ion-label position="stacked" *ngIf="control?.label">
+    {{ control?.label }}<span *ngIf="control?.required" class="gci-required">&nbsp;*</span>
+  </ion-label>
+  <ion-input
+    [attr.id]="control?.key"
+    [type]="inputType"
+    [placeholder]="control?.label || ''"
+    [disabled]="disabled || control?.isDisabled"
+    [value]="value || ''"
+    (ionInput)="onInput($event.detail.value)"
+    (ionBlur)="onBlur()">
+  </ion-input>
+</ion-item>

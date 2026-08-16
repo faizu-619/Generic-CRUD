@@ -1,0 +1,16 @@
+<div class="gci-control gci-dynamic-control"
+     [formGroup]="form"
+     [ngClass]="{ 'gci-active': hasValue, 'gci-valid': isValid, 'gci-invalid': !isValid }">
+  <ng-container [ngSwitch]="control?.controlType">
+    <gci-text-box *ngSwitchCase="ControlType.TextBox" [control]="control" [formControlName]="control.key"></gci-text-box>
+    <gci-single-date *ngSwitchCase="ControlType.SingleDate" [control]="control" [formControlName]="control.key"></gci-single-date>
+    <gci-range-date *ngSwitchCase="ControlType.RangeDate" [control]="control" [formControlName]="control.key"></gci-range-date>
+    <gci-select-dropdown *ngSwitchCase="ControlType.Dropdown" [control]="control" [formControlName]="control.key"></gci-select-dropdown>
+    <gci-check-box *ngSwitchCase="ControlType.CheckBox" [control]="control" [formControlName]="control.key"></gci-check-box>
+    <gci-text-area *ngSwitchCase="ControlType.TextArea" [control]="control" [formControlName]="control.key"></gci-text-area>
+    <gci-date-of-birth *ngSwitchCase="ControlType.DateOfBirth" [control]="control" [formControlName]="control.key"></gci-date-of-birth>
+    <gci-custom-filter *ngSwitchCase="ControlType.CustomControl" [control]="control" [formControlName]="control.key"></gci-custom-filter>
+  </ng-container>
+
+  <gci-validation-message [control]="control" [form]="form" [parentFormSubmitted]="parentFormSubmitted"></gci-validation-message>
+</div>
