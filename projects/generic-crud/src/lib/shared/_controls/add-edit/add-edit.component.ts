@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { GenericService } from '../../_service/generic.service';
@@ -9,8 +9,10 @@ import { AddEditLogic } from '../_logic';
 
 
 @Component({
+  standalone: false,
   selector: 'gc-add-edit',
   templateUrl: './add-edit.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./add-edit.component.css']
 })
 export class AddEditComponent implements OnInit, OnDestroy, AfterViewInit {

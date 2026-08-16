@@ -1,11 +1,13 @@
-import { Component, Input, ViewChild, ViewContainerRef, forwardRef } from '@angular/core';
+import { Component, Input, ViewChild, ViewContainerRef, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControlValueAccessor, CustomComponent, FilterCustomControl } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'gci-custom-filter',
   templateUrl: './ionic-custom-filter.component.html',
   styleUrls: ['./ionic-custom-filter.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

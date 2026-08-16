@@ -1,12 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FilterBase } from '../_models';
 import { DEFAULT_VALIDATION_MESSAGES, ValidationMessageLogic } from '../_logic';
 
 @Component({
+  standalone: false,
   // tslint:disable-next-line:component-selector
   selector: '[gc-validation-message]',
   templateUrl: './validation-message.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./validation-message.component.css']
 })
 export class ValidationMessageComponent implements OnInit {

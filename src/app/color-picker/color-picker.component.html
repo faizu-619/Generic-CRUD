@@ -3,7 +3,7 @@
 	<input
 		type="color"
 		class="form-control"
-		[id]="control?.key"
+		[id]="$safeNavigationMigration(control?.key)"
 		[value]="value"
 		[disabled]="disabled || control?.isDisabled"
 		(input)="onColorInput($event)"

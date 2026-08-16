@@ -1,7 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   buildListRouteCommands,
+  extractResolvedModel,
   GENERIC_CONFIG,
   GenericModel,
   GenericService,
@@ -10,8 +11,10 @@ import {
 } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'gcb-list',
   templateUrl: './bootstrap-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./bootstrap-list.component.css']
 })
 export class BootstrapListComponent implements OnInit {
@@ -23,18 +26,25 @@ export class BootstrapListComponent implements OnInit {
     private readonly defaultService: GenericService<GenericModel>,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
+    private readonly cdr: ChangeDetectorRef,
     @Inject(GENERIC_CONFIG) private readonly globalConfig: any
   ) {
     this.route.data.subscribe((data: any) => {
-      if (data && data[0]) {
-        this.modelType = Object.assign({}, data[0]);
+      const resolvedModel = extractResolvedModel(data);
+      if (resolvedModel) {
+        this.modelType = Object.assign({}, resolvedModel);
         this.loadData();
+      } else {
+        this.listData = [];
+        this.cdr.markForCheck();
       }
     });
   }
 
   ngOnInit(): void {
-    this.loadData();
+    if (this.modelType?.tableName) {
+      this.loadData();
+    }
   }
 
   loadData(): void {
@@ -45,9 +55,11 @@ export class BootstrapListComponent implements OnInit {
     this.defaultService.getAll(this.modelType.tableName).subscribe(
       result => {
         this.listData = result;
+        this.cdr.markForCheck();
       },
       () => {
         this.listData = [];
+        this.cdr.markForCheck();
       }
     );
   }

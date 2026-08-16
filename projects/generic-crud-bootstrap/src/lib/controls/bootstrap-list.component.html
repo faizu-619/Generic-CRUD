@@ -10,7 +10,7 @@
     <gcb-datatable
       *ngIf="listData"
       [data]="listData"
-      [columns]="modelType?.listColumns"
+      [columns]="$safeNavigationMigration(modelType?.listColumns)"
       (columnClick)="columnClickHandler($event)">
     </gcb-datatable>
   </div>

@@ -1,5 +1,5 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit, Input, OnDestroy, forwardRef } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, OnInit, Input, OnDestroy, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -7,9 +7,11 @@ import { FilterSingleDate } from '../_models/filter-single-date';
 import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
 
 @Component({
+  standalone: false,
     selector: 'gc-single-date',
     templateUrl: './single-date.component.html',
     styleUrls: ['./single-date.component.css'],
+    changeDetection: ChangeDetectionStrategy.Default,
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -23,8 +25,9 @@ export class SingleDateComponent extends BaseControlValueAccessor implements OnI
 
     subscription: Subscription = new Subscription();
 
-    constructor(private datePipe: DatePipe) {
+    constructor() {
         super();
+        this.control = new FilterSingleDate();
     }
 
     ngOnInit() {
@@ -49,6 +52,6 @@ export class SingleDateComponent extends BaseControlValueAccessor implements OnI
     }
 
     private transform(val: string) {
-        return this.datePipe.transform(val, this.control.format);
+        return formatDate(val, this.control.format, 'en-US');
     }
 }

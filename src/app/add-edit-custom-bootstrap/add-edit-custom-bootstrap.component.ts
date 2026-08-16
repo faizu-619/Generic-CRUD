@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import moment from 'moment';
 import { Observable } from 'rxjs';
@@ -19,8 +19,10 @@ import {
 } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'app-add-edit-custom-bootstrap',
   templateUrl: './add-edit-custom-bootstrap.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./add-edit-custom-bootstrap.component.css']
 })
 export class AddEditCustomBootstrapComponent implements OnInit, AfterViewInit {

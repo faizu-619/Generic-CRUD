@@ -1,15 +1,17 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { GenericModel } from '../_models/generic.model';
 import { GenericService } from '../../_service/generic.service';
 import { IColumnClickParams } from '../_models/datatable.model';
 import { GENERIC_CONFIG } from '../../interfaces/generic-config.interface';
-import { buildListRouteCommands, ListActionLogic, ListActionType } from '../_logic';
+import { buildListRouteCommands, extractResolvedModel, ListActionLogic, ListActionType } from '../_logic';
 
 @Component({
+  standalone: false,
   selector: 'gc-list',
   templateUrl: './list.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
@@ -22,26 +24,40 @@ export class ListComponent implements OnInit {
     private defaultService: GenericService<GenericModel>,
     private route: ActivatedRoute,
     private router: Router,
+    private cdr: ChangeDetectorRef,
     @Inject(GENERIC_CONFIG) private globalConfig
   ) {
     this.route.data.subscribe((data: any) => {
-      if (data && data[0]) {
-        this.modelType = Object.assign({}, data[0]);
+      const resolvedModel = extractResolvedModel(data);
+      if (resolvedModel) {
+        this.modelType = Object.assign({}, resolvedModel);
         this.loadData();
+      } else {
+        this.listData = [];
+        this.cdr.detectChanges();
       }
     });
   }
 
   ngOnInit() {
-    this.loadData();
+    if (this.modelType?.tableName) {
+      this.loadData();
+    }
   }
 
   loadData(): void {
+    if (!this.modelType || !this.modelType.tableName) {
+      this.listData = [];
+      return;
+    }
+
     this.defaultService.getAll(this.modelType.tableName)
       .subscribe(result => {
         this.listData = result;
+        this.cdr.detectChanges();
       }, error => {
         this.listData = [];
+        this.cdr.detectChanges();
       });
   }
 

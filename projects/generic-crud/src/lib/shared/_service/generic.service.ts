@@ -1,4 +1,4 @@
-import { Injectable, Inject, InjectionToken } from '@angular/core';
+import { Injectable, Inject, InjectionToken, Optional } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
@@ -12,7 +12,7 @@ export class GenericService<Type> {
 
   constructor(
     private http: HttpClient,
-    @Inject(BASE_URL) private baseUrl: string
+    @Optional() @Inject(BASE_URL) private baseUrl: string | null
   ) {}
 
   getSchema(modelName: string): Observable<any> {
@@ -20,19 +20,19 @@ export class GenericService<Type> {
   }
 
   getAll(modelName: string): Observable<Type[]> {
-    return this.http.get<Type[]>(`${this.baseUrl}/${modelName}`);
+    return this.http.get<Type[]>(`${this.baseUrl || ''}/${modelName}`);
   }
 
   get(modelName: string, id: number): Observable<Type> {
-    return this.http.get<Type>(`${this.baseUrl}/${modelName}/${id}`);
+    return this.http.get<Type>(`${this.baseUrl || ''}/${modelName}/${id}`);
   }
 
   save(modelName: string, obj: Type): Observable<Type> {
-    return this.http.post<Type>(`${this.baseUrl}/${modelName}`, obj);
+    return this.http.post<Type>(`${this.baseUrl || ''}/${modelName}`, obj);
   }
 
   delete(modelName: string, id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${modelName}/${id}`);
+    return this.http.delete(`${this.baseUrl || ''}/${modelName}/${id}`);
   }
 
   updateModel(model: Type): void {

@@ -12,7 +12,7 @@
     <label class="d-block" [attr.for]="control?.key">{{ control?.label || 'Select option' }}</label>
     <select
         class="form-control"
-        [id]="control?.key"
+        [id]="$safeNavigationMigration(control?.key)"
         [disabled]="disabled || control?.isDisabled"
         [value]="selectedValue"
         (change)="onSelectionEvent($event)"

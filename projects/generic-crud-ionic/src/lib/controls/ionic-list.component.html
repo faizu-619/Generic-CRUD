@@ -10,7 +10,7 @@
     <gci-datatable
       *ngIf="listData"
       [data]="listData"
-      [columns]="modelType?.listColumns"
+      [columns]="$safeNavigationMigration(modelType?.listColumns)"
       (columnClick)="columnClickHandler($event)">
     </gci-datatable>
   </ion-card-content>

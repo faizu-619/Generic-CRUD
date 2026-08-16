@@ -1,11 +1,13 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControlValueAccessor, FilterSingleDate } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'gcb-single-date',
   templateUrl: './bootstrap-single-date.component.html',
   styleUrls: ['./bootstrap-single-date.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

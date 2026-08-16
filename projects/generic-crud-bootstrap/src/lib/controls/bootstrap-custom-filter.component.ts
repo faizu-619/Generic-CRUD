@@ -1,11 +1,13 @@
-import { Component, Input, OnInit, ViewChild, ViewContainerRef, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewContainerRef, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControlValueAccessor, CustomComponent, FilterCustomControl } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'gcb-custom-filter',
   templateUrl: './bootstrap-custom-filter.component.html',
   styleUrls: ['./bootstrap-custom-filter.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

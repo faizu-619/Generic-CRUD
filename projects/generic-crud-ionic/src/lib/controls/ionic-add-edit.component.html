@@ -9,7 +9,7 @@
 
     <gci-dynamic-form
       *ngIf="!isLoading"
-      [controls]="modelType?.controls"
+      [controls]="$safeNavigationMigration(modelType?.controls)"
       [actionButtons]="modelType?.actionButtons || defaultActions"
       (OnSubmit)="save($event)">
     </gci-dynamic-form>

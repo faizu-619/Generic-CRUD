@@ -1,6 +1,9 @@
 import { PipeTransform, Pipe } from '@angular/core';
 
-@Pipe({ name: 'nested' })
+@Pipe({
+  standalone: false,
+  name: 'nested'
+})
 export class NestedValuePipe implements PipeTransform {
     transform(obj: any, key: string): any {
       if (!obj || !key) {

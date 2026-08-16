@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CustomComponent, FilterCustomControl } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'app-color-picker',
   templateUrl: './color-picker.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./color-picker.component.css']
 })
 export class ColorPickerComponent implements CustomComponent, OnInit {

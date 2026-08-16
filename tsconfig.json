@@ -5,12 +5,18 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
+    "esModuleInterop": true,
+    "ignoreDeprecations": "6.0",
+    "strict": false,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
     "module": "ES2022",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "ES2022",
     "useDefineForClassFields": false,
+    "skipLibCheck": true,
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -31,7 +37,6 @@
       "generic-crud-ionic": [
         "dist/generic-crud-ionic"
       ]
-    },
-    "allowSyntheticDefaultImports": true
+    }
   }
 }

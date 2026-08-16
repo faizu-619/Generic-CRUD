@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Directive, ViewContainerRef } from '@angular/core';
+﻿import { ChangeDetectorRef, Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
+  standalone: false,
   selector: '[customFilter]',
 })
 export class CustomFilterDirective {

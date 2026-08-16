@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {delay} from 'rxjs/operators';
@@ -8,9 +8,11 @@ import {RemoteDataService} from '../_services/remote-data.service';
 import {DynamicControlLogic} from '../_logic';
 
 @Component({
+  standalone: false,
   selector: 'gc-dynamic-control',
   templateUrl: './dynamic-control.component.html',
   styleUrls: ['./dynamic-control.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [RemoteDataService]
 })
 export class DynamicControlComponent implements OnInit {

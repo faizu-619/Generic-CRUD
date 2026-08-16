@@ -1,13 +1,15 @@
-import {Component, forwardRef, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, forwardRef, Input, OnDestroy, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {FilterDateOfBirth} from '../_models';
 import {BaseControlValueAccessor} from '../_base';
 import {DateOfBirthLogic} from '../_logic';
 
 @Component({
+  standalone: false,
   selector: 'gc-date-of-birth',
   templateUrl: './date-of-birth.component.html',
   styleUrls: ['./date-of-birth.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -17,7 +19,7 @@ import {DateOfBirthLogic} from '../_logic';
   ]
 })
 export class DateOfBirthComponent extends BaseControlValueAccessor implements OnInit, OnDestroy {
-  @Input() control: FilterDateOfBirth;
+  @Input() control: FilterDateOfBirth = new FilterDateOfBirth();
   private readonly dateOfBirthLogic = new DateOfBirthLogic();
 
   selectedYear = 0;

@@ -1,11 +1,13 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddEditLogic, ButtonModel, GenericModel, GenericService } from 'Generic-CRUD';
 import { BootstrapDynamicFormComponent } from './bootstrap-dynamic-form.component';
 
 @Component({
+  standalone: false,
   selector: 'gcb-add-edit',
   templateUrl: './bootstrap-add-edit.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./bootstrap-add-edit.component.css']
 })
 export class BootstrapAddEditComponent implements OnInit, OnDestroy, AfterViewInit {

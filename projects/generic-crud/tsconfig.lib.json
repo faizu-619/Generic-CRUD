@@ -1,10 +1,13 @@
-{
+﻿{
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
     "target": "ES2022",
     "module": "ES2022",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
+    "strict": false,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
     "declaration": true,
     "sourceMap": true,
     "inlineSources": true,
@@ -27,7 +30,8 @@
     "compilationMode": "partial",
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "strictInjectionParameters": true,
+    "strictTemplates": false
   },
   "exclude": [
     "src/test.ts",

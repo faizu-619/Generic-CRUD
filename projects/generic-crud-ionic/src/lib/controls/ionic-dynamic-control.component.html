@@ -1,7 +1,7 @@
 <div class="gci-control gci-dynamic-control"
      [formGroup]="form"
      [ngClass]="{ 'gci-active': hasValue, 'gci-valid': isValid, 'gci-invalid': !isValid }">
-  <ng-container [ngSwitch]="control?.controlType">
+  <ng-container [ngSwitch]="$safeNavigationMigration(control?.controlType)">
     <gci-text-box *ngSwitchCase="ControlType.TextBox" [control]="control" [formControlName]="control.key"></gci-text-box>
     <gci-single-date *ngSwitchCase="ControlType.SingleDate" [control]="control" [formControlName]="control.key"></gci-single-date>
     <gci-range-date *ngSwitchCase="ControlType.RangeDate" [control]="control" [formControlName]="control.key"></gci-range-date>

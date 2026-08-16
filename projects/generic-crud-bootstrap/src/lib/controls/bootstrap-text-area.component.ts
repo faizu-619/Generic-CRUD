@@ -1,11 +1,13 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControlValueAccessor, FilterTextArea } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'gcb-text-area',
   templateUrl: './bootstrap-text-area.component.html',
   styleUrls: ['./bootstrap-text-area.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

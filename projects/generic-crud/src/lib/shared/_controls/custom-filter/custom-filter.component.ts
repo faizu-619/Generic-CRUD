@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CustomComponent } from '../../interfaces/custom-component';
 import { CustomFilterDirective } from '../../_directives/custom-filter.directive';
@@ -8,9 +8,11 @@ import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
 import { CustomFilterLogic } from '../_logic';
 
 @Component({
+  standalone: false,
   selector: 'gc-custom-filter',
   templateUrl: './custom-filter.component.html',
   styleUrls: ['./custom-filter.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -27,7 +29,6 @@ export class CustomFilterComponent extends BaseControlValueAccessor implements O
 
   constructor(
     private remote: RemoteDataService,
-    private cfr: ComponentFactoryResolver
   ) {
     super();
   }
@@ -47,7 +48,7 @@ export class CustomFilterComponent extends BaseControlValueAccessor implements O
     const viewContainerRef = this.customFilter.viewContainerRef;
     viewContainerRef.clear();
 
-    const componentRef = viewContainerRef.createComponent<CustomComponent>(this.cfr.resolveComponentFactory(this.control.component));
+    const componentRef = viewContainerRef.createComponent<CustomComponent>(this.control.component);
     const bindings = this.customFilterLogic.createBindings(this.control, value => this.updateValue(value));
     componentRef.instance.control = bindings.control;
     componentRef.instance.valueChange = bindings.valueChange;

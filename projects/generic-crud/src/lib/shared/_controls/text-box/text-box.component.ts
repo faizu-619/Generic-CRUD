@@ -1,13 +1,15 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
+import {Component, forwardRef, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {FilterTextbox} from '../_models';
 import {BaseControlValueAccessor} from '../_base';
 
 @Component({
+  standalone: false,
   selector: 'gc-text-box',
   templateUrl: './text-box.component.html',
   styleUrls: ['./text-box.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -17,7 +19,7 @@ import {BaseControlValueAccessor} from '../_base';
   ]
 })
 export class TextBoxComponent extends BaseControlValueAccessor implements OnInit {
-  @Input() control: FilterTextbox;
+  @Input() control: FilterTextbox = new FilterTextbox();
 
   constructor() {
     super();

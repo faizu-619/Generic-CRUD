@@ -1,388 +1,395 @@
 {
-    "teams": [
-        {
-            "id": 1,
-            "name": "FC Barcelona",
-            "coach": "Ernesto Valverde",
-            "description": "The best football team in the world!"
-        },
-        {
-            "id": 2,
-            "name": "Real Madrid",
-            "coach": "Zinedine Zidane",
-            "description": "The worst football team in the world!"
-        }
-    ],
-    "cakes": [
-        {
-            "id": "0001",
-            "type": "donut",
-            "name": "Cake",
-            "ppu": 0.55,
-            "batters": [
-                {
-                    "id": "1001",
-                    "type": "Regular"
-                },
-                {
-                    "id": "1002",
-                    "type": "Chocolate"
-                },
-                {
-                    "id": "1003",
-                    "type": "Blueberry"
-                },
-                {
-                    "id": "1004",
-                    "type": "Devil's Food"
-                }
-            ],
-            "topping": [
-                {
-                    "id": "5002",
-                    "type": "Glazed"
-                },
-                {
-                    "id": "5005",
-                    "type": "Sugar"
-                }
-            ]
-        },
-        {
-            "id": "0002",
-            "type": "donut",
-            "name": "Lava Cake",
-            "ppu": 0.55,
-            "batters": [
-                {
-                    "id": "1002",
-                    "type": "Chocolate"
-                }
-            ],
-            "topping": [
-                {
-                    "id": "5007",
-                    "type": "Powdered Sugar"
-                },
-                {
-                    "id": "5006",
-                    "type": "Chocolate with Sprinkles"
-                }
-            ]
-        },
-        {
-            "id": "0003",
-            "type": "donut",
-            "name": "Red Velvet Cake",
-            "ppu": 0.55,
-            "batters": [
-                {
-                    "id": "1003",
-                    "type": "Blueberry"
-                }
-            ],
-            "topping": [
-                {
-                    "id": "5002",
-                    "type": "Glazed"
-                },
-                {
-                    "id": "5004",
-                    "type": "Maple"
-                }
-            ]
-        }
-    ],
-    "toppings": [
-        {
-            "id": "5001",
-            "type": "None"
-        },
-        {
-            "id": "5002",
-            "type": "Glazed"
-        },
-        {
-            "id": "5005",
-            "type": "Sugar"
-        },
-        {
-            "id": "5007",
-            "type": "Powdered Sugar"
-        },
-        {
-            "id": "5006",
-            "type": "Chocolate with Sprinkles"
-        },
-        {
-            "id": "5003",
-            "type": "Chocolate"
-        },
-        {
-            "id": "5004",
-            "type": "Maple"
-        }
-    ],
-    "batters": [
-        {
-            "id": "1001",
-            "type": "Regular"
-        },
-        {
-            "id": "1002",
-            "type": "Chocolate"
-        },
-        {
-            "id": "1003",
-            "type": "Blueberry"
-        },
-        {
-            "id": "1004",
-            "type": "Devil's Food"
-        }
-    ],
-    "Posts": [
-        {
-            "id": 1,
-            "userId": 1,
-            "title": "Welcome to Generic CRUD",
-            "createdOn": "2026-08-01",
-            "body": "This is a local post entry for quick CRUD testing."
-        },
-        {
-            "id": 2,
-            "userId": 2,
-            "title": "Schema Driven Forms",
-            "createdOn": "2026-08-02",
-            "body": "Models are rendered from JSON schema at runtime."
-        }
-    ],
-    "Users": [
-        {
-            "id": 1,
-            "name": "Jane Doe",
-            "username": "JDN 101-A1A",
-            "roleid": "Admin",
-            "salary": "4200",
-            "phone": "+92(300) 1234567",
-            "email": "jane.doe@example.com",
-            "password": "Aa!23456",
-            "confirmPassword": "Aa!23456",
-            "street": "21 Jump Street",
-            "city": "Houston",
-            "address": {
-                "city": "Houston"
-            },
-            "IsActive": true
-        },
-        {
-            "id": 2,
-            "name": "Sam Taylor",
-            "username": "SAM 202-B2B",
-            "roleid": "User",
-            "salary": "3600",
-            "phone": "+92(301) 7654321",
-            "email": "sam.taylor@example.com",
-            "password": "Bb!23456",
-            "confirmPassword": "Bb!23456",
-            "street": "42 Pine Ave",
-            "city": "Austin",
-            "address": {
-                "city": "Austin"
-            },
-            "IsActive": false
-        }
-    ],
-    "Albums": [
-        {
-            "id": 1,
-            "userId": 1,
-            "title": "Road Trip 2026"
-        },
-        {
-            "id": 2,
-            "userId": 2,
-            "title": "Team Offsite"
-        }
-    ],
-    "Todos": [
-        {
-            "id": 1,
-            "userId": 1,
-            "title": "Prepare demo checklist",
-            "completed": false
-        },
-        {
-            "id": 2,
-            "userId": 2,
-            "title": "Review schema examples",
-            "completed": true
-        }
-    ],
-    "Comments": [
-        {
-            "id": 1,
-            "postId": 1,
-            "name": "Initial Review",
-            "email": "reviewer@example.com",
-            "body": "Looks good for the first iteration."
-        },
-        {
-            "id": 2,
-            "postId": 2,
-            "name": "Follow Up",
-            "email": "qa@example.com",
-            "body": "Add more advanced control examples next."
-        }
-    ],
-    "Workshops": [
-        {
-            "id": 1,
-            "title": "Angular Forms Deep Dive",
-            "category": "Frontend",
-            "startDate": "2026-09-10",
-            "scheduleRange": {
-                "startDate": "2026-09-10",
-                "endDate": "2026-09-12"
-            },
-            "maxSeats": 35,
-            "isVirtual": true,
-            "description": "Hands-on workshop covering dynamic forms and validation."
-        },
-        {
-            "id": 2,
-            "title": "Platform Observability",
-            "category": "DevOps",
-            "startDate": "2026-10-05",
-            "scheduleRange": {
-                "startDate": "2026-10-05",
-                "endDate": "2026-10-06"
-            },
-            "maxSeats": 25,
-            "isVirtual": false,
-            "description": "Metrics, tracing, and alert design for API platforms."
-        }
-    ],
-    "Releases": [
-        {
-            "id": 1,
-            "product": "Generic CRUD Core",
-            "version": "1.2.0",
-            "releaseDate": "2026-08-20",
-            "maintenanceWindow": {
-                "startDate": "2026-08-20",
-                "endDate": "2026-08-21"
-            },
-            "status": "Canary",
-            "isMandatory": false,
-            "notes": "Includes improved CVA behavior and extra examples."
-        },
-        {
-            "id": 2,
-            "product": "Generic CRUD Bootstrap",
-            "version": "1.2.0",
-            "releaseDate": "2026-09-01",
-            "maintenanceWindow": {
-                "startDate": "2026-09-01",
-                "endDate": "2026-09-02"
-            },
-            "status": "Planned",
-            "isMandatory": true,
-            "notes": "Refreshes themed control parity and docs."
-        }
-    ],
-    "environments": [
-        {
-            "id": "dev",
-            "name": "Development"
-        },
-        {
-            "id": "staging",
-            "name": "Staging"
-        },
-        {
-            "id": "prod",
-            "name": "Production"
-        }
-    ],
-    "releaseChannels": [
-        {
-            "id": "canary",
-            "name": "Canary"
-        },
-        {
-            "id": "standard",
-            "name": "Standard"
-        },
-        {
-            "id": "hotfix",
-            "name": "Hotfix"
-        }
-    ],
-    "servicesByEnvironment": {
-        "dev": [
-            {
-                "id": "web-dev",
-                "name": "Web Frontend (Dev)"
-            },
-            {
-                "id": "api-dev",
-                "name": "Core API (Dev)"
-            }
-        ],
-        "staging": [
-            {
-                "id": "web-stg",
-                "name": "Web Frontend (Staging)"
-            },
-            {
-                "id": "api-stg",
-                "name": "Core API (Staging)"
-            }
-        ],
-        "prod": [
-            {
-                "id": "web-prd",
-                "name": "Web Frontend (Prod)"
-            },
-            {
-                "id": "api-prd",
-                "name": "Core API (Prod)"
-            }
-        ]
+  "teams": [
+    {
+      "id": 1,
+      "name": "FC Barcelona",
+      "coach": "Ernesto Valverde",
+      "description": "The best football team in the world!"
     },
-    "Deployments": [
+    {
+      "id": 2,
+      "name": "Real Madrid",
+      "coach": "Zinedine Zidane",
+      "description": "The worst football team in the world!"
+    }
+  ],
+  "cakes": [
+    {
+      "id": "0001",
+      "type": "donut",
+      "name": "Cake",
+      "ppu": 0.55,
+      "batters": [
         {
-            "id": 1,
-            "environment": "dev",
-            "service": "web-dev",
-            "channel": "canary",
-            "serviceName": "Web Frontend (Dev)",
-            "environmentName": "Development",
-            "channelName": "Canary",
-            "releaseDate": "2026-09-15",
-            "deploymentWindow": {
-                "startDate": "2026-09-15",
-                "endDate": "2026-09-16"
-            },
-            "requiresDowntime": false,
-            "notes": "Enable feature flags for new search experience."
+          "id": "1001",
+          "type": "Regular"
         },
         {
-            "id": 2,
-            "environment": "prod",
-            "service": "api-prd",
-            "channel": "hotfix",
-            "serviceName": "Core API (Prod)",
-            "environmentName": "Production",
-            "channelName": "Hotfix",
-            "releaseDate": "2026-09-18",
-            "deploymentWindow": {
-                "startDate": "2026-09-18",
-                "endDate": "2026-09-18"
-            },
-            "requiresDowntime": true,
-            "notes": "Patch critical rate-limit regression."
+          "id": "1002",
+          "type": "Chocolate"
+        },
+        {
+          "id": "1003",
+          "type": "Blueberry"
+        },
+        {
+          "id": "1004",
+          "type": "Devil's Food"
         }
+      ],
+      "topping": [
+        {
+          "id": "5002",
+          "type": "Glazed"
+        },
+        {
+          "id": "5005",
+          "type": "Sugar"
+        }
+      ]
+    },
+    {
+      "id": "0002",
+      "type": "donut",
+      "name": "Lava Cake",
+      "ppu": 0.55,
+      "batters": [
+        {
+          "id": "1002",
+          "type": "Chocolate"
+        }
+      ],
+      "topping": [
+        {
+          "id": "5007",
+          "type": "Powdered Sugar"
+        },
+        {
+          "id": "5006",
+          "type": "Chocolate with Sprinkles"
+        }
+      ]
+    },
+    {
+      "id": "0003",
+      "type": "donut",
+      "name": "Red Velvet Cake",
+      "ppu": 0.55,
+      "batters": [
+        {
+          "id": "1003",
+          "type": "Blueberry"
+        }
+      ],
+      "topping": [
+        {
+          "id": "5002",
+          "type": "Glazed"
+        },
+        {
+          "id": "5004",
+          "type": "Maple"
+        }
+      ]
+    }
+  ],
+  "toppings": [
+    {
+      "id": "5001",
+      "type": "None"
+    },
+    {
+      "id": "5002",
+      "type": "Glazed"
+    },
+    {
+      "id": "5005",
+      "type": "Sugar"
+    },
+    {
+      "id": "5007",
+      "type": "Powdered Sugar"
+    },
+    {
+      "id": "5006",
+      "type": "Chocolate with Sprinkles"
+    },
+    {
+      "id": "5003",
+      "type": "Chocolate"
+    },
+    {
+      "id": "5004",
+      "type": "Maple"
+    }
+  ],
+  "batters": [
+    {
+      "id": "1001",
+      "type": "Regular"
+    },
+    {
+      "id": "1002",
+      "type": "Chocolate"
+    },
+    {
+      "id": "1003",
+      "type": "Blueberry"
+    },
+    {
+      "id": "1004",
+      "type": "Devil's Food"
+    }
+  ],
+  "Posts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Welcome to Generic CRUD",
+      "createdOn": "2026-08-01",
+      "body": "This is a local post entry for quick CRUD testing."
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "Schema Driven Forms",
+      "createdOn": "2026-08-02",
+      "body": "Models are rendered from JSON schema at runtime."
+    },
+    {
+      "id": 3,
+      "userId": "1",
+      "title": "sdsd",
+      "createdOn": "2026-08-16",
+      "body": "dsdsd"
+    }
+  ],
+  "Users": [
+    {
+      "id": 1,
+      "name": "Jane Doe",
+      "username": "JDN 101-A1A",
+      "roleid": "Admin",
+      "salary": "4200",
+      "phone": "+92(300) 1234567",
+      "email": "jane.doe@example.com",
+      "password": "Aa!23456",
+      "confirmPassword": "Aa!23456",
+      "street": "21 Jump Street",
+      "city": "Houston",
+      "address": {
+        "city": "Houston"
+      },
+      "IsActive": true
+    },
+    {
+      "id": 2,
+      "name": "Sam Taylor",
+      "username": "SAM 202-B2B",
+      "roleid": "User",
+      "salary": "3600",
+      "phone": "+92(301) 7654321",
+      "email": "sam.taylor@example.com",
+      "password": "Bb!23456",
+      "confirmPassword": "Bb!23456",
+      "street": "42 Pine Ave",
+      "city": "Austin",
+      "address": {
+        "city": "Austin"
+      },
+      "IsActive": false
+    }
+  ],
+  "Albums": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Road Trip 2026"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "Team Offsite"
+    }
+  ],
+  "Todos": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "Prepare demo checklist",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "Review schema examples",
+      "completed": true
+    }
+  ],
+  "Comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "name": "Initial Review",
+      "email": "reviewer@example.com",
+      "body": "Looks good for the first iteration."
+    },
+    {
+      "id": 2,
+      "postId": 2,
+      "name": "Follow Up",
+      "email": "qa@example.com",
+      "body": "Add more advanced control examples next."
+    }
+  ],
+  "Workshops": [
+    {
+      "id": 1,
+      "title": "Angular Forms Deep Dive",
+      "category": "Frontend",
+      "startDate": "2026-09-10",
+      "scheduleRange": {
+        "startDate": "2026-09-10",
+        "endDate": "2026-09-12"
+      },
+      "maxSeats": 35,
+      "isVirtual": true,
+      "description": "Hands-on workshop covering dynamic forms and validation."
+    },
+    {
+      "id": 2,
+      "title": "Platform Observability",
+      "category": "DevOps",
+      "startDate": "2026-10-05",
+      "scheduleRange": {
+        "startDate": "2026-10-05",
+        "endDate": "2026-10-06"
+      },
+      "maxSeats": 25,
+      "isVirtual": false,
+      "description": "Metrics, tracing, and alert design for API platforms."
+    }
+  ],
+  "Releases": [
+    {
+      "id": 1,
+      "product": "Generic CRUD Core",
+      "version": "1.2.0",
+      "releaseDate": "2026-08-20",
+      "maintenanceWindow": {
+        "startDate": "2026-08-20",
+        "endDate": "2026-08-21"
+      },
+      "status": "Canary",
+      "isMandatory": false,
+      "notes": "Includes improved CVA behavior and extra examples."
+    },
+    {
+      "id": 2,
+      "product": "Generic CRUD Bootstrap",
+      "version": "1.2.0",
+      "releaseDate": "2026-09-01",
+      "maintenanceWindow": {
+        "startDate": "2026-09-01",
+        "endDate": "2026-09-02"
+      },
+      "status": "Planned",
+      "isMandatory": true,
+      "notes": "Refreshes themed control parity and docs."
+    }
+  ],
+  "environments": [
+    {
+      "id": "dev",
+      "name": "Development"
+    },
+    {
+      "id": "staging",
+      "name": "Staging"
+    },
+    {
+      "id": "prod",
+      "name": "Production"
+    }
+  ],
+  "releaseChannels": [
+    {
+      "id": "canary",
+      "name": "Canary"
+    },
+    {
+      "id": "standard",
+      "name": "Standard"
+    },
+    {
+      "id": "hotfix",
+      "name": "Hotfix"
+    }
+  ],
+  "servicesByEnvironment": {
+    "dev": [
+      {
+        "id": "web-dev",
+        "name": "Web Frontend (Dev)"
+      },
+      {
+        "id": "api-dev",
+        "name": "Core API (Dev)"
+      }
+    ],
+    "staging": [
+      {
+        "id": "web-stg",
+        "name": "Web Frontend (Staging)"
+      },
+      {
+        "id": "api-stg",
+        "name": "Core API (Staging)"
+      }
+    ],
+    "prod": [
+      {
+        "id": "web-prd",
+        "name": "Web Frontend (Prod)"
+      },
+      {
+        "id": "api-prd",
+        "name": "Core API (Prod)"
+      }
     ]
+  },
+  "Deployments": [
+    {
+      "id": 1,
+      "environment": "dev",
+      "service": "web-dev",
+      "channel": "canary",
+      "serviceName": "Web Frontend (Dev)",
+      "environmentName": "Development",
+      "channelName": "Canary",
+      "releaseDate": "2026-09-15",
+      "deploymentWindow": {
+        "startDate": "2026-09-15",
+        "endDate": "2026-09-16"
+      },
+      "requiresDowntime": false,
+      "notes": "Enable feature flags for new search experience."
+    },
+    {
+      "id": 2,
+      "environment": "prod",
+      "service": "api-prd",
+      "channel": "hotfix",
+      "serviceName": "Core API (Prod)",
+      "environmentName": "Production",
+      "channelName": "Hotfix",
+      "releaseDate": "2026-09-18",
+      "deploymentWindow": {
+        "startDate": "2026-09-18",
+        "endDate": "2026-09-18"
+      },
+      "requiresDowntime": true,
+      "notes": "Patch critical rate-limit regression."
+    }
+  ]
 }

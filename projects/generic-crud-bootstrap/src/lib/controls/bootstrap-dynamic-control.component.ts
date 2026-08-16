@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   ControlType,
@@ -11,8 +11,10 @@ import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Component({
+  standalone: false,
   selector: 'gcb-dynamic-control',
   templateUrl: './bootstrap-dynamic-control.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./bootstrap-dynamic-control.component.css']
 })
 export class BootstrapDynamicControlComponent {

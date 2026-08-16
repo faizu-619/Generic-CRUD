@@ -1,18 +1,24 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'gcb-datatable',
   templateUrl: './bootstrap-datatable.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./bootstrap-datatable.component.css']
 })
-export class BootstrapDatatableComponent implements OnInit {
+export class BootstrapDatatableComponent implements OnChanges {
   @Input() data: any[] = [];
   @Input() columns: any[] = [];
   @Output() columnClick = new EventEmitter<any>();
 
   loading = false;
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.data && !changes.columns) {
+      return;
+    }
+
     this.loading = true;
     if (!this.columns || this.columns.length < 1) {
       this.setDynamicColumns();
@@ -24,9 +30,9 @@ export class BootstrapDatatableComponent implements OnInit {
     this.columnClick.emit({ event, column, value });
   }
 
-  interpolate(htmlString: string, value: string, key: string): string {
+  interpolate(htmlString: string, value: any, key: string): string {
     return (htmlString || '')
-      .replace(/{{value}}/g, value || '')
+      .replace(/{{value}}/g, String(value ?? ''))
       .replace(/{{key}}/g, key || '');
   }
 

@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ButtonModel, DynamicControlService, FilterBase } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'gci-dynamic-form',
   templateUrl: './ionic-dynamic-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./ionic-dynamic-form.component.css']
 })
 export class IonicDynamicFormComponent {

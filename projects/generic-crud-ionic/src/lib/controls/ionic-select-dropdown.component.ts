@@ -1,12 +1,14 @@
-import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControlValueAccessor, DropdownOptionsLogic, FilterDropdown, RemoteDataService } from 'Generic-CRUD';
 import { Subscription } from 'rxjs';
 
 @Component({
+  standalone: false,
   selector: 'gci-select-dropdown',
   templateUrl: './ionic-select-dropdown.component.html',
   styleUrls: ['./ionic-select-dropdown.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

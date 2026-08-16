@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddEditCustomComponent } from './add-edit-custom.component';
+import { BASE_URL } from 'projects/generic-crud/src/lib/shared/_service/generic.service';
 
 describe('AddEditCustomComponent', () => {
   let component: AddEditCustomComponent;
@@ -8,7 +9,11 @@ describe('AddEditCustomComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddEditCustomComponent ]
+      declarations: [ AddEditCustomComponent ],
+      providers: [
+        { provide: BASE_URL, useValue: '' },
+        { provide: 'BASE_URL', useValue: '' }
+      ]
     })
     .compileComponents();
   });

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FilterBase } from '../_models/index';
@@ -6,8 +6,10 @@ import { DynamicControlService } from '../_services/filter-control.service';
 import { ButtonModel } from '../_models/button.model';
 
 @Component({
+  standalone: false,
   selector: 'gc-dynamic-form',
   templateUrl: './dynamic-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent implements OnInit {

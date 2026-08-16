@@ -1,7 +1,8 @@
-import { FormGroup } from '@angular/forms';
+﻿import { FormGroup } from '@angular/forms';
 import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 
 @Directive({
+  standalone: false,
   selector: '[libControlState]'
 })
 export class ControlStateDirective {

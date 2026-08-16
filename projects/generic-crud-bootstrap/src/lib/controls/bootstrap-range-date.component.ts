@@ -1,11 +1,13 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControlValueAccessor, DateRange, DateRangeLogic, FilterRangeDate } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'gcb-range-date',
   templateUrl: './bootstrap-range-date.component.html',
   styleUrls: ['./bootstrap-range-date.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

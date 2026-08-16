@@ -1,12 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FilterCheckbox } from '../_models/filter-checkbox';
 import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
 
 @Component({
+  standalone: false,
     selector: 'gc-check-box',
     templateUrl: './check-box.component.html',
     styleUrls: ['./check-box.component.css'],
+    changeDetection: ChangeDetectionStrategy.Default,
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -16,7 +18,7 @@ import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
     ]
 })
 export class CheckBoxComponent extends BaseControlValueAccessor<boolean> implements OnInit {
-    @Input() control: FilterCheckbox;
+    @Input() control: FilterCheckbox = new FilterCheckbox();
 
     @Output() onCheckChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 

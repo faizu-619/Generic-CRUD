@@ -1,13 +1,15 @@
-import { Component, OnInit, Input, forwardRef, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, forwardRef, HostListener, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FilterRangeDate } from '../_models/filter-range-date';
 import { BaseControlValueAccessor } from '../_base/base-control-value-accessor';
 import { DateRange, DateRangeLogic, DateRangeSelectionState } from '../_logic';
 
 @Component({
+  standalone: false,
     selector: 'gc-range-date',
     templateUrl: './range-date.component.html',
     styleUrls: ['./range-date.component.css'],
+    changeDetection: ChangeDetectionStrategy.Default,
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -17,7 +19,7 @@ import { DateRange, DateRangeLogic, DateRangeSelectionState } from '../_logic';
     ]
 })
 export class RangeDateComponent extends BaseControlValueAccessor implements OnInit {
-    @Input() control: FilterRangeDate;
+    @Input() control: FilterRangeDate = new FilterRangeDate();
     private readonly dateRangeLogic = new DateRangeLogic();
 
     isReady = false;

@@ -1,7 +1,7 @@
 <div class="gcb-control gcb-dynamic-control mb-3"
      [formGroup]="form"
      [ngClass]="{ 'active': hasValue, 'has-success': isValid, 'has-error': !isValid }">
-  <ng-container [ngSwitch]="control?.controlType">
+  <ng-container [ngSwitch]="$safeNavigationMigration(control?.controlType)">
     <gcb-text-box *ngSwitchCase="ControlType.TextBox" [control]="control" [formControlName]="control.key"></gcb-text-box>
     <gcb-single-date *ngSwitchCase="ControlType.SingleDate" [control]="control" [formControlName]="control.key"></gcb-single-date>
     <gcb-range-date *ngSwitchCase="ControlType.RangeDate" [control]="control" [formControlName]="control.key"></gcb-range-date>

@@ -1,8 +1,11 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
+﻿/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
+    "strict": false,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
@@ -10,5 +13,8 @@
   },
   "exclude": [
     "**/*.spec.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "strictTemplates": false
+  }
 }

@@ -1,11 +1,13 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddEditLogic, ButtonModel, GenericModel, GenericService } from 'Generic-CRUD';
 import { IonicDynamicFormComponent } from './ionic-dynamic-form.component';
 
 @Component({
+  standalone: false,
   selector: 'gci-add-edit',
   templateUrl: './ionic-add-edit.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./ionic-add-edit.component.css']
 })
 export class IonicAddEditComponent implements OnInit, OnDestroy, AfterViewInit {

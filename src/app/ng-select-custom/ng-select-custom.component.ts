@@ -1,10 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {CustomComponent, FilterCustomControl} from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'app-ng-select-custom',
   templateUrl: './ng-select-custom.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./ng-select-custom.component.css']
 })
 export class NgSelectCustomComponent implements CustomComponent, OnInit {

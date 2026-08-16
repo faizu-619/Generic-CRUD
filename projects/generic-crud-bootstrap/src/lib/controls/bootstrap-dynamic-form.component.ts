@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ButtonModel, DynamicControlService, FilterBase } from 'Generic-CRUD';
 
 @Component({
+  standalone: false,
   selector: 'gcb-dynamic-form',
   templateUrl: './bootstrap-dynamic-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./bootstrap-dynamic-form.component.css']
 })
 export class BootstrapDynamicFormComponent {

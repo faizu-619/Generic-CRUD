@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 import { AbstractControl } from '@angular/forms';
@@ -12,7 +12,7 @@ export class RemoteDataService {
 
     constructor(
         private http: HttpClient,
-        @Inject('BASE_URL') private baseUrl: string
+        @Optional() @Inject('BASE_URL') private baseUrl: string | null
     ) { }
 
     getRemoteData(url: string, param?: any, queryParams?: any): Observable<any[]> {

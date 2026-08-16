@@ -9,7 +9,7 @@
 
     <gcb-dynamic-form
       *ngIf="!isLoading"
-      [controls]="modelType?.controls"
+      [controls]="$safeNavigationMigration(modelType?.controls)"
       [actionButtons]="modelType?.actionButtons || defaultActions"
       (OnSubmit)="save($event)">
     </gcb-dynamic-form>

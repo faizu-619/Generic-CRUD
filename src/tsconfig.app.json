@@ -1,11 +1,17 @@
-{
+﻿{
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
+    "strict": false,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": false,
     "types": []
   },
   "exclude": [
     "src/test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "strictTemplates": false
+  }
 }
