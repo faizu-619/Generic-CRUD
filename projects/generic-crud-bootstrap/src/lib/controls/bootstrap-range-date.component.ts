@@ -23,12 +23,24 @@ export class BootstrapRangeDateComponent extends BaseControlValueAccessor<any> {
   selectedRange: DateRange = { startDate: null, endDate: null };
 
   ngOnInit(): void {
+    this.syncFromValue();
+  }
+
+  writeValue(value: any): void {
+    super.writeValue(value);
+    this.syncFromValue();
+  }
+
+  private syncFromValue(): void {
     if (this.value && this.value.startDate && this.value.endDate) {
       this.selectedRange = {
         startDate: new Date(this.value.startDate),
         endDate: new Date(this.value.endDate)
       };
+      return;
     }
+
+    this.selectedRange = { startDate: null, endDate: null };
   }
 
   get startDateValue(): string {

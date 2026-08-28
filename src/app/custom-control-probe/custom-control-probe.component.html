@@ -1,0 +1,21 @@
+<div class="probe">
+  <input type="text"
+         class="form-control"
+         [value]="displayValue"
+         [disabled]="disabled"
+         (input)="onInput($event)"
+         (blur)="onBlur()"
+         placeholder="nothing received">
+
+  <div class="probe-meta">
+    <span class="badge" [class.badge-empty]="writeCount === 0">writes received: {{ writeCount }}</span>
+    <span class="badge">rendering: <code>{{ displayValue || '(empty)' }}</code></span>
+  </div>
+
+  <details class="probe-log" *ngIf="log.length">
+    <summary>write log ({{ log.length }})</summary>
+    <ol>
+      <li *ngFor="let entry of log"><code>{{ entry }}</code></li>
+    </ol>
+  </details>
+</div>

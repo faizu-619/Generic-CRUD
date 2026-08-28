@@ -28,15 +28,29 @@ export class IonicDateOfBirthComponent extends BaseControlValueAccessor<any> {
   error = false;
 
   ngOnInit(): void {
+    this.syncFromValue();
+    this.years = this.dateOfBirthLogic.getYears(this.control?.maxAge || 150, this.control?.minAge || 18);
+  }
+
+  writeValue(value: any): void {
+    super.writeValue(value);
+    this.syncFromValue();
+  }
+
+  private syncFromValue(): void {
     const parsed = this.dateOfBirthLogic.parseValue(this.value);
     if (parsed) {
       this.selectedYear = parsed.selectedYear;
       this.selectedMonth = parsed.selectedMonth;
       this.selectedDay = parsed.selectedDay;
       this.days = this.dateOfBirthLogic.getDays(this.selectedMonth, this.selectedYear);
+      return;
     }
 
-    this.years = this.dateOfBirthLogic.getYears(this.control?.maxAge || 150, this.control?.minAge || 18);
+    this.selectedYear = 0;
+    this.selectedMonth = 0;
+    this.selectedDay = 0;
+    this.days = [];
   }
 
   get months(): number[] {

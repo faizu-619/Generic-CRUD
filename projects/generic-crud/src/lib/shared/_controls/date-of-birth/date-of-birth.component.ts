@@ -35,19 +35,33 @@ export class DateOfBirthComponent extends BaseControlValueAccessor implements On
   }
 
   ngOnInit(): void {
+    this.syncFromValue();
+    this.MONTHS();
+    this.YEARS();
+  }
+
+  ngOnDestroy(): void {
+  }
+
+  writeValue(value: any): void {
+    super.writeValue(value);
+    this.syncFromValue();
+  }
+
+  private syncFromValue(): void {
     const parsed = this.dateOfBirthLogic.parseValue(this.value);
     if (parsed) {
       this.selectedYear = parsed.selectedYear;
       this.selectedMonth = parsed.selectedMonth;
       this.DAYS(this.selectedMonth, this.selectedYear);
       this.selectedDay = parsed.selectedDay;
+      return;
     }
 
-    this.MONTHS();
-    this.YEARS();
-  }
-
-  ngOnDestroy(): void {
+    this.selectedYear = 0;
+    this.selectedMonth = 0;
+    this.selectedDay = 0;
+    this.days = [];
   }
 
   YEARS(): any {

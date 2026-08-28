@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, ViewChild, ViewContainerRef, forwardRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ComponentRef, Input, OnDestroy, OnInit, ViewChild, ViewContainerRef, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BaseControlValueAccessor, CustomComponent, FilterCustomControl } from 'Generic-CRUD';
+import { BaseControlValueAccessor, CustomComponent, CustomFilterLogic, FilterCustomControl } from 'Generic-CRUD';
 
 @Component({
   standalone: false,
@@ -16,36 +16,53 @@ import { BaseControlValueAccessor, CustomComponent, FilterCustomControl } from '
     }
   ]
 })
-export class BootstrapCustomFilterComponent extends BaseControlValueAccessor<any> {
+export class BootstrapCustomFilterComponent extends BaseControlValueAccessor<any> implements OnInit, OnDestroy {
   @ViewChild('customHost', { read: ViewContainerRef, static: true })
   private customHost: ViewContainerRef;
 
   @Input() control: FilterCustomControl;
 
+  private readonly customFilterLogic = new CustomFilterLogic();
+  private componentRef?: ComponentRef<CustomComponent>;
+
   ngOnInit(): void {
     this.loadComponent();
   }
 
+  ngOnDestroy(): void {
+    this.componentRef?.destroy();
+    this.componentRef = undefined;
+  }
+
+  writeValue(value: any): void {
+    super.writeValue(value);
+    this.customFilterLogic.writeToChild(this.componentRef?.instance, value);
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    super.setDisabledState(isDisabled);
+    this.customFilterLogic.setChildDisabledState(this.componentRef?.instance, isDisabled);
+  }
+
   private loadComponent(): void {
-    if (!this.control?.component) {
+    if (!this.customFilterLogic.shouldLoadComponent(this.control)) {
       return;
     }
 
     this.customHost.clear();
     const componentRef = this.customHost.createComponent<CustomComponent>(this.control.component);
-    componentRef.instance.control = this.control;
-    componentRef.instance.valueChange = (value: any) => this.updateValue(value);
+    const bindings = this.customFilterLogic.createBindings(this.control, value => this.updateValue(value));
+    componentRef.instance.control = bindings.control;
+    componentRef.instance.valueChange = bindings.valueChange;
+    this.componentRef = componentRef;
 
-    // Support custom components that expose valueChange only and do not implement full CVA hooks.
-    if (typeof componentRef.instance.writeValue === 'function') {
-      componentRef.instance.writeValue(this.value);
-    }
-    if (typeof componentRef.instance.registerOnChange === 'function') {
-      componentRef.instance.registerOnChange((value: any) => this.updateValue(value));
-    }
-    if (typeof componentRef.instance.registerOnTouched === 'function') {
-      componentRef.instance.registerOnTouched(() => this.onTouched());
-    }
+    // Hand over the current value in case the form wrote before the child existed.
+    this.customFilterLogic.writeToChild(componentRef.instance, this.value);
+    this.customFilterLogic.setChildDisabledState(componentRef.instance, this.disabled);
+    this.customFilterLogic.registerChildCallbacks(
+      componentRef.instance,
+      value => this.updateValue(value),
+      () => this.onTouched()
+    );
   }
 }
-

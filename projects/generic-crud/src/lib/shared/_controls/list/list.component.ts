@@ -34,7 +34,7 @@ export class ListComponent implements OnInit {
         this.loadData();
       } else {
         this.listData = [];
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
       }
     });
   }
@@ -54,10 +54,10 @@ export class ListComponent implements OnInit {
     this.defaultService.getAll(this.modelType.tableName)
       .subscribe(result => {
         this.listData = result;
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
       }, error => {
         this.listData = [];
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
       });
   }
 

@@ -1,0 +1,51 @@
+<h2>Custom control value forwarding <small class="text-muted">— {{ themeName }}</small></h2>
+
+<p class="lead">
+  This page mimics an edit screen. The form renders first, then a simulated record load resolves
+  after 400&nbsp;ms and patches the values in — the exact write that used to never reach a
+  dynamically-created custom control.
+</p>
+
+<div class="alert" [class.alert-secondary]="!loaded" [class.alert-success]="loaded">
+  <strong>{{ loaded ? 'Record loaded and patched.' : 'Loading record…' }}</strong>
+  Every control below should now show the loaded value. A custom control still reading
+  <code>(empty)</code> after the load, or showing <em>writes received: 0</em>, is the bug.
+</div>
+
+<div class="btn-toolbar mb-3">
+  <button type="button" class="btn btn-outline-primary me-2" (click)="patchAgain()">
+    patchValue() again
+  </button>
+  <button type="button" class="btn btn-outline-secondary me-2" (click)="resetForm()">
+    reset()
+  </button>
+  <button type="button" class="btn btn-outline-secondary" (click)="toggleDisabled()">
+    toggle disabled (favourite colour)
+  </button>
+</div>
+
+<div class="row">
+  <div class="col-md-7">
+    <form [formGroup]="form" (ngSubmit)="form.valid && SubmitForm()">
+      <div class="form-group mb-3" *ngFor="let controlObject of formBasic">
+        <gcb-dynamic-control [controlObject]="controlObject"
+                            [form]="form"
+                            [parentFormSubmitted]="submited"></gcb-dynamic-control>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-header">FormGroup value (source of truth)</div>
+      <div class="card-body">
+        <pre class="form-state">{{ formValue }}</pre>
+        <p class="text-muted mb-0">
+          Before the fix this panel held the full record while the custom controls beside it
+          rendered blank — which read as “the record didn’t load”, even though saving worked.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

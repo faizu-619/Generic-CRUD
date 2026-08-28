@@ -49,7 +49,28 @@ export class RangeDateComponent extends BaseControlValueAccessor implements OnIn
     ngOnInit() {
         this.initializeMonths();
         this.generateCalendars();
+        this.syncFromValue();
         this.isReady = true;
+    }
+
+    writeValue(value: any): void {
+        super.writeValue(value);
+        this.syncFromValue();
+    }
+
+    private syncFromValue(): void {
+        const value: any = this.value;
+        if (value && value.startDate && value.endDate) {
+            this.selectedRange = {
+                startDate: new Date(value.startDate),
+                endDate: new Date(value.endDate)
+            };
+            this.isSelectingEndDate = false;
+            return;
+        }
+
+        this.selectedRange = { startDate: null, endDate: null };
+        this.isSelectingEndDate = false;
     }
 
     initializeMonths(): void {

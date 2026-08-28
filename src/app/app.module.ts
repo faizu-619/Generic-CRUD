@@ -9,6 +9,11 @@ import {AddEditCustomComponent} from './add-edit-custom/add-edit-custom.componen
 import {AddEditCustomBootstrapComponent} from './add-edit-custom-bootstrap/add-edit-custom-bootstrap.component';
 import {AddEditCustomIonicComponent} from './add-edit-custom-ionic/add-edit-custom-ionic.component';
 import {NgSelectCustomComponent} from './ng-select-custom/ng-select-custom.component';
+import {CustomControlBugComponent} from './custom-control-bug/custom-control-bug.component';
+import {CustomControlProbeComponent} from './custom-control-probe/custom-control-probe.component';
+import {CustomControlProbeIonicComponent} from './custom-control-probe-ionic/custom-control-probe-ionic.component';
+import {CustomControlBugBootstrapComponent} from './custom-control-bug-bootstrap/custom-control-bug-bootstrap.component';
+import {CustomControlBugIonicComponent} from './custom-control-bug-ionic/custom-control-bug-ionic.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ColorPickerComponent} from './color-picker/color-picker.component';
 import {BASE_URL, GENERIC_CONFIG, GenericCRUDModule, GenericResolver, LayoutStyle} from 'Generic-CRUD';
@@ -27,7 +32,12 @@ import {environment} from '../environments/environment';
     AddEditCustomBootstrapComponent,
     AddEditCustomIonicComponent,
     NgSelectCustomComponent,
-    ColorPickerComponent
+    ColorPickerComponent,
+    CustomControlBugComponent,
+    CustomControlBugBootstrapComponent,
+    CustomControlBugIonicComponent,
+    CustomControlProbeComponent,
+    CustomControlProbeIonicComponent
   ],
   imports: [
     BrowserModule,
@@ -36,11 +46,14 @@ import {environment} from '../environments/environment';
     IonicModule.forRoot(),
     RouterModule.forRoot([
       {path: 'add-custom', component: AddEditCustomComponent},
+      {path: 'custom-control-bug', component: CustomControlBugComponent},
       {path: 'bootstrap/add-custom', component: AddEditCustomBootstrapComponent},
+      {path: 'bootstrap/custom-control-bug', component: CustomControlBugBootstrapComponent},
       {path: 'bootstrap/list/:modelName', component: BootstrapListComponent, resolve: [GenericResolver]},
       {path: 'bootstrap/add/:modelName', component: BootstrapAddEditComponent, resolve: [GenericResolver]},
       {path: 'bootstrap/edit/:modelName/:id', component: BootstrapAddEditComponent, resolve: [GenericResolver]},
       {path: 'ionic/add-custom', component: AddEditCustomIonicComponent},
+      {path: 'ionic/custom-control-bug', component: CustomControlBugIonicComponent},
       {path: 'ionic/list/:modelName', component: IonicListComponent, resolve: [GenericResolver]},
       {path: 'ionic/add/:modelName', component: IonicAddEditComponent, resolve: [GenericResolver]},
       {path: 'ionic/edit/:modelName/:id', component: IonicAddEditComponent, resolve: [GenericResolver]},

@@ -1,0 +1,30 @@
+.probe-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+}
+
+.probe-meta .badge {
+  background: #e9ecef;
+  color: #212529;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.probe-meta .badge-empty {
+  background: #f8d7da;
+  color: #842029;
+}
+
+.probe-log {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+}
+
+.probe-log ol {
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+}

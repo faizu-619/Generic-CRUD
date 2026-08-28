@@ -1,0 +1,6 @@
+.probe-meta {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  margin: 0.25rem 0;
+}

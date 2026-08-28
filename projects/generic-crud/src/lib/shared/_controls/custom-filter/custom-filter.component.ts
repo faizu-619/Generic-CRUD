@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, forwardRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ComponentRef, Input, OnDestroy, OnInit, ViewChild, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CustomComponent } from '../../interfaces/custom-component';
 import { CustomFilterDirective } from '../../_directives/custom-filter.directive';
@@ -21,9 +21,10 @@ import { CustomFilterLogic } from '../_logic';
     }
   ]
 })
-export class CustomFilterComponent extends BaseControlValueAccessor implements OnInit {
+export class CustomFilterComponent extends BaseControlValueAccessor implements OnInit, OnDestroy {
   @Input() control: FilterCustomControl;
   private readonly customFilterLogic = new CustomFilterLogic();
+  private componentRef?: ComponentRef<CustomComponent>;
 
   @ViewChild(CustomFilterDirective, { static: true }) customFilter!: CustomFilterDirective;
 
@@ -38,6 +39,18 @@ export class CustomFilterComponent extends BaseControlValueAccessor implements O
   }
 
   ngOnDestroy(): void {
+    this.componentRef?.destroy();
+    this.componentRef = undefined;
+  }
+
+  writeValue(value: any): void {
+    super.writeValue(value);
+    this.customFilterLogic.writeToChild(this.componentRef?.instance, value);
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    super.setDisabledState(isDisabled);
+    this.customFilterLogic.setChildDisabledState(this.componentRef?.instance, isDisabled);
   }
 
   loadComponent() {
@@ -52,6 +65,16 @@ export class CustomFilterComponent extends BaseControlValueAccessor implements O
     const bindings = this.customFilterLogic.createBindings(this.control, value => this.updateValue(value));
     componentRef.instance.control = bindings.control;
     componentRef.instance.valueChange = bindings.valueChange;
+    this.componentRef = componentRef;
+
+    // Hand over the current value in case the form wrote before the child existed.
+    this.customFilterLogic.writeToChild(componentRef.instance, this.value);
+    this.customFilterLogic.setChildDisabledState(componentRef.instance, this.disabled);
+    this.customFilterLogic.registerChildCallbacks(
+      componentRef.instance,
+      value => this.updateValue(value),
+      () => this.onTouched()
+    );
   }
 
 }

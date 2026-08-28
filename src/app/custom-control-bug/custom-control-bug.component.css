@@ -1,0 +1,13 @@
+.form-state {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  font-size: 0.8rem;
+  max-height: 20rem;
+  overflow: auto;
+}
+
+.lead {
+  font-size: 1rem;
+}

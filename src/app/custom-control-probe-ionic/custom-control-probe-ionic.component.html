@@ -1,0 +1,32 @@
+<ion-item class="gci-control" lines="full">
+  <ion-label position="stacked" *ngIf="control?.label">{{ control?.label }}</ion-label>
+  <ion-input
+    [value]="displayValue"
+    [disabled]="disabled"
+    placeholder="nothing received"
+    (ionInput)="onIonInput($event.detail.value)"
+    (ionBlur)="onBlur()">
+  </ion-input>
+</ion-item>
+
+<div class="probe-meta">
+  <ion-chip [color]="writeCount === 0 ? 'danger' : 'medium'">
+    <ion-label>writes received: {{ writeCount }}</ion-label>
+  </ion-chip>
+  <ion-chip color="medium">
+    <ion-label>rendering: {{ displayValue || '(empty)' }}</ion-label>
+  </ion-chip>
+</div>
+
+<ion-accordion-group *ngIf="log.length">
+  <ion-accordion value="log">
+    <ion-item slot="header" lines="none">
+      <ion-label>write log ({{ log.length }})</ion-label>
+    </ion-item>
+    <ion-list slot="content">
+      <ion-item *ngFor="let entry of log" lines="none">
+        <ion-label class="ion-text-wrap"><code>{{ entry }}</code></ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-accordion>
+</ion-accordion-group>
