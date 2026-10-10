@@ -1,6 +1,8 @@
 
 # Generic-CRUD
 
+[![npm version](https://img.shields.io/npm/v/generic-crud)](https://www.npmjs.com/package/generic-crud) [![npm downloads](https://img.shields.io/npm/dy/generic-crud)](https://www.npmjs.com/package/generic-crud)
+
 Schema-driven CRUD for Angular applications. Define entities in JSON and render list/add/edit pages at runtime.
 
 This workspace contains:
@@ -12,9 +14,9 @@ This workspace contains:
 
 ## Packages
 
-- Core package: `generic-crud` (current version: `17.0.0`)
-- Bootstrap theme package: `generic-crud-bootstrap` (current version: `0.0.1`)
-- Ionic theme package: `generic-crud-ionic` (current version: `0.0.1`)
+- Core package: `generic-crud` (current version: `22.1.0`, supports Angular 14 to 22)
+- Bootstrap theme package: `generic-crud-bootstrap` (current version: `22.1.0`, supports Angular 16 to 22)
+- Ionic theme package: `generic-crud-ionic` (current version: `22.1.0`, supports Angular 16 to 22)
 
 ## Quick Start (Consumer App)
 
